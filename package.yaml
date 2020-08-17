@@ -49,3 +49,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - apron-bindings
+    - tasty
+    - tasty-hunit
