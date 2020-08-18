@@ -2,3 +2,5 @@
 .#*
 *~
 stack-work/*
+.stack-work/*
+deps/apron-dist/

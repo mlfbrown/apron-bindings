@@ -54,8 +54,8 @@ packages:
 # arch: x86_64
 #
 # Extra directories used by stack for building
-#extra-include-dirs: [apron path i guess]
-# extra-lib-dirs: [/path/to/dir]
+extra-include-dirs: [./deps/apron-dist/include]
+extra-lib-dirs: [./deps/apron-dist/lib]
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor

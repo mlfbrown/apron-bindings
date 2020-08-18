@@ -1,26 +1,28 @@
 name:                apron-bindings
 version:             0.1.0.0
-github:              "githubuser/apron-bindings"
+github:              "mlfbrown/apron-bindings"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2020 Author name here"
+author:              "Fraser Brown and Deian Stefan"
+maintainer:          "mlfbrown@cs.ucsd.edu"
+copyright:           "2020 Fraser Brown and Deian Stefan"
 
+build-type: Custom
 extra-source-files:
 - README.md
-- ChangeLog.md
 
 # Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+synopsis:            Haskell bindings for the Apron Numerical Abstract Domain Library
+category:            Static-analysis
 
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/apron-bindings#readme>
+description:         Please see the README on GitHub at <https://github.com/mlfbrown/apron-bindings#readme>
+
+custom-setup:
+  dependencies:
+    - base >= 4.7 && < 5
+    - Cabal
 
 dependencies:
-- base >= 4.7 && < 5
+  - base >= 4.7 && < 5
 
 library:
   source-dirs: src
