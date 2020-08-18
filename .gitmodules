@@ -1,3 +1,0 @@
-[submodule "deps/apron"]
-	path = deps/apron
-	url = https://github.com/antoinemine/apron

@@ -6,7 +6,7 @@ author:              "Fraser Brown and Deian Stefan"
 maintainer:          "mlfbrown@cs.ucsd.edu"
 copyright:           "2020 Fraser Brown and Deian Stefan"
 
-build-type: Custom
+build-type: Simple
 extra-source-files:
 - README.md
 
