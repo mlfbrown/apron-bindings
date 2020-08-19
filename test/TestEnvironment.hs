@@ -9,4 +9,4 @@ environmentTests = testGroup "Environment tests" [ makeEnvironment
 
 makeEnvironment = testCase "Make environment" $ do
   e <- apEnvironmentAllocEmpty
-  apEnvironmentFree e
+  apEnvironmentFree2 e
