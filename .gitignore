@@ -3,4 +3,6 @@
 *~
 stack-work/*
 .stack-work/*
-deps/apron-dist/
+config.log
+config.status
+autom4te.cache

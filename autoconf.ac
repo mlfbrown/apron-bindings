@@ -1,0 +1,11 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.63])
+AC_INIT([apron-bindings], [0.1.0.0], [mlfbrown@stanford.edu,deian@cs.ucsd.edu])
+
+# Serch for libapron library
+AC_CHECK_LIB(apron, ap_abstract1_fprint, [],
+  [AC_MSG_FAILURE([unable to find libapron.so: ], [1])])
+
+AC_OUTPUT

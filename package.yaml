@@ -1,25 +1,22 @@
 name:                apron-bindings
 version:             0.1.0.0
 github:              "mlfbrown/apron-bindings"
-license:             BSD3
+license:             GPL
 author:              "Fraser Brown and Deian Stefan"
 maintainer:          "mlfbrown@cs.ucsd.edu"
 copyright:           "2020 Fraser Brown and Deian Stefan"
 
-build-type: Simple
+build-type: Configure
 extra-source-files:
 - README.md
+- autoconf.ac
+- configure
 
 # Metadata used when publishing your package
 synopsis:            Haskell bindings for the Apron Numerical Abstract Domain Library
 category:            Static-analysis
 
 description:         Please see the README on GitHub at <https://github.com/mlfbrown/apron-bindings#readme>
-
-custom-setup:
-  dependencies:
-    - base >= 4.7 && < 5
-    - Cabal
 
 dependencies:
   - base >= 4.7 && < 5
@@ -29,6 +26,7 @@ library:
   ghc-options:
   - -Wall
   build-tools: c2hs
+  extra-libraries:  apron
 
 executables:
   apron-bindings-exe:
