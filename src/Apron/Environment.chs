@@ -1,9 +1,27 @@
 {-# LANGUAGE StandaloneDeriving #-}
+{-# LANGUAGE ForeignFunctionInterface #-}
 module Apron.Environment where
-import           Apron.Manager
+import Apron.Var
 import           Foreign
 import           Foreign.C
 
+{# import Apron.Var #}
+    
 #include "ap_environment.h"
 
 {#pointer *ap_environment_t as Environment foreign newtype#} 
+
+-- Allocation
+
+{#fun ap_environment_alloc_empty as ^ { } -> `Environment' #}
+
+{#fun ap_environment_alloc as ^ { `Var', `CULong', `Var', `CULong' } -> `Environment' #}
+
+{#fun ap_environment_add as ^ { `Environment', `Var', `CULong', `Var', `CULong' } -> `Environment' #}
+
+{#fun ap_environment_copy as ^ { `Environment' } -> `Environment' #}
+
+{#fun ap_environment_free as ^ { `Environment' } -> `()' #}
+
+{#fun ap_environment_free2 as ^ { `Environment' } -> `()' #}   
+

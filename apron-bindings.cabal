@@ -1,0 +1,82 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 85e261af95910d4aaae2fd631c195a8bfc8d3d88b157e462363000d32c46ceba
+
+name:           apron-bindings
+version:        0.1.0.0
+synopsis:       Haskell bindings for the Apron Numerical Abstract Domain Library
+description:    Please see the README on GitHub at <https://github.com/mlfbrown/apron-bindings#readme>
+category:       Static-analysis
+homepage:       https://github.com/mlfbrown/apron-bindings#readme
+bug-reports:    https://github.com/mlfbrown/apron-bindings/issues
+author:         Fraser Brown and Deian Stefan
+maintainer:     mlfbrown@cs.ucsd.edu
+copyright:      2020 Fraser Brown and Deian Stefan
+license:        GPL
+license-file:   LICENSE
+build-type:     Configure
+extra-source-files:
+    README.md
+    autoconf.ac
+    configure
+
+source-repository head
+  type: git
+  location: https://github.com/mlfbrown/apron-bindings
+
+library
+  exposed-modules:
+      Apron
+      Apron.Var                  
+      Apron.Abstract0
+      Apron.Abstract1
+      Apron.Environment
+      Apron.Manager
+      Apron.Scalar
+      Lib
+      Manager
+      Num.Mpfr
+  other-modules:
+      Paths_apron_bindings
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  extra-libraries:
+      apron
+  build-tools:
+      c2hs
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable apron-bindings-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_apron_bindings
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      apron-bindings
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+test-suite apron-bindings-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      TestScalar
+      Paths_apron_bindings
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      apron-bindings
+    , base >=4.7 && <5
+    , tasty
+    , tasty-hunit
+  default-language: Haskell2010
