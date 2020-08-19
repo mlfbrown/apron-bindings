@@ -19,9 +19,24 @@ import           Foreign.C
 
 {#fun ap_environment_add as ^ { `Environment', `Var', `CULong', `Var', `CULong' } -> `Environment' #}
 
+{#fun ap_environment_remove as ^ { `Environment', `Var', `CULong' } -> `Environment' #}
+
 {#fun ap_environment_copy as ^ { `Environment' } -> `Environment' #}
 
 {#fun ap_environment_free as ^ { `Environment' } -> `()' #}
 
 {#fun ap_environment_free2 as ^ { `Environment' } -> `()' #}   
+
+-- Queries
+
+-- Tests
+
+{#fun ap_environment_is_eq as ^ { `Environment', `Environment' } -> `Bool' #}
+
+{#fun ap_environment_is_leq as ^ { `Environment', `Environment' } -> `Bool' #}
+
+{#fun ap_environment_compare as ^ { `Environment', `Environment' } -> `CInt' #}
+
+{#fun ap_environment_hash as ^ { `Environment' } -> `CInt' #}   
+
 
