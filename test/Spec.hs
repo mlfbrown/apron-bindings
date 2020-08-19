@@ -1,6 +1,7 @@
 import           Test.Tasty
 import           Test.Tasty.HUnit
 import           TestEnvironment
+import           TestLincons1
 import           TestScalar
 
 main :: IO ()

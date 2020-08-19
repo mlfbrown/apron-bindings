@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 85e261af95910d4aaae2fd631c195a8bfc8d3d88b157e462363000d32c46ceba
+-- hash: fb6d58a355003e68070e11d8188f3bf87dee5f2e543d3c3203c5a3d95dde11e7
 
 name:           apron-bindings
 version:        0.1.0.0
@@ -31,12 +31,13 @@ source-repository head
 library
   exposed-modules:
       Apron
-      Apron.Var                  
       Apron.Abstract0
       Apron.Abstract1
       Apron.Environment
+      Apron.Lincons1
       Apron.Manager
       Apron.Scalar
+      Apron.Var
       Lib
       Manager
       Num.Mpfr
@@ -69,6 +70,8 @@ test-suite apron-bindings-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      TestEnvironment
+      TestLincons1
       TestScalar
       Paths_apron_bindings
   hs-source-dirs:
