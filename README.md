@@ -1,7 +1,5 @@
 # apron-bindings
 
-# Building
-
 ## Install dependencies
 
 - [APRON](https://github.com/antoinemine/apron)
