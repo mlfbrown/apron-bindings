@@ -9,4 +9,5 @@ main = defaultMain tests
 
 tests = testGroup "All tests" [ scalarTests
                               , environmentTests
+                              , linconsTests
                               ]
