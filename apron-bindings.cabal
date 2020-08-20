@@ -30,10 +30,11 @@ source-repository head
 library
   exposed-modules:
       Apron
-      Apron.Var                  
+      Apron.Var
+      Apron.Scalar
+      Apron.Coeff                  
       Apron.Abstract0
       Apron.Abstract1
-      Apron.Coeff
       Apron.Dimension
       Apron.Disjunction
       Apron.Environment
@@ -47,7 +48,6 @@ library
       Apron.Manager
       Apron.Policy
       Apron.ReducedProduct
-      Apron.Scalar
       Apron.Tcons1
       Apron.Texpr1
       Lib

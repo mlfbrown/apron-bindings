@@ -4,7 +4,7 @@ import           Test.Tasty
 import           Test.Tasty.HUnit
 
 scalarTests = testGroup "Scalar tests" [ makeScalar
-                                       , doScalar
+--                                       , doScalar
                                        ]
 
 makeScalar = testCase "Make scalar" $ do
