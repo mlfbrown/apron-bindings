@@ -48,7 +48,6 @@ library
       Apron.Generator1
       Apron.Global1
       Apron.Interval
-      Apron.Lincons1
       Apron.Linearize
       Apron.Linexpr
       Apron.Manager
@@ -56,6 +55,7 @@ library
       Apron.ReducedProduct
       Apron.Tcons1
       Apron.Texpr1
+      Apron.Lincons1                  
       Lib
       Manager
       Num.Mpfr
