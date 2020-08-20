@@ -1,11 +1,10 @@
-cabal-version: 1.12
-
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 38d9d258db1758308d072d7495516a8b20bdd05d0c9c35da2193ad0a0f1cd707
+-- hash: c7e9cde895727d11cc33ecbecbd6cb450578223d3c93a94a8228bd408c51a3cd
 
+cabal-version:  >= 1.10
 name:           apron-bindings
 version:        0.1.0.0
 synopsis:       Haskell bindings for the Apron Numerical Abstract Domain Library
@@ -20,9 +19,9 @@ license:        GPL
 license-file:   LICENSE
 build-type:     Configure
 extra-source-files:
-    README.md
     autoconf.ac
     configure
+    README.md
 
 source-repository head
   type: git
@@ -35,11 +34,22 @@ library
       Apron.Abstract0
       Apron.Abstract1
       Apron.Coeff
+      Apron.Dimension
+      Apron.Disjunction
       Apron.Environment
+      Apron.Expr1
+      Apron.Generator1
+      Apron.Global1
+      Apron.Interval
       Apron.Lincons1
+      Apron.Linearize
       Apron.Linexpr
       Apron.Manager
+      Apron.Policy
+      Apron.ReducedProduct
       Apron.Scalar
+      Apron.Tcons1
+      Apron.Texpr1
       Lib
       Manager
       Num.Mpfr
