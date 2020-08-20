@@ -23,4 +23,7 @@ topAndBottom = testCase "Top and bottom" $ do
   bottom' <- apIntervalIsBottom i
   top' @?= False
   bottom' @?= True
+  apIntervalSetInt i 1 2
+  bottom'' <- apIntervalIsBottom i
+  bottom'' @?= False
   apIntervalFree i

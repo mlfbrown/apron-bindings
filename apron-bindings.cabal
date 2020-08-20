@@ -19,6 +19,8 @@ license:        GPL
 license-file:   LICENSE
 build-type:     Configure
 extra-source-files:
+    cbits/wrappers.c
+    include/wrappers.h                       
     autoconf.ac
     configure
     README.md
@@ -28,6 +30,10 @@ source-repository head
   location: https://github.com/mlfbrown/apron-bindings
 
 library
+  C-sources: cbits/wrappers.c
+  Include-dirs: include
+  Includes: wrappers.h
+  Install-includes: wrappers.h                
   exposed-modules:
       Apron
       Apron.Var

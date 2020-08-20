@@ -17,9 +17,7 @@ import Foreign.C
 
 {#fun ap_interval_free as ^ { `Interval' } -> `()' #}
 
-{#fun ap_interval_print as ^ { `Interval' } -> `()' #} 
-
--- Assignments
+ -- Assignments
 
 {# fun ap_interval_set as ^ { `Interval', `Interval' } -> `()' #}
 
