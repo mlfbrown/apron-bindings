@@ -4,11 +4,7 @@ import           Apron.Lincons1
 import           Test.Tasty
 import           Test.Tasty.HUnit
 
-linconsTests = testGroup "Lincons tests" [ --makeLincons
---                                         , doLincons
-                                         ]
+linconsTests = testGroup "Lincons tests" []
 
--- makeLincons = testCase "Make lincons" $ do
---   e <- apEnvironmentAllocEmpty
---   c <- apLincons1ArrayMakeWrapper e 4
---   apLincons1ArrayFree c
+
+--makelincons = testCase "Make lincons" $ error ""

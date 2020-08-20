@@ -7,10 +7,22 @@ import           Foreign.C
 {# import Apron.Coeff #}
     
 #include "ap_linexpr1.h"
+#include "ap_linexpr0.h" 
+#include "wrappers.h"
 
+{# enum define LinexprDescrip {
+  AP_LINEXPR_DENSE as LINEXPR_DENSE,
+  AP_LINEXPR_SPARSE as LINEXPR_SPARSE
+} deriving (Eq, Ord, Show) #}
+
+ 
 {#pointer *ap_linexpr1_t as Linexpr foreign newtype#}
 
 -- Memory management and printing
+
+{#fun ap_linexpr1_make_wrapper as ^ { `Environment', `LinexprDescrip', `CULong' } -> `Linexpr' #}
+
+{# fun ap_linexpr1_free as ^ { `Linexpr' } -> `()' #}
 
 {#fun ap_linexpr1_minimize as ^ { `Linexpr' } -> `()' #}
 

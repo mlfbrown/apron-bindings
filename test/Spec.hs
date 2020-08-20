@@ -3,6 +3,7 @@ import           Test.Tasty.HUnit
 import           TestEnvironment
 import           TestInterval
 import           TestLincons1
+import           TestLinexpr
 import           TestScalar
 import           TestTexpr1
 
@@ -14,4 +15,5 @@ tests = testGroup "All tests" [ scalarTests
                               , linconsTests
                               , texprTests
                               , intervalTests
+                              , linexprTests
                               ]

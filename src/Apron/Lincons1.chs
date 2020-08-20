@@ -23,13 +23,13 @@ import Foreign.C
   AP_CONS_DISEQ as CONS_DISEQ
 } deriving (Eq, Ord, Show) #}
 
-
 {#pointer *ap_lincons1_t as Lincons1 foreign newtype#}
 
 -- Memory management and printing
 
--- ap_lincons1_make_wrapper
--- ap_lincons1_free   
+{#fun ap_lincons1_make_wrapper as ^ { `Constyp', `Linexpr', `Scalar' } -> `Lincons1' #}
+
+{#fun ap_lincons1_free as ^ { `Lincons1' } -> `()' #}
 
 ------
 ------ Lincons1 arrays
