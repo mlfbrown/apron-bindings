@@ -87,9 +87,14 @@ executable apron-bindings-exe
 test-suite apron-bindings-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
+  C-sources: cbits/wrappers.c
+  Include-dirs: include
+  Includes: wrappers.h
+  Install-includes: wrappers.h                  
   other-modules:
       TestEnvironment
       TestLincons1
+      TestLinexpr          
       TestScalar
       Paths_apron_bindings
   hs-source-dirs:
