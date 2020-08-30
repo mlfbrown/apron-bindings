@@ -1,15 +1,8 @@
-#include <stdlib.h>
-#include "ap_global0.h"
-#include "ap_global1.h"
+#include "../include/wrappers.h"
 
-int main () {
-
-}
-
-static inline
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp,
-					  ap_linexpr1_t* expr,
-					  ap_scalar_t* scalar) {
+    ap_linexpr1_t* expr,
+    ap_scalar_t* scalar) {
   ap_lincons1_t cons = ap_lincons1_make (constyp, expr, scalar);
   void * ret = malloc (sizeof(ap_lincons1_t));
   memcpy(ret, &cons, sizeof(ap_lincons1_t));
@@ -21,7 +14,7 @@ void ap_lincons1_free (ap_lincons1_t * cons) {
 }
 
 ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env,
-					  ap_linexpr_discr_t lin_discr, size_t size) {
+    ap_linexpr_discr_t lin_discr, size_t size) {
   ap_linexpr1_t expr = ap_linexpr1_make (env, lin_discr, size);
   void * ret = malloc (sizeof(ap_linexpr1_t));
   memcpy(ret, &expr, sizeof(ap_linexpr1_t));
@@ -31,4 +24,20 @@ ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env,
 void ap_linexpr1_free (ap_linexpr1_t * expr) {
   ap_linexpr1_clear(expr);
   free(expr);
+}
+
+bool e_ap_linexpr1_is_integer (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_integer(e);
+}
+
+bool e_ap_linexpr1_is_real (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_real(e);
+}
+
+bool e_ap_linexpr1_is_linear (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_linear(e);
+}
+
+bool e_ap_linexpr1_is_quasilinear (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_quasilinear(e);
 }
