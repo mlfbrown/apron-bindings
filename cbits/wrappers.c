@@ -26,18 +26,3 @@ void ap_linexpr1_free (ap_linexpr1_t * expr) {
   free(expr);
 }
 
-bool e_ap_linexpr1_is_integer (ap_linexpr1_t* e) {
-  return ap_linexpr1_is_integer(e);
-}
-
-bool e_ap_linexpr1_is_real (ap_linexpr1_t* e) {
-  return ap_linexpr1_is_real(e);
-}
-
-bool e_ap_linexpr1_is_linear (ap_linexpr1_t* e) {
-  return ap_linexpr1_is_linear(e);
-}
-
-bool e_ap_linexpr1_is_quasilinear (ap_linexpr1_t* e) {
-  return ap_linexpr1_is_quasilinear(e);
-}

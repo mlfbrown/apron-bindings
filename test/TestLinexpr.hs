@@ -12,10 +12,8 @@ makeLinexpr = testCase "Make linexpr" $ do
   apLinexpr1Free expr
   apEnvironmentFree2 e
 
-opsLinexpr = testCase "Linexpr ops" $ do
-  e <- apEnvironmentAllocEmpty
-  expr <- apLinexpr1MakeWrapper e LINEXPR_DENSE 4
-  isReal <- eApLinexpr1IsReal expr
-  isReal @?= True
-  apLinexpr1Free expr
-  apEnvironmentFree2 e
+-- opsLinexpr = testCase "Linexpr ops" $ do
+--   e <- apEnvironmentAllocEmpty
+--   expr <- apLinexpr1MakeWrapper e LINEXPR_DENSE 4
+--   apLinexpr1Free expr
+--   apEnvironmentFree2 e

@@ -12,7 +12,6 @@ makeLincons = testCase "Make lincons" $ do
   e <- apEnvironmentAllocEmpty
   expr <- apLinexpr1MakeWrapper e LINEXPR_DENSE 4
   s <- apScalarAlloc
-  -- lin <- apLincons1MakeWrapper CONS_EQ expr s
-  -- apLincons1Free lin
-  return ()
+  lin <- apLincons1MakeWrapper CONS_EQ expr s
+  apLincons1Free lin
 
