@@ -1,5 +1,6 @@
 import           Test.Tasty
 import           Test.Tasty.HUnit
+import           TestCoeff
 import           TestEnvironment
 import           TestInterval
 import           TestLincons1
@@ -16,4 +17,5 @@ tests = testGroup "All tests" [ scalarTests
                               , texprTests
                               , intervalTests
                               , linexprTests
+                              , coeffTests
                               ]

@@ -11,9 +11,3 @@ ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env, ap_linexpr_disc
 
 void ap_linexpr1_free (ap_linexpr1_t * expr);
 
-// Non-inlined functions
-
-bool e_ap_linexpr1_is_integer (ap_linexpr1_t* e);
-bool e_ap_linexpr1_is_real (ap_linexpr1_t* e);
-bool e_ap_linexpr1_is_linear (ap_linexpr1_t* e);
-bool e_ap_linexpr1_is_quasilinear (ap_linexpr1_t* e);

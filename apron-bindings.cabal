@@ -38,6 +38,7 @@ library
       Apron
       Apron.Var
       Apron.Scalar
+      Apron.Interval                  
       Apron.Coeff                  
       Apron.Abstract0
       Apron.Abstract1
@@ -47,7 +48,6 @@ library
       Apron.Expr1
       Apron.Generator1
       Apron.Global1
-      Apron.Interval
       Apron.Linearize
       Apron.Linexpr
       Apron.Manager
