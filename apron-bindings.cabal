@@ -96,6 +96,10 @@ test-suite apron-bindings-test
       TestLincons1
       TestLinexpr          
       TestScalar
+      TestCoeff
+      TestInterval
+      TestTexpr1
+      TestDimension          
       Paths_apron_bindings
   hs-source-dirs:
       test
