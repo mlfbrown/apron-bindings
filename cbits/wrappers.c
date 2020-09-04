@@ -26,3 +26,6 @@ void ap_linexpr1_free (ap_linexpr1_t * expr) {
   free(expr);
 }
 
+void ap_dimchange_free_wrapper (ap_dimchange_t * d) {
+  ap_dimchange_free(d);
+}

@@ -6,3 +6,4 @@ stack-work/*
 config.log
 config.status
 autom4te.cache
+*.ghc

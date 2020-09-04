@@ -8,6 +8,6 @@ dimensionTests = testGroup "Dimension tests" [ makeDimension ]
 makeDimension = testCase "Make dimension" $ do
   d <- apDimchangeAlloc 2 6
   return ()
---  apDimchangeFree d
+  apDimchangeFreeWrapper d
 
 

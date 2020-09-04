@@ -4,6 +4,7 @@ module Apron.Dimension where
 import           Foreign.C
 
 #include "ap_dimension.h"
+#include "wrappers.h" 
 
 {#pointer *ap_dimension_t as Dimension foreign newtype#}
 
@@ -19,7 +20,7 @@ import           Foreign.C
 
 {#fun ap_dimchange_init as ^ { `DimChange', `CULong', `CULong' } -> `()' #}
 
-{#fun ap_dimchange_free as ^ { `DimChange' } -> `()' #}
+{#fun ap_dimchange_free_wrapper as ^ { `DimChange' } -> `()' #}
 
 {#fun ap_dimchange_add_invert as ^ { `DimChange' } -> `()' #}  
 
