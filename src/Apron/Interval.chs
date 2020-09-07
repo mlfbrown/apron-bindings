@@ -23,7 +23,7 @@ import Foreign.C
 
 {# fun ap_interval_set_scalar as ^ { `Interval', `Scalar', `Scalar' } -> `()' #}
 
--- mpq
+-- void ap_interval_set_mpq(ap_interval_t* interval, mpq_t inf, mpq_t sup);
 
 {# fun ap_interval_set_int as ^ { `Interval', `CLong', `CLong' } -> `()' #}
 
@@ -31,7 +31,7 @@ import Foreign.C
 
 {#fun ap_interval_set_double as ^ { `Interval', `Double', `Double' } -> `()' #}
 
--- mpfr
+-- void ap_interval_set_mpfr(ap_interval_t* interval, mpfr_t inf, mpfr_t sup);
  
 {#fun ap_interval_set_top as ^ { `Interval' } -> `()' #}
  
@@ -60,3 +60,9 @@ import Foreign.C
 {#fun ap_interval_neg as ^ { `Interval', `Interval' } -> `()' #}
 
 {#fun ap_interval_hash as ^ { `Interval' } -> `CLong' #}
+
+-- Array of intervals
+
+-- ap_interval_t** ap_interval_array_alloc(size_t size);
+
+-- void ap_interval_array_free(ap_interval_t** array, size_t size);

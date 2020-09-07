@@ -46,7 +46,6 @@ library
       Apron.Disjunction
       Apron.Environment
       Apron.Generator1                                    
-      Apron.Global1
       Apron.Linearize
       Apron.Linexpr
       Apron.Manager
