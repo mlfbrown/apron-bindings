@@ -27,7 +27,7 @@ import Foreign.C
 
 -- Memory management and printing
 
-{#fun ap_lincons1_make_wrapper as ^ { `Constyp', `Linexpr', `Scalar' } -> `Lincons1' #}
+{#fun ap_lincons1_make_wrapper as ^ { `Constyp', `Linexpr1', `Scalar' } -> `Lincons1' #}
 
 -- ap_lincons1_t ap_lincons1_make_unsat(ap_environment_t* env);
 
