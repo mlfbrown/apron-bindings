@@ -1,7 +1,7 @@
 module TestLincons1 where
 import           Apron.Environment
 import           Apron.Lincons1
-import           Apron.Linexpr
+import           Apron.Linexpr1
 import           Apron.Scalar
 import           Test.Tasty
 import           Test.Tasty.HUnit

@@ -5,7 +5,7 @@ import Foreign.C
 
 {# import Apron.Environment #}
 {# import Apron.Scalar #}
-{# import Apron.Linexpr #}
+{# import Apron.Linexpr1 #}
 {# import Apron.Var #}
 {# import Apron.Coeff #}
     

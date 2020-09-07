@@ -5,7 +5,7 @@ import           TestDimension
 import           TestEnvironment
 import           TestInterval
 import           TestLincons1
-import           TestLinexpr
+import           TestLinexpr1
 import           TestScalar
 import           TestTexpr1
 

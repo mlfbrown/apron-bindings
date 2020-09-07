@@ -46,8 +46,7 @@ library
       Apron.Disjunction
       Apron.Environment
       Apron.Generator1                                    
-      Apron.Linearize
-      Apron.Linexpr
+      Apron.Linexpr1
       Apron.Manager
       Apron.Policy
       Apron.ReducedProduct
@@ -92,7 +91,7 @@ test-suite apron-bindings-test
   other-modules:
       TestEnvironment
       TestLincons1
-      TestLinexpr          
+      TestLinexpr1          
       TestScalar
       TestCoeff
       TestInterval

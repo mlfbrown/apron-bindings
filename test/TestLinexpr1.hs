@@ -1,6 +1,6 @@
-module TestLinexpr where
+module TestLinexpr1 where
 import           Apron.Environment
-import           Apron.Linexpr
+import           Apron.Linexpr1
 import           Test.Tasty
 import           Test.Tasty.HUnit
 

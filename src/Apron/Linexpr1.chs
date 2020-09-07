@@ -1,6 +1,6 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE StandaloneDeriving       #-}
-module Apron.Linexpr where
+module Apron.Linexpr1 where
 import           Foreign.C
 
 {# import Apron.Environment #}
