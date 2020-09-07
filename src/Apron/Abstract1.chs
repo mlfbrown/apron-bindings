@@ -1,7 +1,6 @@
 {-# LANGUAGE StandaloneDeriving #-}
 module Apron.Abstract1 where
 import           Apron.Environment
-import           Apron.Manager
 import           Foreign
 import           Foreign.C
 

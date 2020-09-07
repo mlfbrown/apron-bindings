@@ -53,7 +53,6 @@ library
       Apron.Texpr1
       Apron.Lincons1                  
       Lib
-      Manager
       Num.Mpfr
   other-modules:
       Paths_apron_bindings
