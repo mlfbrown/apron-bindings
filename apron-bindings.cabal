@@ -47,7 +47,6 @@ library
       Apron.Environment
       Apron.Generator1                                    
       Apron.Linexpr1
-      Apron.Manager
       Apron.Policy
       Apron.ReducedProduct
       Apron.Tcons1
