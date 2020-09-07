@@ -10,7 +10,7 @@ import           Foreign.C
     
 #include "ap_environment.h"
 
-{#pointer *ap_environment_t as Environment foreign newtype#} 
+{#pointer *ap_environment_t as Environment foreign newtype#}
 
 -- Memory management, constructors, destructors
 
@@ -20,8 +20,8 @@ import           Foreign.C
 
 {#fun ap_environment_copy as ^ { `Environment' } -> `Environment' #}
 
------- name_of_dim_alloc
------- name_of_dim_free
+------ name_of_dim_alloc: not allowing, unsized array in struct
+------ name_of_dim_free: not allowing, unsized array in struct
  
 {#fun ap_environment_alloc_empty as ^ { } -> `Environment' #}
 
@@ -35,8 +35,7 @@ import           Foreign.C
 
 -- THIS FUNCTION IS VERY UPSETTING TO GCC
 --{#fun ap_environment_mem_var as ^ { `Environment', %`Var' } -> `Bool' #}
-
--- need wrapper: ap_environment_dim_of_var
+--{#fun ap_environment_dim_of_var as ^ { `Environment', %`Var' } -> `Bool' #}
 -- need wrapper: ap_environment_var_of_dim
 
 -- Tests

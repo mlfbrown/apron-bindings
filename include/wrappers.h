@@ -12,3 +12,7 @@ ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env, ap_linexpr_disc
 void ap_linexpr1_free (ap_linexpr1_t * expr);
 
 void ap_dimchange_free_wrapper (ap_dimchange_t * d);
+
+bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name);
+
+ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);

@@ -45,8 +45,7 @@ library
       Apron.Dimension
       Apron.Disjunction
       Apron.Environment
-      Apron.Expr1
-      Apron.Generator1
+      Apron.Generator1                                    
       Apron.Global1
       Apron.Linearize
       Apron.Linexpr

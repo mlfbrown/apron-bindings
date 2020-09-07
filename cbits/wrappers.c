@@ -29,3 +29,11 @@ void ap_linexpr1_free (ap_linexpr1_t * expr) {
 void ap_dimchange_free_wrapper (ap_dimchange_t * d) {
   ap_dimchange_free(d);
 }
+
+bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name) {
+  return ap_environment_mem_var(env, name);
+}
+
+ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim) {
+  return ap_environment_var_of_dim(env, dim);
+}
