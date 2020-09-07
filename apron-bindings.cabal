@@ -36,11 +36,11 @@ library
   Install-includes: wrappers.h                
   exposed-modules:
       Apron
+      Apron.Manager            
       Apron.Var
       Apron.Scalar
       Apron.Interval                  
       Apron.Coeff                  
-      Apron.Abstract0
       Apron.Abstract1
       Apron.Dimension
       Apron.Disjunction

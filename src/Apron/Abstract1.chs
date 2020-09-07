@@ -10,5 +10,8 @@ import           Foreign.C
 
 {#pointer *ap_box1_t as Box1 foreign newtype#}
 
+-- Memory
 
+-- ap_abstract1_t ap_abstract1_copy(ap_manager_t* man, ap_abstract1_t* a);
 
+-- {#fun ap_abstract1_clear as ^ { } -> `Scalar' #}
