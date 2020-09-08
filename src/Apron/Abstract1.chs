@@ -9,6 +9,8 @@ import           Foreign.C
 {# import Apron.Manager #}
 {# import Apron.Environment #}
 {# import Apron.Lincons1 #}
+{# import Apron.Linexpr1 #}
+{# import Apron.Texpr1 #}
 {# import Apron.Tcons1 #}
 {# import Apron.Interval #}
 {# import Apron.Var #}
@@ -59,7 +61,39 @@ import           Foreign.C
 
 {#fun ap_abstract1_is_variable_unconstrained as ^ { `Manager', `Abstract1', %`Var' } -> `Bool' #}
                                                                    
-                                                               
+-- Extraction of properties
+
+{#fun ap_abstract1_bound_linexpr as ^ { `Manager', `Abstract1', `Linexpr1' } -> `Interval' #}
+
+{#fun ap_abstract1_bound_texpr as ^ { `Manager', `Abstract1', `Texpr1' } -> `Interval' #}
+
+{#fun ap_abstract1_bound_variable as ^ { `Manager', `Abstract1', %`Var' } -> `Interval' #}
+
+-- ap_lincons1_array_t ap_abstract1_to_lincons_array(ap_manager_t* man, ap_abstract1_t* a);
+
+-- ap_tcons1_array_t ap_abstract1_to_tcons_array(ap_manager_t* man, ap_abstract1_t* a);
+
+-- ap_box1_t ap_abstract1_to_box(ap_manager_t* man, ap_abstract1_t* a);
+
+-- Operations
+
+-- ap_abstract1_t ap_abstract1_meet(ap_manager_t* man, bool destructive, ap_abstract1_t* a1, ap_abstract1_t* a2);
+
+-- ap_abstract1_t ap_abstract1_join(ap_manager_t* man, bool destructive, ap_abstract1_t* a1, ap_abstract1_t* a2);
+
+-- ap_abstract1_t ap_abstract1_meet_array(ap_manager_t* man, ap_abstract1_t* tab, size_t size);
+
+-- ap_abstract1_t ap_abstract1_join_array(ap_manager_t* man, ap_abstract1_t* tab, size_t size);
+
+-- ap_abstract1_t ap_abstract1_meet_lincons_array(ap_manager_t* man,
+
+-- ap_abstract1_meet_tcons_array(ap_manager_t* man,
+
+-- ap_abstract1_t ap_abstract1_add_ray_array(ap_manager_t* man,
+
+-- Assignments and substitutions ALL NEED WRAPPERS
+
+-- EVERYTHING BEYOND THIS POINT NEEDS A WRAPPER
 
 
-                                                            
+
