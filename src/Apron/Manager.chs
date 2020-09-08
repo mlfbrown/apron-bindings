@@ -11,7 +11,7 @@ import           Foreign.C
 
 -- User functions
 
-{#fun box_manager_alloc_wrapper as ^ { } -> `Manager' #}
+{#fun box_manager_alloc as ^ { } -> `Manager' #}
 
 {#fun ap_manager_free as ^ { `Manager' } -> `()' #}
 

@@ -12,6 +12,6 @@ import           Test.Tasty.HUnit
 abstractTests = testGroup "Abstract tests" [ makeAbstract ]
 
 makeAbstract = testCase "Make abstract" $ do
-  man <- boxManagerAllocWrapper
+  man <- boxManagerAlloc
   env <- apEnvironmentAllocEmpty
   error ""

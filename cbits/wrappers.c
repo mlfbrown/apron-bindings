@@ -160,9 +160,5 @@ ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
 // End of header
 
 
-// Managers
 
-ap_manager_t * box_manager_alloc_wrapper () {
-  return box_manager_alloc();
-}
 

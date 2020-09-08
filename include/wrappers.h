@@ -92,6 +92,3 @@ ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
 						      ap_environment_t* env,
 						      ap_tcons1_array_t* array);
 
-// managers
-
-ap_manager_t * box_manager_alloc_wrapper();
