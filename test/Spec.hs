@@ -1,5 +1,6 @@
 import           Test.Tasty
 import           Test.Tasty.HUnit
+import           TestAbstract1
 import           TestCoeff
 import           TestDimension
 import           TestEnvironment
@@ -20,4 +21,5 @@ tests = testGroup "All tests" [ scalarTests
                               , linexprTests
                               , coeffTests
                               , dimensionTests
+                              , abstractTests
                               ]
