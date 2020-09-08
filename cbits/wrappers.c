@@ -143,13 +143,26 @@ ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
 		destructive, a, tvar, texpr, size, dest);  
 }
 
-// END HEADER
+// Additional functions
+
+ap_abstract1_t * ap_abstract1_of_lincons_array_wrapper (ap_manager_t* man,
+							ap_environment_t* env,
+							ap_lincons1_array_t* array) {
+  wrap_apron_fn(ap_abstract1_of_lincons_array, ap_abstract1_t, man, env, array);
+}
+
+ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
+						      ap_environment_t* env,
+						      ap_tcons1_array_t* array) {
+  wrap_apron_fn(ap_abstract1_of_tcons_array, ap_abstract1_t, man, env, array);
+}
+
+// End of header
 
 
+// Managers
 
-
-
-
-
-
+ap_manager_t * box_manager_alloc_wrapper () {
+  return box_manager_alloc();
+}
 

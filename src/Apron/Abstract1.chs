@@ -102,5 +102,11 @@ import           Foreign.C
 
 -- Projections
 
+-- skip skip
 
+-- Additional functions
 
+{#fun ap_abstract1_of_lincons_array_wrapper as ^ { `Manager', `Environment', `Lincons1Array' } -> `Abstract1' #}
+ 
+{#fun ap_abstract1_of_tcons_array_wrapper as ^ { `Manager', `Environment', `Tcons1Array' } -> `Abstract1' #}
+                     

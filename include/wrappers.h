@@ -3,6 +3,7 @@
 #include "ap_linexpr1.h"
 #include "ap_global0.h"
 #include "ap_global1.h"
+#include "box.h"
 
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp, ap_linexpr1_t* expr, ap_scalar_t* scalar);
 void ap_lincons1_free (ap_lincons1_t * cons);
@@ -80,3 +81,17 @@ ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
 							      ap_texpr1_t* texpr,
 							      size_t size,
 							      ap_abstract1_t* dest);
+
+// skip
+
+ap_abstract1_t * ap_abstract1_of_lincons_array_wrapper (ap_manager_t* man,
+							ap_environment_t* env,
+							ap_lincons1_array_t* array);
+
+ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
+						      ap_environment_t* env,
+						      ap_tcons1_array_t* array);
+
+// managers
+
+ap_manager_t * box_manager_alloc_wrapper();
