@@ -29,9 +29,9 @@ import Foreign.C
 
 {#fun ap_lincons1_make_wrapper as ^ { `Constyp', `Linexpr1', `Scalar' } -> `Lincons1' #}
 
--- ap_lincons1_t ap_lincons1_make_unsat(ap_environment_t* env);
+{#fun ap_lincons1_copy_wrapper as ^ { `Lincons1' } -> `Lincons1' #}
 
--- ap_lincons1_t ap_lincons1_copy(ap_lincons1_t* cons);
+{#fun ap_lincons1_is_unsat_wrapper as ^ { `Lincons1' } -> `Bool' #}
 
 {#fun ap_lincons1_clear as ^ { `Lincons1' } -> `()' #}
 
@@ -43,23 +43,24 @@ import Foreign.C
 
 -- Access
 
--- ap_environment_t* ap_lincons1_envref(ap_lincons1_t* cons);
+{#fun ap_lincons1_envref_wrapper as ^ { `Lincons1' } -> `Environment' #}
 
+--{#fun ap_lincons1_constypref_wrapper as ^ { `Lincons1' } -> `Environment' #}
 -- ap_constyp_t* ap_lincons1_constypref(ap_lincons1_t* cons);
 
--- ap_scalar_t* ap_lincons1_scalarref(ap_lincons1_t* cons);
+{#fun ap_lincons1_scalarref_wrapper as ^ { `Lincons1' } -> `Scalar' #}
 
--- ap_linexpr1_t ap_lincons1_linexpr1ref(ap_lincons1_t* cons);
+{#fun ap_lincons1_linexpr1ref_wrapper as ^ { `Lincons1' } -> `Linexpr1' #}
 
--- static inline void ap_lincons1_get_cst(ap_coeff_t* coeff, ap_lincons1_t* cons);
+{#fun ap_lincons1_get_cst_wrapper as ^ { `Coeff', `Lincons1' } -> `()' #}
 
 {#fun ap_lincons1_get_coeff as ^ { `Coeff', `Lincons1', %`Var' } -> `Bool' #}
 
--- static inline void ap_lincons1_set_cst(ap_lincons1_t* cons, ap_coeff_t* cst);
+{#fun ap_lincons1_set_cst_wrapper as ^ { `Lincons1', `Coeff' } -> `()' #}
 
--- static inline bool ap_lincons1_set_coeff(ap_lincons1_t* cons, ap_var_t var, ap_coeff_t* coeff);
+{#fun ap_lincons1_set_coeff_wrapper as ^ { `Lincons1', %`Var', `Coeff' } -> `Bool' #}
 
--- ap_coeff_t* ap_lincons1_cstref(ap_lincons1_t* cons);
+{#fun ap_lincons1_cstref_wrapper as ^ { `Lincons1' } -> `Coeff' #}
 
 {#fun ap_lincons1_coeffref as ^ { `Lincons1', %`Var' } -> `Coeff' #}
 
@@ -73,12 +74,11 @@ import Foreign.C
 
 -- Access
 
--- size_t ap_lincons1_array_size(ap_lincons1_array_t* array);
+{#fun ap_lincons1_array_size_wrapper as ^ { `Lincons1Array' } -> `CULong' #}
 
--- ap_environment_t* ap_lincons1_array_envref(ap_lincons1_array_t* array);
+{#fun ap_lincons1_array_envref_wrapper as ^ { `Lincons1Array' } -> `Environment' #}
 
--- ap_lincons1_t ap_lincons1_array_get(ap_lincons1_array_t* array,
---      size_t index);
+{#fun ap_lincons1_array_get_wrapper as ^ { `Lincons1Array', `CULong' } -> `Lincons1' #}
 
 {#fun ap_lincons1_array_set as ^ { `Lincons1Array', `CULong', `Lincons1' } -> `()' #}
 
