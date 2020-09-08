@@ -60,7 +60,7 @@ library
       src
   ghc-options: -Wall
   extra-libraries:
-      apron
+      apron, boxD
   build-tools:
       c2hs
   build-depends:
