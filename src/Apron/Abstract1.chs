@@ -5,6 +5,7 @@ import           Foreign
 import           Foreign.C
 
 #include "ap_abstract1.h"
+#include "wrappers.h" 
 
 {# import Apron.Manager #}
 {# import Apron.Environment #}
@@ -77,23 +78,29 @@ import           Foreign.C
 
 -- Operations
 
--- ap_abstract1_t ap_abstract1_meet(ap_manager_t* man, bool destructive, ap_abstract1_t* a1, ap_abstract1_t* a2);
+{#fun ap_abstract1_meet_wrapper as ^ { `Manager', `Bool', `Abstract1', `Abstract1' } -> `Abstract1' #}
 
--- ap_abstract1_t ap_abstract1_join(ap_manager_t* man, bool destructive, ap_abstract1_t* a1, ap_abstract1_t* a2);
+{#fun ap_abstract1_join_wrapper as ^ { `Manager', `Bool', `Abstract1', `Abstract1' } -> `Abstract1' #}
 
--- ap_abstract1_t ap_abstract1_meet_array(ap_manager_t* man, ap_abstract1_t* tab, size_t size);
+{#fun ap_abstract1_meet_array_wrapper as ^ { `Manager', `Abstract1', `CULong' } -> `Abstract1' #}
 
--- ap_abstract1_t ap_abstract1_join_array(ap_manager_t* man, ap_abstract1_t* tab, size_t size);
+{#fun ap_abstract1_join_array_wrapper as ^ { `Manager', `Abstract1', `CULong' } -> `Abstract1' #}
 
--- ap_abstract1_t ap_abstract1_meet_lincons_array(ap_manager_t* man,
+{#fun ap_abstract1_meet_lincons_array_wrapper as ^ { `Manager', `Bool', `Abstract1', `Lincons1Array' } -> `Abstract1' #}
 
--- ap_abstract1_meet_tcons_array(ap_manager_t* man,
+{#fun ap_abstract1_meet_tcons_array_wrapper as ^ { `Manager', `Bool', `Abstract1', `Tcons1Array' } -> `Abstract1' #}
 
--- ap_abstract1_t ap_abstract1_add_ray_array(ap_manager_t* man,
+-- Assignment and substitution 
 
--- Assignments and substitutions ALL NEED WRAPPERS
+{#fun ap_abstract1_assign_linexpr_array_wrapper as ^ { `Manager', `Bool', `Abstract1', `Var', `Linexpr1', `CULong', `Abstract1' } -> `Abstract1' #}
 
--- EVERYTHING BEYOND THIS POINT NEEDS A WRAPPER
+{#fun ap_abstract1_substitute_linexpr_array_wrapper as ^ { `Manager', `Bool', `Abstract1', `Var', `Linexpr1', `CULong', `Abstract1' } -> `Abstract1' #}
+
+{#fun ap_abstract1_assign_texpr_array_wrapper as ^ { `Manager', `Bool', `Abstract1', `Var', `Texpr1', `CULong', `Abstract1' } -> `Abstract1' #}
+
+{#fun ap_abstract1_substitute_texpr_array_wrapper as ^ { `Manager', `Bool', `Abstract1', `Var', `Texpr1', `CULong', `Abstract1' } -> `Abstract1' #}
+
+-- Projections
 
 
 
