@@ -8,4 +8,8 @@ AC_INIT([apron-bindings], [0.1.0.0], [mlfbrown@stanford.edu,deian@cs.ucsd.edu])
 AC_CHECK_LIB(apron, ap_abstract1_fprint, [],
   [AC_MSG_FAILURE([unable to find libapron.so: ], [1])])
 
+# Serch for libboxD library
+AC_CHECK_LIB(boxD, box_fprint, [],
+  [AC_MSG_FAILURE([unable to find libboxD.so: ], [1])])
+
 AC_OUTPUT
