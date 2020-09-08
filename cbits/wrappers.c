@@ -11,10 +11,7 @@
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp,
     ap_linexpr1_t* expr,
     ap_scalar_t* scalar) {
-  ap_lincons1_t cons = ap_lincons1_make (constyp, expr, scalar);
-  void * ret = malloc (sizeof(ap_lincons1_t));
-  memcpy(ret, &cons, sizeof(ap_lincons1_t));
-  return (ap_lincons1_t *)ret; 
+  wrap_apron_fn(ap_lincons1_make, ap_lincons1_t, constyp, expr, scalar);
 }
 
 void ap_lincons1_free (ap_lincons1_t * cons) {
@@ -23,10 +20,7 @@ void ap_lincons1_free (ap_lincons1_t * cons) {
 
 ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env,
     ap_linexpr_discr_t lin_discr, size_t size) {
-  ap_linexpr1_t expr = ap_linexpr1_make (env, lin_discr, size);
-  void * ret = malloc (sizeof(ap_linexpr1_t));
-  memcpy(ret, &expr, sizeof(ap_linexpr1_t));
-  return (ap_linexpr1_t *)ret;
+  wrap_apron_fn(ap_linexpr1_make, ap_linexpr1_t, env, lin_discr, size);
 }
 
 void ap_linexpr1_free (ap_linexpr1_t * expr) {
@@ -50,21 +44,86 @@ ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim)
 /* Abstract wrappers, ap_abstract1.h */
 
 ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a) {
-  ap_lincons1_array_t arr = ap_abstract1_to_lincons_array(man, a);
-  void * ret = malloc (sizeof(ap_lincons1_array_t));
-  memcpy(ret, &arr, sizeof(ap_lincons1_array_t));
-  return (ap_lincons1_array_t *)ret;  
+  wrap_apron_fn(ap_abstract1_to_lincons_array, ap_lincons1_array_t, man, a);
 }
 
 ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a) {
-  ap_tcons1_array_t arr = ap_abstract1_to_tcons_array(man, a);
-  void * ret = malloc (sizeof(ap_tcons1_array_t));
-  memcpy(ret, &arr, sizeof(ap_tcons1_array_t));
-  return (ap_tcons1_array_t *)ret;  
+  wrap_apron_fn(ap_abstract1_to_tcons_array, ap_tcons1_array_t, man, a);
 }
 
 // skipping ap_abstract1_to_box
 
 // skipping ap_abstract1_to_generator_array
+
+ap_abstract1_t * ap_abstract1_meet_wrapper (ap_manager_t* man,
+					    bool destructive,
+					    ap_abstract1_t* a1,
+					    ap_abstract1_t* a2) {
+  wrap_apron_fn(ap_abstract1_meet, ap_abstract1_t, man, destructive, a1, a2);
+}
+
+ap_abstract1_t * ap_abstract1_join_wrapper (ap_manager_t* man,
+					    bool destructive,
+					    ap_abstract1_t* a1,
+					    ap_abstract1_t* a2) {
+  wrap_apron_fn(ap_abstract1_join, ap_abstract1_t, man, destructive, a1, a2);
+}
+
+ap_abstract1_t * ap_abstract1_meet_array_wrapper (ap_manager_t* man,
+						  ap_abstract1_t* tab,
+						  size_t size) {
+  wrap_apron_fn(ap_abstract1_meet_array, ap_abstract1_t, man, tab, size);
+}
+
+ap_abstract1_t * ap_abstract1_join_array_wrapper (ap_manager_t* man,
+						  ap_abstract1_t* tab,
+						  size_t size) {
+  wrap_apron_fn(ap_abstract1_join_array, ap_abstract1_t, man, tab, size);
+}
+
+ap_abstract1_t * ap_abstract1_meet_lincons_array_wrapper (ap_manager_t* man,
+							  bool destructive,
+							  ap_abstract1_t* a,
+							  ap_lincons1_array_t* array) {
+  wrap_apron_fn(ap_abstract1_meet_lincons_array, ap_abstract1_t, man, destructive, a, array);
+}
+
+ap_abstract1_t * ap_abstract1_meet_tcons_array_wrapper (ap_manager_t* man,
+							bool destructive,
+							ap_abstract1_t* a,
+							ap_tcons1_array_t* array) {
+  wrap_apron_fn(ap_abstract1_meet_tcons_array, ap_abstract1_t, man, destructive, a, array);
+}
+
+// ap_abstract1_add_ray_array
+
+ap_abstract1_t * ap_abstract1_assign_linexpr_array_wrapper (ap_manager_t* man,
+							    bool destructive,
+							    ap_abstract1_t* a,
+							    ap_var_t* tvar,
+							    ap_linexpr1_t* texpr,
+							    size_t size,
+							    ap_abstract1_t* dest) {
+
+  wrap_apron_fn(ap_abstract1_assign_linexpr_array, ap_abstract1_t, man,
+		destructive, a, tvar, texpr, size, dest);
+  
+}
+
+ap_abstract1_t * ap_abstract1_substitute_linexpr_array_wrapper (ap_manager_t* man,
+								bool destructive,
+								ap_abstract1_t* a,
+								ap_var_t* tvar,
+								ap_linexpr1_t* texpr,
+								size_t size,
+								ap_abstract1_t* dest) {
+  wrap_apron_fn(ap_abstract1_substitute_linexpr_array, ap_abstract1_t, man,
+		destructive, a, tvar, texpr, size, dest);  
+}
+
+
+
+
+
 
 
