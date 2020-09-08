@@ -5,8 +5,44 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// Lincons 
+
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp, ap_linexpr1_t* expr, ap_scalar_t* scalar);
+
+ap_lincons1_t * ap_lincons1_copy_wrapper (ap_lincons1_t* cons);
+
+bool ap_lincons1_is_unsat_wrapper (ap_lincons1_t* cons);
+
+ap_environment_t* ap_lincons1_envref_wrapper (ap_lincons1_t* cons);
+
+ap_constyp_t* ap_lincons1_constypref_wrapper (ap_lincons1_t* cons);
+
+ap_scalar_t* ap_lincons1_scalarref_wrapper (ap_lincons1_t* cons);
+
+ap_linexpr1_t* ap_lincons1_linexpr1ref_wrapper (ap_lincons1_t* cons);
+
+void ap_lincons1_get_cst_wrapper (ap_coeff_t* coeff, ap_lincons1_t* cons);
+
+void ap_lincons1_set_cst_wrapper (ap_lincons1_t* cons, ap_coeff_t* cst);
+
+bool ap_lincons1_set_coeff_wrapper (ap_lincons1_t* cons, ap_var_t var, ap_coeff_t* coeff);
+
+ap_coeff_t* ap_lincons1_cstref_wrapper (ap_lincons1_t* cons);
+
+ap_lincons1_array_t * ap_lincons1_array_make_wrapper (ap_environment_t* env, size_t size);
+
+size_t ap_lincons1_array_size_wrapper (ap_lincons1_array_t* array);
+
+ap_environment_t* ap_lincons1_array_envref_wrapper (ap_lincons1_array_t* array);
+
+ap_lincons1_t* ap_lincons1_array_get_wrapper (ap_lincons1_array_t* array,
+					      size_t index);
+
+
+// change later
 void ap_lincons1_free (ap_lincons1_t * cons);
+
+// Other 
 
 ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env, ap_linexpr_discr_t lin_discr, size_t size);
 
@@ -19,8 +55,6 @@ bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name);
 ap_lincons1_array_t * ap_lincons1_array_make_wrapper (ap_environment_t* env, size_t size);
 
 ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);
-
-ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
 
 ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
 
