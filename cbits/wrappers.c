@@ -121,6 +121,29 @@ ap_abstract1_t * ap_abstract1_substitute_linexpr_array_wrapper (ap_manager_t* ma
 		destructive, a, tvar, texpr, size, dest);  
 }
 
+ap_abstract1_t * ap_abstract1_assign_texpr_array_wrapper (ap_manager_t* man,
+							  bool destructive,
+							  ap_abstract1_t* a,
+							  ap_var_t* tvar,
+							  ap_texpr1_t* texpr,
+							  size_t size,
+							  ap_abstract1_t* dest) {
+  wrap_apron_fn(ap_abstract1_assign_texpr_array, ap_abstract1_t, man,
+		destructive, a, tvar, texpr, size, dest);  
+}
+
+ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
+							      bool destructive,
+							      ap_abstract1_t* a,
+							      ap_var_t* tvar,
+							      ap_texpr1_t* texpr,
+							      size_t size,
+							      ap_abstract1_t* dest) {
+  wrap_apron_fn(ap_abstract1_substitute_texpr_array, ap_abstract1_t, man,
+		destructive, a, tvar, texpr, size, dest);  
+}
+
+
 
 
 

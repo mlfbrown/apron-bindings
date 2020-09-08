@@ -16,3 +16,67 @@ void ap_dimchange_free_wrapper (ap_dimchange_t * d);
 bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name);
 
 ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);
+
+ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
+
+ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
+
+ap_abstract1_t * ap_abstract1_meet_wrapper (ap_manager_t* man,
+					    bool destructive,
+					    ap_abstract1_t* a1,
+					    ap_abstract1_t* a2);
+
+ap_abstract1_t * ap_abstract1_join_wrapper (ap_manager_t* man,
+					    bool destructive,
+					    ap_abstract1_t* a1,
+					    ap_abstract1_t* a2);
+
+ap_abstract1_t * ap_abstract1_meet_array_wrapper (ap_manager_t* man,
+						  ap_abstract1_t* tab,
+						  size_t size);
+
+ap_abstract1_t * ap_abstract1_join_array_wrapper (ap_manager_t* man,
+						  ap_abstract1_t* tab,
+						  size_t size);
+
+ap_abstract1_t * ap_abstract1_meet_lincons_array_wrapper (ap_manager_t* man,
+							  bool destructive,
+							  ap_abstract1_t* a,
+							  ap_lincons1_array_t* array);
+
+ap_abstract1_t * ap_abstract1_meet_tcons_array_wrapper (ap_manager_t* man,
+							bool destructive,
+							ap_abstract1_t* a,
+							ap_tcons1_array_t* array);
+
+ap_abstract1_t * ap_abstract1_assign_linexpr_array_wrapper (ap_manager_t* man,
+							    bool destructive,
+							    ap_abstract1_t* a,
+							    ap_var_t* tvar,
+							    ap_linexpr1_t* texpr,
+							    size_t size,
+							    ap_abstract1_t* dest);
+
+ap_abstract1_t * ap_abstract1_substitute_linexpr_array_wrapper (ap_manager_t* man,
+								bool destructive,
+								ap_abstract1_t* a,
+								ap_var_t* tvar,
+								ap_linexpr1_t* texpr,
+								size_t size,
+								ap_abstract1_t* dest);
+
+ap_abstract1_t * ap_abstract1_assign_texpr_array_wrapper (ap_manager_t* man,
+							  bool destructive,
+							  ap_abstract1_t* a,
+							  ap_var_t* tvar,
+							  ap_texpr1_t* texpr,
+							  size_t size,
+							  ap_abstract1_t* dest);
+
+ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
+							      bool destructive,
+							      ap_abstract1_t* a,
+							      ap_var_t* tvar,
+							      ap_texpr1_t* texpr,
+							      size_t size,
+							      ap_abstract1_t* dest);
