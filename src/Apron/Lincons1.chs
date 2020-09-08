@@ -67,7 +67,7 @@ import Foreign.C
 
 {#pointer *ap_lincons1_array_t as Lincons1Array foreign newtype#}    
 
--- ap_lincons1_array_t ap_lincons1_array_make(ap_environment_t* env, size_t size);
+{#fun ap_lincons1_array_make_wrapper as ^ { `Environment', `CULong' } -> `Lincons1Array' #}
 
 {#fun ap_lincons1_array_clear as ^ { `Lincons1Array' } -> `()' #}
 

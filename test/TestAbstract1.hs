@@ -14,4 +14,6 @@ abstractTests = testGroup "Abstract tests" [ makeAbstract ]
 makeAbstract = testCase "Make abstract" $ do
   man <- boxManagerAlloc
   env <- apEnvironmentAllocEmpty
-  error ""
+  arr <- apLincons1ArrayMakeWrapper env 2
+  abstract <- apAbstract1OfLinconsArrayWrapper man env arr
+  return ()

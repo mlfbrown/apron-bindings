@@ -41,6 +41,10 @@ ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim)
 }
 
 
+ap_lincons1_array_t * ap_lincons1_array_make_wrapper (ap_environment_t* env, size_t size) {
+  wrap_apron_fn(ap_lincons1_array_make, ap_lincons1_array_t, env, size);
+}
+
 /* Abstract wrappers, ap_abstract1.h */
 
 ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a) {
