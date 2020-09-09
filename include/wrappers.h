@@ -5,6 +5,42 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// ---------------------> Generator
+
+ap_generator1_t * ap_generator1_make_wrapper (ap_gentyp_t gentyp, ap_linexpr1_t* expr);
+
+ap_generator1_t * ap_generator1_copy_wrapper (ap_generator1_t* gen);
+
+ap_environment_t* ap_generator1_envref_wrapper (ap_generator1_t* gen);
+
+ap_gentyp_t* ap_generator1_gentypref_wrapper (ap_generator1_t* gen);
+
+ap_linexpr1_t * ap_generator1_linexpr1ref_wrapper (ap_generator1_t* gen);
+
+void ap_generator1_get_cst_wrapper (ap_coeff_t* coeff, ap_generator1_t* gen);
+
+void ap_generator1_set_cst_wrapper (ap_generator1_t* gen, ap_coeff_t* cst);
+
+bool ap_generator1_set_coeff_wrapper (ap_generator1_t* gen, ap_var_t var, ap_coeff_t* coeff);
+
+ap_coeff_t* ap_generator1_cstref_wrapper (ap_generator1_t* gen);
+
+size_t ap_generator1_array_size_wrapper (ap_generator1_array_t* array);
+
+ap_environment_t* ap_generator1_array_envref_wrapper (ap_generator1_array_t* array);
+
+void ap_generator1_array_clear_index_wrapper (ap_generator1_array_t* array, size_t index);
+
+// ---------------------> Environment
+
+void ap_environment_free_wrapper (ap_environment_t* e);
+
+ap_environment_t* ap_environment_copy_wrapper (ap_environment_t* e);
+
+bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name);
+
+ap_var_t * ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);
+
 // ---------------------> Dimchange
 
 void ap_dimchange_clear_wrapper (ap_dimchange_t* dimchange);
@@ -188,7 +224,7 @@ bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name);
 
 ap_lincons1_array_t * ap_lincons1_array_make_wrapper (ap_environment_t* env, size_t size);
 
-ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);
+ap_var_t * ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);
 
 ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
 

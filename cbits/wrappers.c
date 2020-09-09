@@ -8,6 +8,74 @@
   return ret;                                        \
   } while (0)
 
+// Generator
+
+ap_generator1_t * ap_generator1_make_wrapper (ap_gentyp_t gentyp, ap_linexpr1_t* expr) {
+  wrap_apron_fn(ap_generator1_make, ap_generator1_t, gentyp, expr);
+}
+
+ap_generator1_t * ap_generator1_copy_wrapper (ap_generator1_t* gen) {
+  wrap_apron_fn(ap_generator1_copy, ap_generator1_t, gen);
+}
+
+ap_environment_t* ap_generator1_envref_wrapper (ap_generator1_t* gen) {
+  return ap_generator1_envref(gen);
+}
+
+ap_gentyp_t* ap_generator1_gentypref_wrapper (ap_generator1_t* gen) {
+  return ap_generator1_gentypref(gen);
+}
+
+ap_linexpr1_t * ap_generator1_linexpr1ref_wrapper (ap_generator1_t* gen) {
+  wrap_apron_fn(ap_generator1_linexpr1ref, ap_linexpr1_t, gen);
+}
+
+void ap_generator1_get_cst_wrapper (ap_coeff_t* coeff, ap_generator1_t* gen) {
+  ap_generator1_get_cst(coeff, gen);
+}
+
+void ap_generator1_set_cst_wrapper (ap_generator1_t* gen, ap_coeff_t* cst) {
+  ap_generator1_set_cst(gen, cst);
+}
+
+bool ap_generator1_set_coeff_wrapper (ap_generator1_t* gen, ap_var_t var, ap_coeff_t* coeff) {
+  return ap_generator1_set_coeff(gen, var, coeff);
+}
+
+ap_coeff_t* ap_generator1_cstref_wrapper (ap_generator1_t* gen) {
+  return ap_generator1_cstref(gen);
+}
+
+size_t ap_generator1_array_size_wrapper (ap_generator1_array_t* array) {
+  return ap_generator1_array_size(array);
+}
+
+ap_environment_t* ap_generator1_array_envref_wrapper (ap_generator1_array_t* array) {
+  return ap_generator1_array_envref(array);
+}
+
+void ap_generator1_array_clear_index_wrapper (ap_generator1_array_t* array, size_t index) {
+  ap_generator1_array_clear_index(array, index);
+}
+
+// Environment
+
+void ap_environment_free_wrapper (ap_environment_t* e) {
+  ap_environment_free(e);
+}
+
+ap_environment_t* ap_environment_copy_wrapper (ap_environment_t* e) {
+  ap_environment_copy(e);
+}
+
+bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name) {
+  return ap_environment_mem_var(env, name);
+}
+
+ap_var_t * ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim) {
+  wrap_apron_fn(ap_environment_var_of_dim, ap_var_t, env, dim);
+}
+
 // Dimchange
 
 void ap_dimchange_clear_wrapper (ap_dimchange_t* dimchange) {
@@ -328,17 +396,7 @@ void ap_linexpr1_free (ap_linexpr1_t * expr) {
 }
 
 
-// Other
-
-bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name) {
-  return ap_environment_mem_var(env, name);
-}
-
-ap_var_t ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim) {
-  return ap_environment_var_of_dim(env, dim);
-}
-
-/* Abstract wrappers, ap_abstract1.h */
+// Abstract1
 
 ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a) {
   wrap_apron_fn(ap_abstract1_to_lincons_array, ap_lincons1_array_t, man, a);
