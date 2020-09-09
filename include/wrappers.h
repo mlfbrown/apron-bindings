@@ -5,6 +5,18 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// ---------------------> Texpr
+
+bool ap_texpr1_is_interval_cst_wrapper (ap_texpr1_t* e);
+
+bool ap_texpr1_is_interval_linear_wrapper (ap_texpr1_t* e);
+
+bool ap_texpr1_is_interval_polynomial_wrapper (ap_texpr1_t* e);
+
+bool ap_texpr1_is_interval_polyfrac_wrapper (ap_texpr1_t* e);
+
+bool ap_texpr1_is_scalar_wrapper (ap_texpr1_t* e);
+
 // ---------------------> Tcons
 
 ap_tcons1_t * ap_tcons1_from_lincons1_wrapper (ap_lincons1_t* cons);
