@@ -8,6 +8,12 @@
   return ret;                                        \
   } while (0)
 
+// Scalar
+
+void ap_scalar_swap_wrapper (ap_scalar_t* a, ap_scalar_t* b) {
+  ap_scalar_swap(a, b);
+}
+
 // Generator
 
 ap_generator1_t * ap_generator1_make_wrapper (ap_gentyp_t gentyp, ap_linexpr1_t* expr) {

@@ -5,6 +5,10 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// ---------------------> Scalar
+
+void ap_scalar_swap_wrapper (ap_scalar_t* a, ap_scalar_t* b);  
+
 // ---------------------> Generator
 
 ap_generator1_t * ap_generator1_make_wrapper (ap_gentyp_t gentyp, ap_linexpr1_t* expr);

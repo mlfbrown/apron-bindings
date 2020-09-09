@@ -5,6 +5,7 @@ import           Foreign.C
 import           Foreign.Ptr
 
 #include "ap_scalar.h"
+#include "wrappers.h" 
 
 {#pointer *ap_scalar_t as Scalar foreign newtype#}
 
@@ -22,7 +23,7 @@ import           Foreign.Ptr
 
 {#fun ap_scalar_reinit as ^ { `Scalar', `ScalarDisc' } -> `()' #} 
 
--- {#fun ap_scalar_swap as ^ { `Scalar', `Scalar' } -> `()' #}  
+{#fun ap_scalar_swap_wrapper as ^ { `Scalar', `Scalar' } -> `()' #}  
 
 -- Assignments 
            
