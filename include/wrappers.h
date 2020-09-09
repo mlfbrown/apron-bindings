@@ -99,6 +99,29 @@ void ap_linexpr1_set_cst_interval_double_wrapper (ap_linexpr1_t* expr,
 						  double sup);
 
 
+bool ap_linexpr1_set_coeff_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_coeff_t* coeff);
+
+bool ap_linexpr1_set_coeff_scalar_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_scalar_t* scalar);
+
+bool ap_linexpr1_set_coeff_scalar_int_wrapper (ap_linexpr1_t* expr, ap_var_t var, int num);
+
+bool ap_linexpr1_set_coeff_scalar_frac_wrapper (ap_linexpr1_t* expr, ap_var_t var, int num, unsigned int den);
+
+bool ap_linexpr1_set_coeff_scalar_double_wrapper (ap_linexpr1_t* expr, ap_var_t var, double num);
+
+bool ap_linexpr1_set_coeff_interval_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_interval_t* itv);
+
+bool ap_linexpr1_set_coeff_interval_scalar_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_scalar_t* inf, ap_scalar_t* sup);
+
+bool ap_linexpr1_set_coeff_interval_int_wrapper (ap_linexpr1_t* expr, ap_var_t var, int inf, int sup);
+
+bool ap_linexpr1_set_coeff_interval_frac_wrapper (ap_linexpr1_t* expr, ap_var_t var,
+						  int numinf, unsigned int deninf,
+						  int numsup, unsigned int densup);
+
+bool ap_linexpr1_set_coeff_interval_double_wrapper (ap_linexpr1_t* expr, ap_var_t var, double inf, double sup);
+
+
 
 // change later
 void ap_linexpr1_free (ap_linexpr1_t * expr);

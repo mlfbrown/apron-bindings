@@ -6,6 +6,8 @@ import           Foreign.C
 {# import Apron.Environment #}
 {# import Apron.Coeff #}
 {# import Apron.Var #}
+{# import Apron.Scalar #}
+{# import Apron.Interval #}
     
 #include "ap_linexpr1.h"
 #include "ap_linexpr0.h" 
@@ -23,29 +25,73 @@ import           Foreign.C
 
 {#fun ap_linexpr1_make_wrapper as ^ { `Environment', `LinexprDescrip', `CULong' } -> `Linexpr1' #}
 
+-- This will go away
 {# fun ap_linexpr1_free as ^ { `Linexpr1' } -> `()' #}
 
--- {#fun ap_linexpr1_minimize as ^ { `Linexpr' } -> `()' #}
+{# fun ap_linexpr1_minimize_wrapper as ^ { `Linexpr1' } -> `()' #}
 
--- {#fun ap_linexpr1_clear as ^ { `Linexpr' } -> `()' #}
+{# fun ap_linexpr1_copy_wrapper as ^ { `Linexpr1' } -> `Linexpr1' #}
 
--- Tests
+{# fun ap_linexpr1_is_integer_wrapper as ^ { `Linexpr1' } -> `Bool' #}
 
--- {#fun ap_linexpr1_is_integer as ^ { `Linexpr' } -> `Bool' #}
+{# fun ap_linexpr1_is_real_wrapper as ^ { `Linexpr1' } -> `Bool' #}
+ 
+-- ap_linexpr1_type_wrapper
 
--- {#fun ap_linexpr1_is_real as ^ { `Linexpr' } -> `Bool' #}
+{# fun ap_linexpr1_is_linear_wrapper as ^ { `Linexpr1' } -> `Bool' #}
 
--- ap_linexpr_type_t ap_linexpr1_type(ap_linexpr1_t* a);
+{# fun ap_linexpr1_is_quasilinear_wrapper as ^ { `Linexpr1' } -> `Bool' #}
 
--- {#fun ap_linexpr1_is_linear as ^ { `Linexpr' } -> `Bool' #}
+{# fun ap_linexpr1_envref_wrapper as ^ { `Linexpr1' } -> `Environment' #}
 
--- {#fun ap_linexpr1_is_quasilinear as ^ { `Linexpr' } -> `Bool' #}
+{# fun ap_linexpr1_cstref_wrapper as ^ { `Linexpr1' } -> `Coeff' #}
 
--- Access
+{# fun ap_linexpr1_coeffref_wrapper as ^ { `Linexpr1', %`Var' } -> `Coeff' #}
 
--- {#fun ap_linexpr1_envref as ^ { `Linexpr' } -> `Environment' #}
+{# fun ap_linexpr1_get_cst_wrapper as ^ { `Coeff', `Linexpr1' } -> `()' #}
 
--- {#fun ap_linexpr1_cstref as ^ { `Linexpr' } -> `Coeff' #}
+{# fun ap_linexpr1_get_coeff_wrapper as ^ { `Coeff', `Linexpr1', %`Var' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_cst_wrapper as ^ { `Linexpr1', `Coeff' } -> `()' #}
+
+{# fun ap_linexpr1_set_cst_scalar_wrapper as ^ { `Linexpr1', `Scalar' } -> `()' #}
+                                                                   
+{# fun ap_linexpr1_set_cst_scalar_int_wrapper as ^ { `Linexpr1', `Int' } -> `()' #}
+
+{# fun ap_linexpr1_set_cst_scalar_frac_wrapper as ^ { `Linexpr1', `Int', `CUInt' } -> `()' #}
+
+{# fun ap_linexpr1_set_cst_scalar_double_wrapper as ^ { `Linexpr1', `Double' } -> `()' #}
+
+{# fun ap_linexpr1_set_cst_interval_wrapper as ^ { `Linexpr1', `Interval' } -> `()' #}
+                                                                                  
+{# fun ap_linexpr1_set_cst_interval_scalar_wrapper as ^ { `Linexpr1', `Scalar', `Scalar' } -> `()' #}
+
+{# fun ap_linexpr1_set_cst_interval_int_wrapper as ^ { `Linexpr1', `Int', `Int' } -> `()' #}
+  
+{# fun ap_linexpr1_set_cst_interval_frac_wrapper as ^ { `Linexpr1', `Int', `CUInt', `Int', `CUInt' } -> `()' #}
+ 
+{# fun ap_linexpr1_set_cst_interval_double_wrapper as ^ { `Linexpr1', `Double', `Double' } -> `()' #}
+
+{# fun ap_linexpr1_set_coeff_wrapper as ^ { `Linexpr1', %`Var', `Coeff' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_scalar_wrapper as ^ { `Linexpr1', %`Var', `Scalar' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_scalar_int_wrapper as ^ { `Linexpr1', %`Var', `Int' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_scalar_frac_wrapper as ^ { `Linexpr1', %`Var', `Int', `CUInt' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_scalar_double_wrapper as ^ { `Linexpr1', %`Var', `Double' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_interval_wrapper as ^ { `Linexpr1', %`Var', `Interval' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_interval_scalar_wrapper as ^ { `Linexpr1', %`Var', `Scalar', `Scalar' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_interval_int_wrapper as ^ { `Linexpr1', %`Var', `Int', `Int' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_interval_frac_wrapper as ^ { `Linexpr1', %`Var', `Int', `CUInt', `Int', `CUInt' } -> `Bool' #}
+
+{# fun ap_linexpr1_set_coeff_interval_double_wrapper as ^ { `Linexpr1', %`Var', `Double', `Double' } -> `Bool' #}
+
 
 {# fun ap_linexpr1_coeffref as ^ { `Linexpr1', %`Var' } -> `Coeff' #}
 

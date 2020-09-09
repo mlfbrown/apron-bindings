@@ -181,6 +181,48 @@ void ap_linexpr1_set_cst_interval_double_wrapper (ap_linexpr1_t* expr,
   ap_linexpr1_set_cst_interval_double(expr, inf, sup);
 }
 
+bool ap_linexpr1_set_coeff_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_coeff_t* coeff) {
+  return ap_linexpr1_set_coeff(expr, var, coeff);
+}
+
+bool ap_linexpr1_set_coeff_scalar_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_scalar_t* scalar) {
+  return ap_linexpr1_set_coeff_scalar(expr, var, scalar);
+}
+
+bool ap_linexpr1_set_coeff_scalar_int_wrapper (ap_linexpr1_t* expr, ap_var_t var, int num) {
+  return ap_linexpr1_set_coeff_scalar_int(expr, var, num);
+}
+
+bool ap_linexpr1_set_coeff_scalar_frac_wrapper (ap_linexpr1_t* expr, ap_var_t var, int num, unsigned int den) {
+  return ap_linexpr1_set_coeff_scalar_frac(expr, var, num, den);
+}
+
+bool ap_linexpr1_set_coeff_scalar_double_wrapper (ap_linexpr1_t* expr, ap_var_t var, double num) {
+  return ap_linexpr1_set_coeff_scalar_double(expr, var, num);
+}
+
+bool ap_linexpr1_set_coeff_interval_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_interval_t* itv) {
+  return ap_linexpr1_set_coeff_interval(expr, var, itv);
+}
+
+bool ap_linexpr1_set_coeff_isnterval_scalar_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_scalar_t* inf, ap_scalar_t* sup) {
+  return ap_linexpr1_set_coeff_interval_scalar(expr, var, inf, sup);
+}
+
+bool ap_linexpr1_set_coeff_interval_int_wrapper (ap_linexpr1_t* expr, ap_var_t var, int inf, int sup) {
+  return ap_linexpr1_set_coeff_interval_int(expr, var, inf, sup);
+}
+
+bool ap_linexpr1_set_coeff_interval_frac_wrapper (ap_linexpr1_t* expr, ap_var_t var,
+					 int numinf, unsigned int deninf,
+					 int numsup, unsigned int densup) {
+  return ap_linexpr1_set_coeff_interval_frac(expr, var, numinf, deninf, numsup, densup);
+}
+
+bool ap_linexpr1_set_coeff_interval_double_wrapper (ap_linexpr1_t* expr, ap_var_t var, double inf, double sup){
+  ap_linexpr1_set_coeff_interval_double(expr, var, inf, sup);
+}
+
 // change
 void ap_linexpr1_free (ap_linexpr1_t * expr) {
   ap_linexpr1_clear(expr);
