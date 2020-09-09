@@ -76,7 +76,7 @@ void ap_environment_free_wrapper (ap_environment_t* e) {
 }
 
 ap_environment_t* ap_environment_copy_wrapper (ap_environment_t* e) {
-  ap_environment_copy(e);
+  return ap_environment_copy(e);
 }
 
 bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name) {
@@ -397,7 +397,7 @@ bool ap_linexpr1_set_coeff_interval_frac_wrapper (ap_linexpr1_t* expr, ap_var_t 
 }
 
 bool ap_linexpr1_set_coeff_interval_double_wrapper (ap_linexpr1_t* expr, ap_var_t var, double inf, double sup){
-  ap_linexpr1_set_coeff_interval_double(expr, var, inf, sup);
+  return ap_linexpr1_set_coeff_interval_double(expr, var, inf, sup);
 }
 
 // change
@@ -509,8 +509,6 @@ ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
 		destructive, a, tvar, texpr, size, dest);  
 }
 
-// Additional functions
-
 ap_abstract1_t * ap_abstract1_of_lincons_array_wrapper (ap_manager_t* man,
 							ap_environment_t* env,
 							ap_lincons1_array_t* array) {
@@ -522,9 +520,3 @@ ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
 						      ap_tcons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_of_tcons_array, ap_abstract1_t, man, env, array);
 }
-
-// End of header
-
-
-
-
