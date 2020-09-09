@@ -5,6 +5,23 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// ---------------------> Dimchange
+
+void ap_dimchange_clear_wrapper (ap_dimchange_t* dimchange);
+
+void ap_dimchange_free_wrapper (ap_dimchange_t* dimchange);
+
+void ap_dimchange2_init_wrapper (ap_dimchange2_t* dimchange2,
+				 ap_dimchange_t* add,
+				 ap_dimchange_t* remove);
+
+ap_dimchange2_t* ap_dimchange2_alloc_wrapper (ap_dimchange_t* add,
+					      ap_dimchange_t* remove);
+
+void ap_dimperm_clear_wrapper (ap_dimperm_t* dimperm);
+
+void ap_dimperm_free_wrapper (ap_dimperm_t* dimperm);
+
 // ---------------------> Texpr
 
 bool ap_texpr1_is_interval_cst_wrapper (ap_texpr1_t* e);
