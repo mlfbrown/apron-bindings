@@ -31,6 +31,9 @@ ap_environment_t* ap_generator1_array_envref_wrapper (ap_generator1_array_t* arr
 
 void ap_generator1_array_clear_index_wrapper (ap_generator1_array_t* array, size_t index);
 
+ap_generator1_t * ap_generator1_array_get_wrapper (ap_generator1_array_t* array,
+						   size_t index);
+
 // ---------------------> Environment
 
 void ap_environment_free_wrapper (ap_environment_t* e);

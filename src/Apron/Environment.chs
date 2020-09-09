@@ -9,6 +9,7 @@ import           Foreign.C
 {# import Apron.Dimension #}
     
 #include "ap_environment.h"
+#include "wrappers.h" 
 
 {#pointer *ap_environment_t as Environment foreign newtype#}
 
@@ -16,9 +17,9 @@ import           Foreign.C
 
 {#fun ap_environment_free2 as ^ { `Environment' } -> `()' #}
  
-{#fun ap_environment_free as ^ { `Environment' } -> `()' #}
+{#fun ap_environment_free_wrapper as ^ { `Environment' } -> `()' #}
 
-{#fun ap_environment_copy as ^ { `Environment' } -> `Environment' #}
+{#fun ap_environment_copy_wrapper as ^ { `Environment' } -> `Environment' #}
 
 ------ name_of_dim_alloc: not allowing, unsized array in struct
 ------ name_of_dim_free: not allowing, unsized array in struct
@@ -33,11 +34,6 @@ import           Foreign.C
 
 {#fun ap_environment_remove as ^ { `Environment', `Var', `CULong' } -> `Environment' #}
 
--- THIS FUNCTION IS VERY UPSETTING TO GCC
---{#fun ap_environment_mem_var as ^ { `Environment', %`Var' } -> `Bool' #}
---{#fun ap_environment_dim_of_var as ^ { `Environment', %`Var' } -> `Bool' #}
--- need wrapper: ap_environment_var_of_dim
-
 -- Tests
 
 {#fun ap_environment_is_eq as ^ { `Environment', `Environment' } -> `Bool' #}
@@ -47,6 +43,8 @@ import           Foreign.C
 {#fun ap_environment_compare as ^ { `Environment', `Environment' } -> `CInt' #}
 
 {#fun ap_environment_hash as ^ { `Environment' } -> `CInt' #}   
+
+-- skipping mem var, var of dim, gcc is very upset
 
 -- Least common enviroments and conversion permutations (NOT DOING)
 
