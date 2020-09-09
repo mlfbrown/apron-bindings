@@ -18,6 +18,11 @@ import           Foreign.C
   AP_LINEXPR_SPARSE as LINEXPR_SPARSE
 } deriving (Eq, Ord, Show) #}
 
+{# enum define LinexprType {
+  AP_LINEXPR_INTLINEAR as LINEXPR_INTLINEAR,
+  AP_LINEXPR_QUASILINEAR as LINEXPR_QUASILINEAR,
+  AP_LINEXPR_LINEAR as LINEXPR_LINEAR
+} deriving (Eq, Ord, Show) #}
  
 {#pointer *ap_linexpr1_t as Linexpr1 foreign newtype#}
 
@@ -35,9 +40,9 @@ import           Foreign.C
 {# fun ap_linexpr1_is_integer_wrapper as ^ { `Linexpr1' } -> `Bool' #}
 
 {# fun ap_linexpr1_is_real_wrapper as ^ { `Linexpr1' } -> `Bool' #}
- 
--- ap_linexpr1_type_wrapper
 
+-- {# fun ap_linexpr1_type_wrapper as ^ { `Linexpr1' } -> `Int' #}
+ 
 {# fun ap_linexpr1_is_linear_wrapper as ^ { `Linexpr1' } -> `Bool' #}
 
 {# fun ap_linexpr1_is_quasilinear_wrapper as ^ { `Linexpr1' } -> `Bool' #}
