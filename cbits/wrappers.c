@@ -78,17 +78,117 @@ void ap_lincons1_free (ap_lincons1_t * cons) {
   free(cons);
 }
 
-// Other
+// Linexpr 
 
 ap_linexpr1_t* ap_linexpr1_make_wrapper (ap_environment_t* env,
-    ap_linexpr_discr_t lin_discr, size_t size) {
+					 ap_linexpr_discr_t lin_discr,
+					 size_t size) {
   wrap_apron_fn(ap_linexpr1_make, ap_linexpr1_t, env, lin_discr, size);
 }
 
+void ap_linexpr1_minimize_wrapper (ap_linexpr1_t* e) {
+  ap_linexpr1_minimize(e);
+}
+
+ap_linexpr1_t * ap_linexpr1_copy_wrapper (ap_linexpr1_t* e) {
+  wrap_apron_fn(ap_linexpr1_copy, ap_linexpr1_t, e);
+}
+
+bool ap_linexpr1_is_integer_wrapper (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_integer(e);
+}
+
+bool ap_linexpr1_is_real_wrapper (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_real(e);
+}
+
+ap_linexpr_type_t * ap_linexpr1_type_wrapper (ap_linexpr1_t* a) {
+  wrap_apron_fn(ap_linexpr1_type, ap_linexpr_type_t, a);
+}
+
+bool ap_linexpr1_is_linear_wrapper (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_linear(e);
+}
+
+bool ap_linexpr1_is_quasilinear_wrapper (ap_linexpr1_t* e) {
+  return ap_linexpr1_is_quasilinear(e);
+}
+
+ap_environment_t* ap_linexpr1_envref_wrapper (ap_linexpr1_t* expr) {
+  return ap_linexpr1_envref(expr);
+}
+
+ap_coeff_t* ap_linexpr1_cstref_wrapper (ap_linexpr1_t* expr) {
+  return ap_linexpr1_cstref(expr);
+}
+
+ap_coeff_t* ap_linexpr1_coeffref_wrapper (ap_linexpr1_t* expr, ap_var_t var) {
+  return ap_linexpr1_coeffref(expr, var);  
+}
+
+void ap_linexpr1_get_cst_wrapper (ap_coeff_t* coeff, ap_linexpr1_t* expr) {
+  ap_linexpr1_get_cst(coeff, expr);
+}
+
+bool ap_linexpr1_get_coeff_wrapper (ap_coeff_t* coeff, ap_linexpr1_t* expr, ap_var_t var) {
+  return ap_linexpr1_get_coeff(coeff, expr, var);
+}
+
+void ap_linexpr1_set_cst_wrapper (ap_linexpr1_t* expr, ap_coeff_t* cst) {
+  ap_linexpr1_set_cst(expr, cst);
+}
+void ap_linexpr1_set_cst_scalar_wrapper (ap_linexpr1_t* expr, ap_scalar_t* scalar) {
+  ap_linexpr1_set_cst_scalar(expr, scalar);
+}
+
+void ap_linexpr1_set_cst_scalar_int_wrapper (ap_linexpr1_t* expr, int num) {
+  ap_linexpr1_set_cst_scalar_int(expr, num);
+}
+
+void ap_linexpr1_set_cst_scalar_frac_wrapper (ap_linexpr1_t* expr,
+					      int num,
+					      unsigned int den) {
+  ap_linexpr1_set_cst_scalar_frac(expr, num, den);
+}
+
+void ap_linexpr1_set_cst_scalar_double_wrapper (ap_linexpr1_t* expr, double num) {
+  ap_linexpr1_set_cst_scalar_double(expr, num);
+}
+
+void ap_linexpr1_set_cst_interval_wrapper (ap_linexpr1_t* expr, ap_interval_t* itv) {
+  ap_linexpr1_set_cst_interval(expr, itv);
+}
+
+void ap_linexpr1_set_cst_interval_scalar_wrapper (ap_linexpr1_t* expr,
+						  ap_scalar_t* inf,
+						  ap_scalar_t* sup) {
+  ap_linexpr1_set_cst_interval_scalar(expr, inf, sup);
+}
+
+void ap_linexpr1_set_cst_interval_int_wrapper (ap_linexpr1_t* expr, int inf, int sup) {
+  ap_linexpr1_set_cst_interval_int(expr, inf, sup);
+}
+
+void ap_linexpr1_set_cst_interval_frac_wrapper (ap_linexpr1_t* expr,
+						int numinf, unsigned int deninf,
+						int numsup, unsigned int densup) {
+  ap_linexpr1_set_cst_interval_frac(expr, numinf, deninf, numsup, densup);
+}
+
+void ap_linexpr1_set_cst_interval_double_wrapper (ap_linexpr1_t* expr,
+						  double inf,
+						  double sup) {
+  ap_linexpr1_set_cst_interval_double(expr, inf, sup);
+}
+
+// change
 void ap_linexpr1_free (ap_linexpr1_t * expr) {
   ap_linexpr1_clear(expr);
   free(expr);
 }
+
+
+// Other
 
 void ap_dimchange_free_wrapper (ap_dimchange_t * d) {
   ap_dimchange_free(d);

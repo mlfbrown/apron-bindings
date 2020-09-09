@@ -5,7 +5,7 @@
 #include "ap_global1.h"
 #include "box.h"
 
-// Lincons 
+// ---------------------> Lincons 
 
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp, ap_linexpr1_t* expr, ap_scalar_t* scalar);
 
@@ -38,15 +38,72 @@ ap_environment_t* ap_lincons1_array_envref_wrapper (ap_lincons1_array_t* array);
 ap_lincons1_t* ap_lincons1_array_get_wrapper (ap_lincons1_array_t* array,
 					      size_t index);
 
-
 // change later
 void ap_lincons1_free (ap_lincons1_t * cons);
 
-// Other 
+
+// --------------------> Linexpr
 
 ap_linexpr1_t * ap_linexpr1_make_wrapper (ap_environment_t* env, ap_linexpr_discr_t lin_discr, size_t size);
 
+void ap_linexpr1_minimize_wrapper (ap_linexpr1_t* e);
+
+ap_linexpr1_t * ap_linexpr1_copy_wrapper (ap_linexpr1_t* e);
+
+bool ap_linexpr1_is_integer_wrapper (ap_linexpr1_t* e);
+
+bool ap_linexpr1_is_real_wrapper (ap_linexpr1_t* e);
+
+ap_linexpr_type_t * ap_linexpr1_type_wrapper (ap_linexpr1_t* a);
+
+bool ap_linexpr1_is_linear_wrapper (ap_linexpr1_t* e);
+
+bool ap_linexpr1_is_quasilinear_wrapper (ap_linexpr1_t* e);
+
+ap_environment_t* ap_linexpr1_envref_wrapper (ap_linexpr1_t* expr);
+
+ap_coeff_t* ap_linexpr1_cstref_wrapper (ap_linexpr1_t* expr);
+
+ap_coeff_t* ap_linexpr1_coeffref_wrapper (ap_linexpr1_t* expr, ap_var_t var);
+
+void ap_linexpr1_get_cst_wrapper (ap_coeff_t* coeff, ap_linexpr1_t* expr);
+
+bool ap_linexpr1_get_coeff_wrapper (ap_coeff_t* coeff, ap_linexpr1_t* expr, ap_var_t var);
+
+void ap_linexpr1_set_cst_wrapper (ap_linexpr1_t* expr, ap_coeff_t* cst);
+
+void ap_linexpr1_set_cst_scalar_wrapper (ap_linexpr1_t* expr, ap_scalar_t* scalar);
+
+void ap_linexpr1_set_cst_scalar_int_wrapper (ap_linexpr1_t* expr, int num);
+
+void ap_linexpr1_set_cst_scalar_frac_wrapper (ap_linexpr1_t* expr,
+					      int num,
+					      unsigned int den);
+
+void ap_linexpr1_set_cst_scalar_double_wrapper (ap_linexpr1_t* expr, double num);
+
+void ap_linexpr1_set_cst_interval_wrapper (ap_linexpr1_t* expr, ap_interval_t* itv);
+
+void ap_linexpr1_set_cst_interval_scalar_wrapper (ap_linexpr1_t* expr,
+						  ap_scalar_t* inf,
+						  ap_scalar_t* sup);
+
+void ap_linexpr1_set_cst_interval_int_wrapper (ap_linexpr1_t* expr, int inf, int sup);
+
+void ap_linexpr1_set_cst_interval_frac_wrapper (ap_linexpr1_t* expr,
+						int numinf, unsigned int deninf,
+						int numsup, unsigned int densup);
+
+void ap_linexpr1_set_cst_interval_double_wrapper (ap_linexpr1_t* expr,
+						  double inf,
+						  double sup);
+
+
+
+// change later
 void ap_linexpr1_free (ap_linexpr1_t * expr);
+
+// --------------------> Other 
 
 void ap_dimchange_free_wrapper (ap_dimchange_t * d);
 
