@@ -11,7 +11,8 @@ import Foreign.C
 {# import Apron.Var #}
 {# import Apron.Linexpr1 #}
     
-#include "ap_texpr1.h"    
+#include "ap_texpr1.h"
+#include "wrappers.h"     
 
 {#pointer *ap_texpr1_t as Texpr1 foreign newtype#}
 
@@ -63,15 +64,15 @@ import Foreign.C
 
 {#fun ap_texpr1_has_var as ^ { `Texpr1',  %`Var' } -> `Bool' #}
 
--- bool ap_texpr1_is_interval_cst(ap_texpr1_t* e);
+{#fun ap_texpr1_is_interval_cst_wrapper as ^ { `Texpr1' } -> `Bool' #}
 
--- bool ap_texpr1_is_interval_linear(ap_texpr1_t* e);
+{#fun ap_texpr1_is_interval_linear_wrapper as ^ { `Texpr1' } -> `Bool' #}
 
--- bool ap_texpr1_is_interval_polynomial(ap_texpr1_t* e);
+{#fun ap_texpr1_is_interval_polynomial_wrapper as ^ { `Texpr1' } -> `Bool' #}
 
--- bool ap_texpr1_is_interval_polyfrac(ap_texpr1_t* e);
+{#fun ap_texpr1_is_interval_polyfrac_wrapper as ^ { `Texpr1' } -> `Bool' #}
 
--- bool ap_texpr1_is_scalar(ap_texpr1_t* e);
+{#fun ap_texpr1_is_scalar_wrapper as ^ { `Texpr1' } -> `Bool' #}
 
 -- Operations
 
