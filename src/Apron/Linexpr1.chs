@@ -92,7 +92,6 @@ import           Foreign.C
 
 {# fun ap_linexpr1_set_coeff_interval_double_wrapper as ^ { `Linexpr1', %`Var', `Double', `Double' } -> `Bool' #}
 
-
 {# fun ap_linexpr1_coeffref as ^ { `Linexpr1', %`Var' } -> `Coeff' #}
 
 -- {#fun ap_linexpr1_get_cst as ^ { `Coeff', `Linexpr' } -> `()' #}

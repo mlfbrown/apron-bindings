@@ -3,31 +3,35 @@
 module Apron.Tcons1 where
 import Foreign.C
     
-#include "ap_tcons1.h"    
+#include "ap_tcons1.h"
+#include "wrappers.h"     
 
 {# import Apron.Environment #}
+{# import Apron.Lincons1 #}
+{# import Apron.Scalar #}
+{# import Apron.Texpr1 #}
  
 ---- Tcons1
  
 {#pointer *ap_tcons1_t as Tcons1 foreign newtype#}
 
--- ap_tcons1_t ap_tcons1_make(ap_constyp_t constyp
+--{# fun ap_tcons1_make as ^ { `Lincons1' } -> `Tcons1' #}
 
--- ap_tcons1_t ap_tcons1_from_lincons1(ap_lincons1_t* cons);
+{# fun ap_tcons1_from_lincons1_wrapper as ^ { `Lincons1' } -> `Tcons1' #}
 
--- ap_tcons1_t ap_tcons1_copy(ap_tcons1_t* cons);
+{# fun ap_tcons1_copy_wrapper as ^ { `Tcons1' } -> `Tcons1' #}
 
 {# fun ap_tcons1_clear as ^ { `Tcons1' } -> `()' #}
 
 -- Access
 
--- ap_environment_t* ap_tcons1_envref(ap_tcons1_t* cons);
+{# fun ap_tcons1_envref_wrapper as ^ { `Tcons1' } -> `Environment' #}
 
 -- ap_constyp_t* ap_tcons1_constypref(ap_tcons1_t* cons);
 
--- ap_scalar_t* ap_tcons1_scalarref(ap_tcons1_t* cons);
+{# fun ap_tcons1_scalarref_wrapper as ^ { `Tcons1' } -> `Scalar' #}
 
--- ap_texpr1_t ap_tcons1_texpr1ref(ap_tcons1_t* cons);
+{# fun ap_tcons1_texpr1ref_wrapper as ^ { `Tcons1' } -> `Texpr1' #}
 
 -- Change of dimensions and permutations
 
@@ -41,19 +45,19 @@ import Foreign.C
 
 -- Memory management
 
--- ap_tcons1_array_t ap_tcons1_array_make(ap_environment_t* env, size_t size);
+{# fun ap_tcons1_array_make_wrapper as ^ { `Environment', `Int' } -> `Tcons1Array' #}
 
 {# fun ap_tcons1_array_clear as ^ { `Tcons1Array' } -> `()' #}
 
 -- Access
 
--- size_t ap_tcons1_array_size(ap_tcons1_array_t* array);
+{# fun ap_tcons1_array_size_wrapper as ^ { `Tcons1Array' } -> `CULong' #}
 
--- ap_environment_t* ap_tcons1_array_envref(ap_tcons1_array_t* array);
+{# fun ap_tcons1_array_envref_wrapper as ^ { `Tcons1Array' } -> `Environment' #}
 
--- void ap_tcons1_array_clear_index(ap_tcons1_array_t* array, size_t index);
+{# fun ap_tcons1_array_clear_index_wrapper as ^ { `Tcons1Array', `CULong' } -> `()' #}
 
--- ap_tcons1_t ap_tcons1_array_get(ap_tcons1_array_t* array,
+{# fun ap_tcons1_array_get_wrapper as ^ { `Tcons1Array', `CULong' } -> `Tcons1' #}
 
 {# fun ap_tcons1_array_set as ^ { `Tcons1Array', `CULong', `Tcons1' } -> `Bool' #}
 
