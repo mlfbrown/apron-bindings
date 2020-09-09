@@ -22,15 +22,19 @@ import           Foreign.C
 
 {#fun ap_dimchange_free_wrapper as ^ { `DimChange' } -> `()' #}
 
+{#fun ap_dimchange_clear_wrapper as ^ { `DimChange' } -> `()' #} 
+
 {#fun ap_dimchange_add_invert as ^ { `DimChange' } -> `()' #}  
 
 -- DimChange2
 
-{#fun ap_dimchange2_alloc as ^ { `DimChange', `DimChange' } -> `DimChange2' #}
+{#fun ap_dimchange2_alloc_wrapper as ^ { `DimChange', `DimChange' } -> `DimChange2' #}
 
-{#fun ap_dimchange2_init as ^ { `DimChange2', `DimChange', `DimChange' } -> `()' #}
+{#fun ap_dimchange2_init_wrapper as ^ { `DimChange2', `DimChange', `DimChange' } -> `()' #}
 
-{#fun ap_dimchange2_free as ^ { `DimChange2' } -> `()' #}
+{#fun ap_dimchange2_clear as ^ { `DimChange2' } -> `()' #}
+
+{#fun ap_dimchange2_free as ^ { `DimChange2' } -> `()' #} 
 
 -- DimPerm
 
@@ -38,7 +42,9 @@ import           Foreign.C
 
 {#fun ap_dimperm_init as ^ { `DimPerm', `CULong' } -> `()' #}
 
-{#fun ap_dimperm_free as ^ { `DimPerm' } -> `()' #}
+{#fun ap_dimperm_clear_wrapper as ^ { `DimPerm' } -> `()' #}
+
+{#fun ap_dimperm_free_wrapper as ^ { `DimPerm' } -> `()' #}
 
 {#fun ap_dimperm_set_id as ^ { `DimPerm' } -> `()' #}
 
