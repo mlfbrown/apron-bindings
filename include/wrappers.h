@@ -5,6 +5,31 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// ---------------------> Tcons
+
+ap_tcons1_t * ap_tcons1_from_lincons1_wrapper (ap_lincons1_t* cons);
+
+ap_tcons1_t * ap_tcons1_copy_wrapper (ap_tcons1_t* cons);
+
+ap_environment_t* ap_tcons1_envref_wrapper (ap_tcons1_t* cons);
+
+ap_constyp_t* ap_tcons1_constypref_wrapper (ap_tcons1_t* cons);
+
+ap_scalar_t* ap_tcons1_scalarref_wrapper (ap_tcons1_t* cons);
+
+ap_texpr1_t* ap_tcons1_texpr1ref_wrapper (ap_tcons1_t* cons);
+
+ap_tcons1_array_t* ap_tcons1_array_make_wrapper (ap_environment_t* env, size_t size);
+
+size_t ap_tcons1_array_size_wrapper (ap_tcons1_array_t* array);
+
+ap_environment_t* ap_tcons1_array_envref_wrapper (ap_tcons1_array_t* array);
+
+void ap_tcons1_array_clear_index_wrapper (ap_tcons1_array_t* array, size_t index);
+
+ap_tcons1_t * ap_tcons1_array_get_wrapper (ap_tcons1_array_t* array,
+					   size_t index);
+
 // ---------------------> Lincons 
 
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp, ap_linexpr1_t* expr, ap_scalar_t* scalar);

@@ -1,12 +1,59 @@
 #include "../include/wrappers.h"
 
-#define wrap_apron_fn(FNNAME, RETTYPE, ARGS...)                \
-  do {                                                         \
-  RETTYPE fn_out = FNNAME(ARGS);                             \
-  RETTYPE *ret = (RETTYPE *)malloc(sizeof(RETTYPE));         \
-  memcpy(ret, &fn_out, sizeof(RETTYPE));                     \
-  return ret;                                                \
+#define wrap_apron_fn(FNNAME, RETTYPE, ARGS...)      \
+  do {                                               \
+  RETTYPE fn_out = FNNAME(ARGS);                     \
+  RETTYPE *ret = (RETTYPE *)malloc(sizeof(RETTYPE)); \
+  memcpy(ret, &fn_out, sizeof(RETTYPE));             \
+  return ret;                                        \
   } while (0)
+
+// Tcons
+
+ap_tcons1_t * ap_tcons1_from_lincons1_wrapper (ap_lincons1_t* cons) {
+  wrap_apron_fn(ap_tcons1_from_lincons1, ap_tcons1_t, cons);
+}
+
+ap_tcons1_t * ap_tcons1_copy_wrapper (ap_tcons1_t* cons) {
+  wrap_apron_fn(ap_tcons1_copy, ap_tcons1_t, cons);
+}
+
+ap_environment_t* ap_tcons1_envref_wrapper (ap_tcons1_t* cons) {
+  return ap_tcons1_envref(cons);
+}
+
+ap_constyp_t* ap_tcons1_constypref_wrapper (ap_tcons1_t* cons) {
+  return ap_tcons1_constypref(cons);
+}
+
+ap_scalar_t* ap_tcons1_scalarref_wrapper (ap_tcons1_t* cons) {
+  return ap_tcons1_scalarref(cons); 
+}
+
+ap_texpr1_t* ap_tcons1_texpr1ref_wrapper (ap_tcons1_t* cons) {
+  wrap_apron_fn(ap_tcons1_texpr1ref, ap_texpr1_t, cons);
+}
+
+ap_tcons1_array_t* ap_tcons1_array_make_wrapper (ap_environment_t* env, size_t size) {
+  wrap_apron_fn(ap_tcons1_array_make, ap_tcons1_array_t, env, size);
+}
+
+size_t ap_tcons1_array_size_wrapper (ap_tcons1_array_t* array) {
+  return ap_tcons1_array_size(array);
+}
+
+ap_environment_t* ap_tcons1_array_envref_wrapper (ap_tcons1_array_t* array) {
+  return ap_tcons1_array_envref(array);
+}
+
+void ap_tcons1_array_clear_index_wrapper (ap_tcons1_array_t* array, size_t index) {
+  ap_tcons1_array_clear_index(array, index);
+}
+
+ap_tcons1_t * ap_tcons1_array_get_wrapper (ap_tcons1_array_t* array,
+					   size_t index) {
+  wrap_apron_fn(ap_tcons1_array_get, ap_tcons1_t, array, index);
+}
 
 // Lincons 
 
