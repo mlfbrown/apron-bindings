@@ -53,7 +53,8 @@ library
       Apron.Texpr1                  
       Apron.Tcons1
       Apron.Abstract1
-      ApronMonad            
+      AbstractMonad
+      Linexpr1            
       Lib                  
   other-modules:
       Paths_apron_bindings
@@ -65,7 +66,8 @@ library
   build-tools:
       c2hs
   build-depends:
-      mtl
+    mtl
+    , containers >=0.6.2.1            
     , base >=4.7 && <5
   default-language: Haskell2010
 
