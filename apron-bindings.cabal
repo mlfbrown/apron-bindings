@@ -45,14 +45,15 @@ library
       Apron.Dimension
       Apron.Disjunction
       Apron.Environment
+      Apron.Linexpr1                  
       Apron.Generator1                                    
-      Apron.Linexpr1
       Apron.Policy
       Apron.ReducedProduct
-      Apron.Tcons1
-      Apron.Texpr1
       Apron.Lincons1
+      Apron.Texpr1                  
+      Apron.Tcons1
       Apron.Abstract1
+      ApronMonad            
       Lib                  
   other-modules:
       Paths_apron_bindings
@@ -64,7 +65,8 @@ library
   build-tools:
       c2hs
   build-depends:
-      base >=4.7 && <5
+      mtl
+    , base >=4.7 && <5
   default-language: Haskell2010
 
 executable apron-bindings-exe
