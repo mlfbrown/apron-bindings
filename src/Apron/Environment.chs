@@ -3,6 +3,7 @@
 module Apron.Environment where
 import Apron.Var
 import           Foreign
+import Foreign.C.String    
 import           Foreign.C
 
 {# import Apron.Var #}
@@ -26,7 +27,7 @@ import           Foreign.C
  
 {#fun ap_environment_alloc_empty as ^ { } -> `Environment' #}
 
-{#fun ap_environment_alloc as ^ { `Var', `CULong', `Var', `CULong' } -> `Environment' #}
+-- {#fun ap_environment_alloc_wrapper as ^ { `Ptr CString', `CULong', `Ptr CString', `CULong' } -> `Environment' #}
 
 {#fun ap_environment_add as ^ { `Environment', `Var', `CULong', `Var', `CULong' } -> `Environment' #}
 

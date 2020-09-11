@@ -17,10 +17,12 @@ type VarName = String
 type NumIntVars = Int
 type NumRealVars = Int
 
-data AbstractState = AbstractState { domain      :: Domain
-                                   , manager     :: Manager
-                                   , environment :: Environment
-                                   , vars        :: M.Map VarName Var
+data AbstractState = AbstractState { unDomain      :: Domain
+                                   , unManager     :: Manager
+                                   , unEnvironment :: Environment
+                                   , unIntVars     :: [VarName]
+                                   , unRealVars    :: [VarName]
+                                   , unVars        :: M.Map VarName Var
                                    }
 
 -- | Monad for a given analysis
@@ -28,23 +30,22 @@ newtype Abstract a = Abstract { unAbstractState :: StateT AbstractState IO a }
     deriving (Functor, Applicative, Monad, MonadState AbstractState, MonadIO, Fail.MonadFail)
 
 initAbstractState :: Domain
-                 -> NumIntVars
-                 -> NumRealVars
+                 -> [VarName]
                  -> [VarName]
                  -> Abstract ()
-initAbstractState domain intVars realVars varNames
-  | intVars + realVars == length varNames = error "Not done"
-      -- use the correct manager alloc function depending on the domain
-      -- make var name array
-      -- pass it and the numbers to the environment allocator
-      -- store the new environment and var map in the abstract state
-  | otherwise = error $ unwords ["Expected"
-                                , show $ length varNames
-                                , "vars, but got"
-                                , show intVars
-                                , "and"
-                                , show realVars]
-
-
-
+initAbstractState domain intVars realVars = do
+  intVarArr <- liftIO $ makeVarArray intVars
+  realVarArr <- liftIO $ makeVarArray realVars
+  -- Make the environment
+  manager <- case domain of
+               Intervals -> liftIO boxManagerAlloc
+               _ -> error $ unwords [ "Unsupported domain:"
+                                    , show domain
+                                    ]
+  s0 <- get
+  put $ s0 { unDomain   = domain
+           , unManager  = manager
+           , unIntVars  = intVars
+           , unRealVars = realVars
+           }
 

@@ -103,8 +103,6 @@ import           Foreign.C
 
 {# fun ap_linexpr1_get_coeff as ^ { `Coeff', `Linexpr1', %`Var' } -> `Bool' #}
 
--- Lots of inline setters
-
 -- Change of dimensions and permutations
 
 {# fun ap_linexpr1_extend_environment as ^ { `Linexpr1', `Linexpr1', `Environment' } -> `Bool' #}

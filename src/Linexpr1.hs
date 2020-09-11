@@ -23,3 +23,5 @@ linexprIsLinear = liftIO . apLinexpr1IsLinearWrapper
 linexprIsQuasilinear :: Linexpr1 -> Abstract Bool
 linexprIsQuasilinear = liftIO . apLinexpr1IsQuasilinearWrapper
 
+-- Change of dimensions and permutations
+
