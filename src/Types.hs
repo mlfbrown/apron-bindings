@@ -10,37 +10,24 @@ data Frac = Frac { fracNum   :: Int32
                  }
           deriving (Eq, Ord, Show)
 
-data Value = IntValue Int32
-           | DoubleValue Double
-           | ScalarValue Scalar
-           | FracValue Frac
-           | IntervalInterval Interval
-           | IntInterval Int Int
-           | DoubleInterval Double Double
-           | ScalarInterval Scalar Scalar
-           | FracInterval Frac Frac
+data IntervalV = IntInterval Int Int
+               | DoubleInterval Double Double
+               | ScalarInterval Scalar Scalar
+               | FracInterval Frac Frac
+
+data ScalarV = IntValue Int32
+             | DoubleValue Double
+             | ScalarValue Scalar
+             | FracValue Frac
+
+data Value = ScalarVal { scalarVal :: ScalarV }
+           | IntervalVal { intervalVal :: IntervalV }
 
 isInterval :: Value -> Bool
 isInterval v = case v of
-                 IntervalInterval{} -> True
-                 IntInterval{}      -> True
-                 DoubleInterval{}   -> True
-                 ScalarInterval{}   -> True
-                 FracInterval{}     -> True
-                 _                  -> False
+                 IntervalVal{} -> True
+                 _             -> False
 
 isScalar :: Value -> Bool
 isScalar = not . isInterval
-
-iv = IntValue
-dv = DoubleValue
-sv = ScalarValue
-fv = FracValue
-interval = IntervalInterval
-iv_interval = IntInterval
-dv_interval = DoubleInterval
-sv_interval = ScalarInterval
-fv_interval = FracInterval
-
-
 

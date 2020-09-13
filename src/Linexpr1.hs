@@ -1,4 +1,5 @@
-module Linexpr1 ( linexprMake
+module Linexpr1 ( Linexpr1
+                , linexprMake
                 , linexprMinimize
                 , linexprCopy
                 -- * Tests

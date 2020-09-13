@@ -55,9 +55,10 @@ library
       Apron.Abstract1
       AbstractMonad
       Types
-      Coeff                  
+      Coeff
       Linexpr1
-      Lincons1                      
+      Lincons1
+      Abstract1                 
       Lib                  
   other-modules:
       Paths_apron_bindings

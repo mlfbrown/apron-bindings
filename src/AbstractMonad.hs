@@ -29,6 +29,9 @@ data AbstractState = AbstractState { unDomain      :: Domain
 newtype Abstract a = Abstract { unAbstractState :: StateT AbstractState IO a }
     deriving (Functor, Applicative, Monad, MonadState AbstractState, MonadIO, Fail.MonadFail)
 
+getManager :: Abstract Manager
+getManager = gets unManager
+
 getEnvironment :: Abstract Environment
 getEnvironment = gets unEnvironment
 
