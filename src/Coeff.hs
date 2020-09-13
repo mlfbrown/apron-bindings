@@ -1,11 +1,12 @@
-module Coeff where
+module Coeff (Coeff
+             , coeffMake ) where
 import           AbstractMonad
 import           Apron.Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Types
 
-makeCoeff :: Value -> Abstract Coeff
-makeCoeff v = do
+coeffMake :: Value -> Abstract Coeff
+coeffMake v = do
   c <- liftIO $ apCoeffAlloc $ if isInterval v then COEFF_INTERVAL else COEFF_SCALAR
   liftIO $ case v of
     IntValue v           -> apCoeffSetScalarInt c $ fromIntegral v

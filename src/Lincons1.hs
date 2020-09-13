@@ -84,7 +84,7 @@ linconsSetCoeffs c vs = do
 --  Return true if var is unknown in the environment.
 linconsSetCoeff :: Lincons1 -> Var -> Value -> Abstract Bool
 linconsSetCoeff c var v = do
-  coeff <- makeCoeff v
+  coeff <- coeffMake v
   liftIO $ apLincons1SetCoeffWrapper c var coeff
 
 -- Lincons array

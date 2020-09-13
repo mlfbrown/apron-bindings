@@ -82,7 +82,7 @@ linexprAssignConstant = liftIO2 apLinexpr1GetCstWrapper
 -- | Set the linear expression to a constant or interval of constants.
 linexprSetConstant :: Linexpr1 -> Value -> Abstract ()
 linexprSetConstant e v = do
-  c <- makeCoeff v
+  c <- coeffMake v
   liftIO $ apLinexpr1SetCstWrapper e c
 
 -- | Set the coefficient of variables var in the expression.
@@ -96,5 +96,5 @@ linexprSetCoeffs e vs = do
 -- Return true if var is unknown in the environment.
 linexprSetCoeff :: Linexpr1 -> Var -> Value -> Abstract Bool
 linexprSetCoeff e var v = do
-  c <- makeCoeff v
+  c <- coeffMake v
   liftIO $ apLinexpr1SetCoeffWrapper e var c
