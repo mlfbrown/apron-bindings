@@ -5,6 +5,11 @@
 #include "ap_global1.h"
 #include "box.h"
 
+// ---------------------> Extra
+
+ap_environment_t* ap_environment_alloc_wrapper (char** name_of_intdim, size_t intdim,
+						char** name_of_realdim, size_t realdim);
+
 // ---------------------> Scalar
 
 void ap_scalar_swap_wrapper (ap_scalar_t* a, ap_scalar_t* b);  

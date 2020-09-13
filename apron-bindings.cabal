@@ -54,6 +54,7 @@ library
       Apron.Tcons1
       Apron.Abstract1
       AbstractMonad
+      Types            
       Linexpr1            
       Lib                  
   other-modules:
