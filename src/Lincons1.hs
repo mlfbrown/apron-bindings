@@ -1,4 +1,25 @@
-module Lincons1 where
+module Lincons1 ( Lincons1
+                , linconsMake
+                , linconsCopy
+                -- * Tests
+                , linconsIsUnsat
+                -- * Access and setters
+                , linconsScalar
+                , linconsLinexpr
+                , linconsSetConstant
+                , linconsGetConstant
+                , linconsGetCoeff
+                , linconsSetCoeffs
+                , linconsSetCoeff
+                -- * Lincons array creation
+                , Lincons1Array
+                , linconsArrayMake
+                , linconsArraySize
+                -- * Access
+                , linconsArrayClearIndex
+                , linconsArrayGetIndex
+                , linconsArraySetIndex
+                ) where
 import           AbstractMonad
 import           Apron.Coeff
 import           Apron.Lincons1
@@ -7,6 +28,7 @@ import           Apron.Scalar
 import           Apron.Var
 import           Coeff
 import           Control.Monad.State.Strict (liftIO)
+import           Data.Word
 import           Types
 
 -- | Create a constraint of given type with the given expression.
@@ -37,10 +59,6 @@ linconsScalar = liftIO1 apLincons1ScalarrefWrapper
 linconsLinexpr :: Lincons1 -> Abstract Linexpr1
 linconsLinexpr = liftIO1 apLincons1Linexpr1refWrapper
 
--- | Get the constant and assign it to coeff.
-linconsAssignConstant :: Coeff -> Lincons1 -> Abstract ()
-linconsAssignConstant = liftIO2 apLincons1GetCstWrapper
-
 -- | Set the constant of the linear constraint.
 linconsSetConstant :: Lincons1 -> Coeff -> Abstract ()
 linconsSetConstant = liftIO2 apLincons1SetCstWrapper
@@ -49,26 +67,58 @@ linconsSetConstant = liftIO2 apLincons1SetCstWrapper
 linconsGetConstant :: Lincons1 -> Abstract Coeff
 linconsGetConstant = liftIO1 apLincons1CstrefWrapper
 
--- | Set the coefficient of variable var in the constraint.
--- Return true if var is unknown in the environment.
--- linconsSetCoeff :: Lincons1 -> Var -> Coeff -> Abstract Bool
--- linconsSetCoeff = liftIO3 apLincons1SetCoeffWrapper
-
 -- | Get a reference to the coefficient associated to the variable.
 -- In case of sparse representation, possibly induce the addition of a new linear term.
 -- Return NULL if var is unknown in the environment.
 linconsGetCoeff :: Lincons1 -> Var -> Abstract Coeff
 linconsGetCoeff = liftIO2 apLincons1Coeffref
 
+-- | Set the coefficients of variables var in the constraint.
+-- Return true if any var is unknown in the environment.
 linconsSetCoeffs :: Lincons1 -> [(Var,Value)] -> Abstract Bool
 linconsSetCoeffs c vs = do
   succs <- mapM (uncurry $ linconsSetCoeff c) vs
   return $ or succs
 
+-- | Set the coefficient of variable var in the constraint.
+--  Return true if var is unknown in the environment.
 linconsSetCoeff :: Lincons1 -> Var -> Value -> Abstract Bool
 linconsSetCoeff c var v = do
   coeff <- makeCoeff v
   liftIO $ apLincons1SetCoeffWrapper c var coeff
+
+-- Lincons array
+
+linconsArrayMake :: Word32 -> Abstract Lincons1Array
+linconsArrayMake size = do
+  env <- getEnvironment
+  liftIO $ apLincons1ArrayMakeWrapper env $ fromIntegral size
+
+-- Access
+
+linconsArraySize :: Lincons1Array -> Abstract Word32
+linconsArraySize arr = do
+  size <- liftIO $ apLincons1ArraySizeWrapper arr
+  return $ fromIntegral size
+
+-- | Clear the constraint at index index.
+linconsArrayClearIndex :: Lincons1Array -> Word32 -> Abstract ()
+linconsArrayClearIndex = undefined
+-- linconsArrayClearIndex arr i = liftIO $ apLincons1ArrayClearIndexWrapper arr $ fromIntegral i
+
+-- | Return the linear constraint of the given index.
+linconsArrayGetIndex :: Lincons1Array -> Word32 -> Abstract Lincons1
+linconsArrayGetIndex arr i = liftIO $ apLincons1ArrayGetWrapper arr $ fromIntegral i
+
+-- | Fill the index of the array with the constraint.
+linconsArraySetIndex :: Lincons1Array -> Word32 -> Lincons1 -> Abstract ()
+linconsArraySetIndex arr i c = liftIO $ apLincons1ArraySet arr (fromIntegral i) c
+
+
+
+
+
+
 
 
 
