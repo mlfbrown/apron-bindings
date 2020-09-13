@@ -58,6 +58,7 @@ library
       Coeff
       Linexpr1
       Lincons1
+      Texpr1            
       Abstract1                 
       Lib                  
   other-modules:

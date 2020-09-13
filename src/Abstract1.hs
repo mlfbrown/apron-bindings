@@ -2,12 +2,15 @@ module Abstract1 ( Abstract1
                  , abstractBottom
                  , abstractOfLinconsArray
                  , abstractOfTconsArray
+                 -- * Accessors
+                 , abstractEnvironment
                  -- * Meet and join
                  , abstractMeet
                  , abstractJoin
                  ) where
 import           AbstractMonad
 import           Apron.Abstract1
+import           Apron.Environment
 import           Apron.Lincons1
 import           Apron.Tcons1
 import           Control.Monad.State.Strict (liftIO)
@@ -31,6 +34,13 @@ abstractOfTconsArray arr = do
   man <- getManager
   env <- getEnvironment
   liftIO $ apAbstract1OfTconsArrayWrapper man env arr
+
+-- Accessors
+
+abstractEnvironment :: Abstract1 -> Abstract Environment
+abstractEnvironment a = do
+  man <- getManager
+  liftIO $ apAbstract1Environment man a
 
 -- Meet and join
 
