@@ -18,10 +18,7 @@ module Linexpr1 ( Linexpr1
                 ) where
 import           AbstractMonad
 import           Apron.Coeff
-import           Apron.Interval
 import           Apron.Linexpr1
-import           Apron.Scalar
-import           Apron.Var
 import           Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Int                   (Int32)
@@ -71,8 +68,10 @@ linexprGetConstant = liftIO . apLinexpr1CstrefWrapper
 -- | Get a reference to the coefficient associated to the variable.
 -- In case of sparse representation, possibly induce the addition of a new linear term.
 -- Return NULL if var is unknown in the environment.
-linexprGetCoeff :: Linexpr1 -> Var -> Abstract Coeff
-linexprGetCoeff = liftIO2 apLinexpr1CoeffrefWrapper
+linexprGetCoeff :: Linexpr1 -> VarName -> Abstract Coeff
+linexprGetCoeff e v = do
+  var <- getVar v
+  liftIO $ apLinexpr1CoeffrefWrapper e var
 
 -- | Get the constant and assign it to coeff.
 linexprAssignConstant :: Coeff -> Linexpr1 -> Abstract ()
@@ -88,14 +87,15 @@ linexprSetConstant e v = do
 
 -- | Set the coefficient of variables var in the expression.
 -- Return true if any var is unknown in the environment.
-linexprSetCoeffs :: Linexpr1 -> [(Var, Value)] -> Abstract Bool
+linexprSetCoeffs :: Linexpr1 -> [(VarName, Value)] -> Abstract Bool
 linexprSetCoeffs e vs = do
   succs <- mapM (uncurry $ linexprSetCoeff e) vs
   return $ or succs
 
 -- | Set the coefficient of variable var in the expression.
 -- Return true if var is unknown in the environment.
-linexprSetCoeff :: Linexpr1 -> Var -> Value -> Abstract Bool
-linexprSetCoeff e var v = do
+linexprSetCoeff :: Linexpr1 -> VarName -> Value -> Abstract Bool
+linexprSetCoeff e name v = do
   c <- coeffMake v
+  var <- getVar name
   liftIO $ apLinexpr1SetCoeffWrapper e var c

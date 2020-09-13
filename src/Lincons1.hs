@@ -25,7 +25,6 @@ import           Apron.Coeff
 import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
-import           Apron.Var
 import           Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Word
@@ -70,21 +69,24 @@ linconsGetConstant = liftIO1 apLincons1CstrefWrapper
 -- | Get a reference to the coefficient associated to the variable.
 -- In case of sparse representation, possibly induce the addition of a new linear term.
 -- Return NULL if var is unknown in the environment.
-linconsGetCoeff :: Lincons1 -> Var -> Abstract Coeff
-linconsGetCoeff = liftIO2 apLincons1Coeffref
+linconsGetCoeff :: Lincons1 -> VarName -> Abstract Coeff
+linconsGetCoeff c name = do
+  var <- getVar name
+  liftIO $ apLincons1Coeffref c var
 
 -- | Set the coefficients of variables var in the constraint.
 -- Return true if any var is unknown in the environment.
-linconsSetCoeffs :: Lincons1 -> [(Var,Value)] -> Abstract Bool
+linconsSetCoeffs :: Lincons1 -> [(VarName,Value)] -> Abstract Bool
 linconsSetCoeffs c vs = do
   succs <- mapM (uncurry $ linconsSetCoeff c) vs
   return $ or succs
 
 -- | Set the coefficient of variable var in the constraint.
 --  Return true if var is unknown in the environment.
-linconsSetCoeff :: Lincons1 -> Var -> Value -> Abstract Bool
-linconsSetCoeff c var v = do
+linconsSetCoeff :: Lincons1 -> VarName -> Value -> Abstract Bool
+linconsSetCoeff c name v = do
   coeff <- coeffMake v
+  var <- getVar name
   liftIO $ apLincons1SetCoeffWrapper c var coeff
 
 -- Lincons array

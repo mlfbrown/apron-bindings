@@ -14,14 +14,10 @@ data Domain = Intervals
             deriving (Eq, Ord, Show)
 
 type VarName = String
-type NumIntVars = Int
-type NumRealVars = Int
 
 data AbstractState = AbstractState { unDomain      :: Domain
                                    , unManager     :: Manager
                                    , unEnvironment :: Environment
-                                   , unIntVars     :: [VarName]
-                                   , unRealVars    :: [VarName]
                                    , unVars        :: M.Map VarName Var
                                    }
 
@@ -29,11 +25,21 @@ data AbstractState = AbstractState { unDomain      :: Domain
 newtype Abstract a = Abstract { unAbstractState :: StateT AbstractState IO a }
     deriving (Functor, Applicative, Monad, MonadState AbstractState, MonadIO, Fail.MonadFail)
 
+getDomain :: Abstract Domain
+getDomain = gets unDomain
+
 getManager :: Abstract Manager
 getManager = gets unManager
 
 getEnvironment :: Abstract Environment
 getEnvironment = gets unEnvironment
+
+getVar :: VarName -> Abstract Var
+getVar v = do
+  vs <- gets unVars
+  case M.lookup v vs of
+    Just v  -> return v
+    Nothing -> error $ unwords ["No var", show v, "in current environment"]
 
 initAbstractState :: Domain
                  -> [VarName]
@@ -49,10 +55,9 @@ initAbstractState domain intVars realVars = do
                                     , show domain
                                     ]
   s0 <- get
-  put $ s0 { unDomain   = domain
-           , unManager  = manager
-           , unIntVars  = intVars
-           , unRealVars = realVars
+  put $ s0 { unDomain  = domain
+           , unManager = manager
+           , unVars    = M.empty
            }
 
 liftIO1 :: MonadIO m => (a -> IO b) -> a -> m b
