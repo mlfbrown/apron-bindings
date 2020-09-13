@@ -1,4 +1,20 @@
-module Linexpr1 where
+module Linexpr1 ( linexprMake
+                , linexprMinimize
+                , linexprCopy
+                -- * Tests
+                , linexprIsInteger
+                , linexprIsReal
+                , linexprIsLinear
+                , linexprIsQuasilinear
+                -- * Access
+                , linexprGetConstant
+                , linexprGetCoeff
+                , linexprAssignConstant
+                -- * Setters
+                , linexprSetConstant
+                , linexprSetCoeffs
+                , linexprSetCoeff
+                ) where
 import           AbstractMonad
 import           Apron.Coeff
 import           Apron.Interval
