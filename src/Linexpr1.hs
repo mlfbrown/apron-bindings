@@ -21,6 +21,7 @@ import           Apron.Interval
 import           Apron.Linexpr1
 import           Apron.Scalar
 import           Apron.Var
+import           Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Int                   (Int32)
 import           Types
@@ -67,7 +68,6 @@ linexprGetConstant :: Linexpr1 -> Abstract Coeff
 linexprGetConstant = liftIO . apLinexpr1CstrefWrapper
 
 -- | Get a reference to the coefficient associated to the variable.
--- Do not free it.
 -- In case of sparse representation, possibly induce the addition of a new linear term.
 -- Return NULL if var is unknown in the environment.
 linexprGetCoeff :: Linexpr1 -> Var -> Abstract Coeff
@@ -82,21 +82,8 @@ linexprAssignConstant = liftIO2 apLinexpr1GetCstWrapper
 -- | Set the linear expression to a constant or interval of constants.
 linexprSetConstant :: Linexpr1 -> Value -> Abstract ()
 linexprSetConstant e v = do
-  liftIO $ case v of
-    IntValue i           -> apLinexpr1SetCstScalarIntWrapper e $ fromIntegral i
-    DoubleValue d        -> apLinexpr1SetCstScalarDoubleWrapper e d
-    ScalarValue s        -> apLinexpr1SetCstScalarWrapper e s
-    FracValue f          -> apLinexpr1SetCstScalarFracWrapper e
-                            (fromIntegral $ fracNum f) (fromIntegral $ fracDenom f)
-    CoeffValue c         -> apLinexpr1SetCstWrapper e c
-    IntervalInterval i   -> apLinexpr1SetCstIntervalWrapper e i
-    IntInterval i1 i2    -> apLinexpr1SetCstIntervalIntWrapper e
-                            (fromIntegral $ i1) (fromIntegral $ i2)
-    DoubleInterval d1 d2 -> apLinexpr1SetCstIntervalDoubleWrapper e d1 d2
-    ScalarInterval s1 s2 -> apLinexpr1SetCstIntervalScalarWrapper e s1 s2
-    FracInterval f1 f2   -> apLinexpr1SetCstIntervalFracWrapper e
-                            (fromIntegral $ fracNum f1) (fromIntegral $ fracDenom f1)
-                            (fromIntegral $ fracNum f2) (fromIntegral $ fracDenom f2)
+  c <- makeCoeff v
+  liftIO $ apLinexpr1SetCstWrapper e c
 
 -- | Set the coefficient of variables var in the expression.
 -- Return true if any var is unknown in the environment.
@@ -109,18 +96,5 @@ linexprSetCoeffs e vs = do
 -- Return true if var is unknown in the environment.
 linexprSetCoeff :: Linexpr1 -> Var -> Value -> Abstract Bool
 linexprSetCoeff e var v = do
-  liftIO $ case v of
-    IntValue i           -> apLinexpr1SetCoeffScalarIntWrapper e var $ fromIntegral i
-    DoubleValue d        -> apLinexpr1SetCoeffScalarDoubleWrapper e var d
-    ScalarValue s        -> apLinexpr1SetCoeffScalarWrapper e var s
-    FracValue f          -> apLinexpr1SetCoeffScalarFracWrapper e var
-                            (fromIntegral $ fracNum f) (fromIntegral $ fracDenom f)
-    CoeffValue c         -> apLinexpr1SetCoeffWrapper e var c
-    IntervalInterval i   -> apLinexpr1SetCoeffIntervalWrapper e var i
-    IntInterval i1 i2    -> apLinexpr1SetCoeffIntervalIntWrapper e var
-                            (fromIntegral i1) (fromIntegral i2)
-    DoubleInterval d1 d2 -> apLinexpr1SetCoeffIntervalDoubleWrapper e var d1 d2
-    ScalarInterval s1 s2 -> apLinexpr1SetCoeffIntervalScalarWrapper e var s1 s2
-    FracInterval f1 f2   -> apLinexpr1SetCoeffIntervalFracWrapper e var
-                            (fromIntegral $ fracNum f1) (fromIntegral $ fracDenom f1)
-                            (fromIntegral $ fracNum f2) (fromIntegral $ fracDenom f2)
+  c <- makeCoeff v
+  liftIO $ apLinexpr1SetCoeffWrapper e var c

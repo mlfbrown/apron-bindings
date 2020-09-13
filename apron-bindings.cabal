@@ -54,7 +54,8 @@ library
       Apron.Tcons1
       Apron.Abstract1
       AbstractMonad
-      Types            
+      Types
+      Coeff                  
       Linexpr1
       Lincons1                      
       Lib                  

@@ -14,18 +14,28 @@ data Value = IntValue Int32
            | DoubleValue Double
            | ScalarValue Scalar
            | FracValue Frac
-           | CoeffValue Coeff
            | IntervalInterval Interval
            | IntInterval Int Int
            | DoubleInterval Double Double
            | ScalarInterval Scalar Scalar
            | FracInterval Frac Frac
 
+isInterval :: Value -> Bool
+isInterval v = case v of
+                 IntervalInterval{} -> True
+                 IntInterval{}      -> True
+                 DoubleInterval{}   -> True
+                 ScalarInterval{}   -> True
+                 FracInterval{}     -> True
+                 _                  -> False
+
+isScalar :: Value -> Bool
+isScalar = not . isInterval
+
 iv = IntValue
 dv = DoubleValue
 sv = ScalarValue
 fv = FracValue
-cv = CoeffValue
 interval = IntervalInterval
 iv_interval = IntInterval
 dv_interval = DoubleInterval

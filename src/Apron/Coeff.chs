@@ -10,11 +10,15 @@ import Foreign.C
 #include "ap_coeff.h"
 
 {#pointer *ap_coeff_t as Coeff foreign newtype#}
-{#pointer *ap_coeff_discr_t as CoeffDiscr foreign newtype#}
+
+{# enum define CoeffDiscr {
+  AP_COEFF_SCALAR as COEFF_SCALAR,
+  AP_COEFF_INTERVAL as COEFF_INTERVAL 
+} deriving (Eq, Ord, Show) #}
 
 -- Basics
 
-{#fun ap_coeff_alloc as ^ { %`CoeffDiscr' } -> `Coeff' #}
+{#fun ap_coeff_alloc as ^ { `CoeffDiscr' } -> `Coeff' #}
 
 {#fun ap_coeff_free as ^ { `Coeff' } -> `()' #}
 
@@ -38,7 +42,7 @@ import Foreign.C
 
 {#fun ap_coeff_set_scalar_frac as ^ { `Coeff', `CLong', `CULong' } -> `()' #}
                                                         
-{#fun ap_coeff_set_scalar_double as ^ { `Coeff', `CDouble' } -> `()' #}
+{#fun ap_coeff_set_scalar_double as ^ { `Coeff', `Double' } -> `()' #}
 
 {#fun ap_coeff_set_interval as ^ { `Coeff', `Interval' } -> `()' #}
 

@@ -45,7 +45,7 @@ import Foreign.C
 
 {#fun ap_lincons1_envref_wrapper as ^ { `Lincons1' } -> `Environment' #}
 
--- {#fun ap_lincons1_constypref_wrapper as ^ { `Lincons1' } -> `Constyp' #}
+--{#fun ap_lincons1_constypref_wrapper as ^ { `Lincons1' } -> `Constyp' #}
 -- ap_constyp_t* ap_lincons1_constypref(ap_lincons1_t* cons);
 
 {#fun ap_lincons1_scalarref_wrapper as ^ { `Lincons1' } -> `Scalar' #}
