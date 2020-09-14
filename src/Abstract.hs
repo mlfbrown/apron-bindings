@@ -93,3 +93,5 @@ linconsEquation descrip constyp vars = do
   cons <- linconsMake constyp expr
   linconsSetCoeffs cons vars
   return cons
+
+
