@@ -26,6 +26,15 @@ import           Foreign.C
  
 {#pointer *ap_linexpr1_t as Linexpr1 foreign newtype#}
 
+-- Helpers
+
+isDense :: LinexprDescrip -> Bool
+isDense LINEXPR_DENSE = True
+isDense _             = False
+
+isSparse :: LinexprDescrip -> Bool
+isSparse = not . isDense 
+
 -- Memory management and printing
 
 {#fun ap_linexpr1_make_wrapper as ^ { `Environment', `LinexprDescrip', `CULong' } -> `Linexpr1' #}

@@ -7,6 +7,9 @@
 
 // ---------------------> Extra
 
+ap_lincons1_t* ap_lincons1_make_wrapper_two (ap_constyp_t constyp,
+					     ap_linexpr1_t* expr);
+
 ap_environment_t* ap_environment_alloc_wrapper (char** name_of_intdim, size_t intdim,
 						char** name_of_realdim, size_t realdim);
 

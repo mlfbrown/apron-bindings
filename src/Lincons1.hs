@@ -1,5 +1,7 @@
 module Lincons1 ( Lincons1
+                , linconsEquation
                 , linconsMake
+                , linconsMakeWithScalar
                 , linconsCopy
                 -- * Tests
                 , linconsIsUnsat
@@ -19,6 +21,7 @@ module Lincons1 ( Lincons1
                 , linconsArrayClearIndex
                 , linconsArrayGetIndex
                 , linconsArraySetIndex
+                , linconsArraySetIndecies
                 ) where
 import           AbstractMonad
 import           Apron.Coeff
@@ -26,16 +29,40 @@ import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
 import           Coeff
+import           Control.Monad              (when)
 import           Control.Monad.State.Strict (liftIO)
+import           Data.List                  (nub)
 import           Data.Word
+import           Linexpr1
 import           Types
 
--- | Create a constraint of given type with the given expression.
+-- | Make a new constraint for an linear equation
+-- For most things, you probably want this.
+linconsEquation :: LinexprDescrip
+                -> Constyp
+                -> [(VarName, Value)]
+                -> Abstract Lincons1
+linconsEquation descrip constyp vars = do
+  let size = if isDense descrip then 0 else length vars
+  expr <- linexprMake descrip $ fromIntegral size
+  cons <- linconsMake constyp expr
+  linexprSetCoeffs expr vars
+  return cons
+
+-- | Make a new constraint of the given type with the given expression, with no scalar.
 linconsMake :: Constyp
             -> Linexpr1
-            -> Scalar
             -> Abstract Lincons1
-linconsMake = liftIO3 apLincons1MakeWrapper
+linconsMake = liftIO2 apLincons1MakeWrapperTwo
+
+-- | Create a constraint of given type with the given expression.
+-- Probably you don't want to use this and instead want to use
+-- a higher-level creation function like linconsEquation
+linconsMakeWithScalar :: Constyp
+                  -> Linexpr1
+                  -> Scalar
+                  -> Abstract Lincons1
+linconsMakeWithScalar = liftIO3 apLincons1MakeWrapper
 
 -- unsat?
 
@@ -108,6 +135,14 @@ linconsArrayClearIndex :: Lincons1Array -> Word32 -> Abstract ()
 linconsArrayClearIndex = undefined
 -- linconsArrayClearIndex arr i = liftIO $ apLincons1ArrayClearIndexWrapper arr $ fromIntegral i
 
+-- | Clear the constraints the the indecies idxs
+linconsArrayClearIndecies :: Lincons1Array -> [Word32] -> Abstract ()
+linconsArrayClearIndecies arr idxs = do
+  when (nub idxs == idxs) $ error $ unwords [ "Tried to set index multiple times:"
+                                            , show idxs
+                                            ]
+  mapM_ (linconsArrayClearIndex arr) idxs
+
 -- | Return the linear constraint of the given index.
 linconsArrayGetIndex :: Lincons1Array -> Word32 -> Abstract Lincons1
 linconsArrayGetIndex arr i = liftIO $ apLincons1ArrayGetWrapper arr $ fromIntegral i
@@ -116,7 +151,14 @@ linconsArrayGetIndex arr i = liftIO $ apLincons1ArrayGetWrapper arr $ fromIntegr
 linconsArraySetIndex :: Lincons1Array -> Word32 -> Lincons1 -> Abstract ()
 linconsArraySetIndex arr i c = liftIO $ apLincons1ArraySet arr (fromIntegral i) c
 
-
+-- | Fill in the indexies of the array with the constraints.
+linconsArraySetIndecies :: Lincons1Array -> [(Word32, Lincons1)] -> Abstract ()
+linconsArraySetIndecies arr cs = do
+  when (nub idxs == idxs) $ error $ unwords [ "Tried to set index multiple times:"
+                                            , show idxs
+                                            ]
+  mapM_ (uncurry $ linconsArraySetIndex arr) cs
+  where idxs = map fst cs
 
 
 

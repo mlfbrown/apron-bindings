@@ -29,6 +29,8 @@ import Foreign.C
 
 {#fun ap_lincons1_make_wrapper as ^ { `Constyp', `Linexpr1', `Scalar' } -> `Lincons1' #}
 
+{#fun ap_lincons1_make_wrapper_two as ^ { `Constyp', `Linexpr1' } -> `Lincons1' #}
+
 {#fun ap_lincons1_copy_wrapper as ^ { `Lincons1' } -> `Lincons1' #}
 
 {#fun ap_lincons1_is_unsat_wrapper as ^ { `Lincons1' } -> `Bool' #}

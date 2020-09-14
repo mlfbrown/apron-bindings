@@ -22,13 +22,14 @@ import           Apron.Linexpr1
 import           Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Int                   (Int32)
+import           Data.Word
 import           Types
 
 -- | Build a linear expressions with by default coefficients of type SCALAR and DOUBLE.
 -- If lin_discr selects a dense representation, the size of the expression is the size
 -- of the environment.
 -- Otherwise, the initial size is given by size and the expression may be resized lazily.
-linexprMake :: LinexprDescrip -> Int32 -> Abstract Linexpr1
+linexprMake :: LinexprDescrip -> Word32 -> Abstract Linexpr1
 linexprMake d size = do
   env <- getEnvironment
   liftIO $ apLinexpr1MakeWrapper env d $ fromIntegral size
