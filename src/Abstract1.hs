@@ -78,16 +78,22 @@ abstractTconsArrayMeet a arr = do
   liftIO $ apAbstract1MeetTconsArrayWrapper man False a arr
 
 abstractUnify :: Abstract1 -> Abstract1 -> Abstract Abstract1
-abstractUnify = undefined
+abstractUnify a1 a2 = do
+  man <- getManager
+  liftIO $ apAbstract1UnifyWrapper man False a1 a2
 
 -- | Put the abstract value in canonical form. (not yet clear definition).
-abstractCannonicalize :: Abstract1 -> Abstract ()
-abstractCannonicalize = undefined
+abstractCanonicalize :: Abstract1 -> Abstract ()
+abstractCanonicalize a = do
+  man <- getManager
+  liftIO $ apAbstract1Canonicalize man a
 
 -- | Minimize the size of the representation of the abstract input.
 -- his may result in a later recomputation of internal information.
 abstractMinimize :: Abstract1 -> Abstract ()
-abstractMinimize = undefined
+abstractMinimize a = do
+  man <- getManager
+  liftIO $ apAbstract1Minimize man a
 
 -- Assignment
 
@@ -98,6 +104,9 @@ abstractSubstituteLinexprArray = undefined
 abstractAssignTexprArray = undefined
 
 abstractSubstituteTexprArray = undefined
+
+
+
 -- cannon
 -- assign linexpr
 -- fold
