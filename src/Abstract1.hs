@@ -3,7 +3,7 @@ module Abstract1 ( Abstract1
                  , abstractOfLinconsArray
                  , abstractOfTconsArray
                  -- * Accessors
-                 , abstractEnvironment
+                 , abstractGetEnvironment
                  -- * Meet and join
                  , abstractMeet
                  , abstractJoin
@@ -37,8 +37,8 @@ abstractOfTconsArray arr = do
 
 -- Accessors
 
-abstractEnvironment :: Abstract1 -> Abstract Environment
-abstractEnvironment a = do
+abstractGetEnvironment :: Abstract1 -> Abstract Environment
+abstractGetEnvironment a = do
   man <- getManager
   liftIO $ apAbstract1Environment man a
 

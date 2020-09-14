@@ -22,10 +22,6 @@ import Foreign.C
 
 {#fun ap_texpr1_cst_scalar as ^ { `Environment', `Scalar' } -> `Texpr1' #}
 
--- ap_texpr1_t* ap_texpr1_cst_scalar_mpq      (ap_environment_t* env, mpq_t mpq);
-
--- ap_texpr1_t* ap_texpr1_cst_scalar_mpfr     (ap_environment_t* env, mpfr_t mpfr);
-
 {#fun ap_texpr1_cst_scalar_int as ^ { `Environment', `CLong' } -> `Texpr1' #}
 
 {#fun ap_texpr1_cst_scalar_frac as ^ { `Environment', `CLong', `CULong' } -> `Texpr1' #}
@@ -35,10 +31,6 @@ import Foreign.C
 {#fun ap_texpr1_cst_interval as ^ { `Environment', `Interval' } -> `Texpr1' #}
 
 {#fun ap_texpr1_cst_interval_scalar as ^ { `Environment', `Scalar', `Scalar' } -> `Texpr1' #}
-
--- ap_texpr1_t* ap_texpr1_cst_interval_mpq    (ap_environment_t* env, mpq_t inf, mpq_t sup);
-
--- ap_texpr1_t* ap_texpr1_cst_interval_mpfr   (ap_environment_t* env, mpfr_t inf, mpfr_t sup);
 
 {#fun ap_texpr1_cst_interval_int as ^ { `Environment', `CLong', `CLong' } -> `Texpr1' #}
 

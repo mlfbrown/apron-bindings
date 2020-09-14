@@ -1,16 +1,16 @@
 module Lincons1 ( Lincons1
-                , linconsEquation
                 , linconsMake
                 , linconsMakeWithScalar
                 , linconsCopy
                 -- * Tests
                 , linconsIsUnsat
-                -- * Access and setters
-                , linconsScalar
-                , linconsLinexpr
-                , linconsSetConstant
+                -- * Access
+                , linconsGetScalar
+                , linconsGetLinexpr
                 , linconsGetConstant
                 , linconsGetCoeff
+                -- * Setters
+                , linconsSetConstant
                 , linconsSetCoeffs
                 , linconsSetCoeff
                 -- * Lincons array creation
@@ -18,8 +18,10 @@ module Lincons1 ( Lincons1
                 , linconsArrayMake
                 , linconsArraySize
                 -- * Access
-                , linconsArrayClearIndex
                 , linconsArrayGetIndex
+                -- * Setters
+                , linconsArrayClearIndex
+                , linconsArrayClearIndecies
                 , linconsArraySetIndex
                 , linconsArraySetIndecies
                 ) where
@@ -36,19 +38,6 @@ import           Data.Word
 import           Linexpr1
 import           Types
 
--- | Make a new constraint for an linear equation
--- For most things, you probably want this.
-linconsEquation :: LinexprDescrip
-                -> Constyp
-                -> [(VarName, Value)]
-                -> Abstract Lincons1
-linconsEquation descrip constyp vars = do
-  let size = if isDense descrip then 0 else length vars
-  expr <- linexprMake descrip $ fromIntegral size
-  cons <- linconsMake constyp expr
-  linexprSetCoeffs expr vars
-  return cons
-
 -- | Make a new constraint of the given type with the given expression, with no scalar.
 linconsMake :: Constyp
             -> Linexpr1
@@ -56,15 +45,11 @@ linconsMake :: Constyp
 linconsMake = liftIO2 apLincons1MakeWrapperTwo
 
 -- | Create a constraint of given type with the given expression.
--- Probably you don't want to use this and instead want to use
--- a higher-level creation function like linconsEquation
 linconsMakeWithScalar :: Constyp
                   -> Linexpr1
                   -> Scalar
                   -> Abstract Lincons1
 linconsMakeWithScalar = liftIO3 apLincons1MakeWrapper
-
--- unsat?
 
 linconsCopy :: Lincons1 -> Abstract Lincons1
 linconsCopy = liftIO1 apLincons1CopyWrapper
@@ -78,12 +63,12 @@ linconsIsUnsat = liftIO1 apLincons1IsUnsatWrapper
 -- Access
 
 -- | Get a reference to the auxiliary coefficient of the constraint.
-linconsScalar :: Lincons1 -> Abstract Scalar
-linconsScalar = liftIO1 apLincons1ScalarrefWrapper
+linconsGetScalar :: Lincons1 -> Abstract Scalar
+linconsGetScalar = liftIO1 apLincons1ScalarrefWrapper
 
 -- | Get a reference to the underlying expression of the constraint.
-linconsLinexpr :: Lincons1 -> Abstract Linexpr1
-linconsLinexpr = liftIO1 apLincons1Linexpr1refWrapper
+linconsGetLinexpr :: Lincons1 -> Abstract Linexpr1
+linconsGetLinexpr = liftIO1 apLincons1Linexpr1refWrapper
 
 -- | Set the constant of the linear constraint.
 linconsSetConstant :: Lincons1 -> Coeff -> Abstract ()

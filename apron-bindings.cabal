@@ -59,7 +59,8 @@ library
       Linexpr1
       Lincons1
       Texpr1            
-      Abstract1                 
+      Abstract1
+      Abstract                    
       Lib                  
   other-modules:
       Paths_apron_bindings

@@ -10,7 +10,6 @@ module Linexpr1 ( Linexpr1
                 -- * Access
                 , linexprGetConstant
                 , linexprGetCoeff
-                , linexprAssignConstant
                 -- * Setters
                 , linexprSetConstant
                 , linexprSetCoeffs
@@ -73,10 +72,6 @@ linexprGetCoeff :: Linexpr1 -> VarName -> Abstract Coeff
 linexprGetCoeff e v = do
   var <- getVar v
   liftIO $ apLinexpr1CoeffrefWrapper e var
-
--- | Get the constant and assign it to coeff.
-linexprAssignConstant :: Coeff -> Linexpr1 -> Abstract ()
-linexprAssignConstant = liftIO2 apLinexpr1GetCstWrapper
 
 -- Setters
 
