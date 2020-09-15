@@ -1,10 +1,14 @@
 module Abstract ( Abstract
+                , Domain(..)
+                , defaultState
                 , initAbstractState
+                , evalAbstract
                 -- * Higher-level constructors
                 , linexprEquation
                 , linconsEquation
                 -- * Linexpr
                 , Linexpr1
+                , LinexprDescrip(..)
                 , linexprMake
                 , linexprMinimize
                 , linexprCopy
@@ -22,6 +26,7 @@ module Abstract ( Abstract
                 , linexprSetCoeff
                 -- * Lincons
                 , Lincons1
+                , Constyp(..)
                 , linconsMake
                 , linconsCopy
                 -- ** Tests

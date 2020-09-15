@@ -60,7 +60,8 @@ library
       Lincons1
       Texpr1            
       Abstract1
-      Abstract                    
+      Abstract
+      Examples.Example                         
       Lib                  
   other-modules:
       Paths_apron_bindings

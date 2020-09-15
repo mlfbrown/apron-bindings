@@ -25,6 +25,13 @@ data AbstractState = AbstractState { unDomain      :: Domain
 newtype Abstract a = Abstract { unAbstractState :: StateT AbstractState IO a }
     deriving (Functor, Applicative, Monad, MonadState AbstractState, MonadIO, Fail.MonadFail)
 
+-- | Evaluate an abstract action with a given configurations.
+evalAbstract :: AbstractState -> Abstract a -> IO a
+evalAbstract aState act = evalStateT (unAbstractState act) aState
+
+defaultState :: AbstractState
+defaultState = AbstractState Intervals undefined undefined M.empty
+
 getDomain :: Abstract Domain
 getDomain = gets unDomain
 

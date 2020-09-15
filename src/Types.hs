@@ -31,3 +31,4 @@ isInterval v = case v of
 isScalar :: Value -> Bool
 isScalar = not . isInterval
 
+i = ScalarVal . IntValue
