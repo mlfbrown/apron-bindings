@@ -421,6 +421,14 @@ void ap_linexpr1_free (ap_linexpr1_t * expr) {
 
 // Abstract1
 
+ap_abstract1_t * ap_abstract1_bottom_wrapper (ap_manager_t* man, ap_environment_t* env) {
+  wrap_apron_fn(ap_abstract1_bottom, ap_abstract1_t, man, env);
+}
+
+ap_abstract1_t * ap_abstract1_top_wrapper (ap_manager_t* man, ap_environment_t* env) {
+  wrap_apron_fn(ap_abstract1_top, ap_abstract1_t, man, env);
+}
+
 ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a) {
   wrap_apron_fn(ap_abstract1_to_lincons_array, ap_lincons1_array_t, man, a);
 }
@@ -532,3 +540,11 @@ ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
 						      ap_tcons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_of_tcons_array, ap_abstract1_t, man, env, array);
 }
+
+ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
+					     bool destructive,
+					     ap_abstract1_t* a1,ap_abstract1_t* a2) {
+  wrap_apron_fn(ap_abstract1_unify, ap_abstract1_t, man, destructive, a1, a2); 
+}
+
+

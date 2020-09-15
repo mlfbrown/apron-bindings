@@ -52,9 +52,21 @@ module Abstract ( Abstract
                 , abstractOfLinconsArray
                 -- ** Access
                 , abstractGetEnvironment
+                -- ** Tests
+                , abstractIsTop
+                , abstractIsBottom
+                , abstractIsLeq
+                , abstractIsEq
                 -- ** Operations
                 , abstractMeet
                 , abstractJoin
+                , abstractArrayMeet
+                , abstractArrayJoin
+                , abstractLinconsArrayMeet
+                , abstractTconsArrayMeet
+                , abstractUnify
+                , abstractCanonicalize
+                , abstractMinimize
                 -- * Other types
                 , Scalar
                 ) where

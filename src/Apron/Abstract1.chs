@@ -24,6 +24,10 @@ import           Foreign.C
 
 -- ap_abstract1_t ap_abstract1_copy(ap_manager_t* man, ap_abstract1_t* a);
 
+{#fun ap_abstract1_bottom_wrapper as ^ { `Manager', `Environment' } -> `Abstract1' #}
+
+{#fun ap_abstract1_top_wrapper as ^ { `Manager', `Environment' } -> `Abstract1' #}
+
 {#fun ap_abstract1_clear as ^ { `Manager', `Abstract1' } -> `()' #}
 
 {#fun ap_abstract1_size as ^ { `Manager', `Abstract1' } -> `CULong' #}
@@ -69,6 +73,10 @@ import           Foreign.C
 {#fun ap_abstract1_bound_texpr as ^ { `Manager', `Abstract1', `Texpr1' } -> `Interval' #}
 
 {#fun ap_abstract1_bound_variable as ^ { `Manager', `Abstract1', %`Var' } -> `Interval' #}
+
+{#fun ap_abstract1_to_lincons_array_wrapper as ^ { `Manager', `Abstract1' } -> `Lincons1Array' #}
+
+{#fun ap_abstract1_to_tcons_array_wrapper as ^ { `Manager', `Abstract1' } -> `Tcons1Array' #}
 
 -- ap_lincons1_array_t ap_abstract1_to_lincons_array(ap_manager_t* man, ap_abstract1_t* a);
 

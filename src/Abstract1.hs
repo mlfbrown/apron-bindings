@@ -1,34 +1,80 @@
 module Abstract1 ( Abstract1
                  , abstractBottom
+                 , abstractTop
                  , abstractOfLinconsArray
+                 , abstractToLinconsArray
                  , abstractOfTconsArray
+                 , abstractToLinconsArray
                  -- * Accessors
                  , abstractGetEnvironment
-                 -- * Meet and join
+                 -- * Tests
+                 , abstractIsTop
+                 , abstractIsBottom
+                 , abstractIsLeq
+                 , abstractIsEq
+                 , abstractSatLincons
+                 , abstractSatTcons
+                 , abstractVarIsUnconstrained
+                 -- * Extract properties
+                 , abstractBoundLinexpr
+                 , abstractBoundTexpr
+                 , abstractBoundVar
+                 -- * Operations
                  , abstractMeet
                  , abstractJoin
+                 , abstractArrayMeet
+                 , abstractArrayJoin
+                 , abstractLinconsArrayMeet
+                 , abstractTconsArrayMeet
+                 , abstractUnify
+                 , abstractCanonicalize
+                 , abstractMinimize
+                 -- * Expand, fold, widen, closure
+                 , abstractExpand
+                 , abstractFold
+                 , abstractWiden
+                 , abstractClosure
                  ) where
 import           AbstractMonad
 import           Apron.Abstract1
 import           Apron.Environment
+import           Apron.Interval
 import           Apron.Lincons1
+import           Apron.Linexpr1
 import           Apron.Tcons1
+import           Apron.Texpr1
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Word
 
 -- Constructors
 
 abstractBottom :: Abstract Abstract1
-abstractBottom = undefined
-  -- man <- getManager
-  -- env <- getEnvironment
-  -- liftIO $ apAbstract1BottomWrapper man env
+abstractBottom = do
+  man <- getManager
+  env <- getEnvironment
+  liftIO $ apAbstract1BottomWrapper man env
+
+abstractTop :: Abstract Abstract1
+abstractTop = do
+  man <- getManager
+  env <- getEnvironment
+  liftIO $ apAbstract1TopWrapper man env
 
 abstractOfLinconsArray :: Lincons1Array -> Abstract Abstract1
 abstractOfLinconsArray arr = do
   man <- getManager
   env <- getEnvironment
   liftIO $ apAbstract1OfLinconsArrayWrapper man env arr
+
+abstractToLinconsArray :: Abstract1 -> Abstract Lincons1Array
+abstractToLinconsArray a = do
+  man <- getManager
+  liftIO $ apAbstract1ToLinconsArrayWrapper man a
+
+abstractToTconsArray :: Abstract1 -> Abstract Tcons1Array
+abstractToTconsArray a = do
+  man <- getManager
+  liftIO $ apAbstract1ToTconsArrayWrapper man a
 
 abstractOfTconsArray :: Tcons1Array -> Abstract Abstract1
 abstractOfTconsArray arr = do
@@ -42,6 +88,55 @@ abstractGetEnvironment :: Abstract1 -> Abstract Environment
 abstractGetEnvironment a = do
   man <- getManager
   liftIO $ apAbstract1Environment man a
+
+-- Tests
+
+abstractIsBottom :: Abstract1 -> Abstract Bool
+abstractIsBottom a = do
+  man <- getManager
+  liftIO $ apAbstract1IsBottom man a
+
+abstractIsTop :: Abstract1 -> Abstract Bool
+abstractIsTop a = do
+  man <- getManager
+  liftIO $ apAbstract1IsTop man a
+
+abstractIsLeq :: Abstract1 -> Abstract1 -> Abstract Bool
+abstractIsLeq a1 a2 = do
+  man <- getManager
+  liftIO $ apAbstract1IsLeq man a1 a2
+
+abstractIsEq :: Abstract1 -> Abstract1 -> Abstract Bool
+abstractIsEq a1 a2 = do
+  man <- getManager
+  liftIO $ apAbstract1IsEq man a1 a2
+
+abstractSatLincons :: Abstract1 -> Lincons1 -> Abstract Bool
+abstractSatLincons a c = do
+  man <- getManager
+  liftIO $ apAbstract1SatLincons man a c
+
+abstractSatTcons :: Abstract1 -> Tcons1 -> Abstract Bool
+abstractSatTcons a c = do
+  man <- getManager
+  liftIO $ apAbstract1SatTcons man a c
+
+abstractVarIsUnconstrained :: Abstract1 -> VarName -> Abstract Bool
+abstractVarIsUnconstrained a v = do
+  man <- getManager
+  var <- getVar v
+  liftIO $ apAbstract1IsVariableUnconstrained man a var
+
+-- Extracting properties
+
+abstractBoundLinexpr :: Abstract1 -> Linexpr1 -> Abstract Interval
+abstractBoundLinexpr = undefined
+
+abstractBoundTexpr :: Abstract1 -> Texpr1 -> Abstract Interval
+abstractBoundTexpr = undefined
+
+abstractBoundVar :: Abstract1 -> VarName -> Abstract Interval
+abstractBoundVar = undefined
 
 -- Operations
 
@@ -95,19 +190,21 @@ abstractMinimize a = do
   man <- getManager
   liftIO $ apAbstract1Minimize man a
 
--- Assignment
+-- Expanding, folding, widening, closure
 
-abstractAssignLinexprArray = undefined
+abstractExpand :: Abstract1
+               -> VarName
+               -> [VarName]
+               -> Abstract Abstract1
+abstractExpand = error "Not yet implemented"
 
-abstractSubstituteLinexprArray = undefined
+abstractFold :: Abstract1 -> [VarName] -> Abstract Abstract1
+abstractFold = error "Not yet implemented"
 
-abstractAssignTexprArray = undefined
+abstractWiden :: Abstract1 -> Abstract1 -> Abstract Abstract1
+abstractWiden a1 a2 = undefined
+  -- man <- getManager
+  -- liftIO $ apAbstract1Widening man a1 a2
 
-abstractSubstituteTexprArray = undefined
-
-
-
--- cannon
--- assign linexpr
--- fold
--- meet lincons array
+abstractClosure :: Abstract1 -> Abstract Abstract1
+abstractClosure = undefined

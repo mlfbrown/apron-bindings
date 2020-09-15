@@ -241,6 +241,14 @@ ap_lincons1_array_t * ap_lincons1_array_make_wrapper (ap_environment_t* env, siz
 
 ap_var_t * ap_environment_var_of_dim_wrapper (ap_environment_t* env, ap_dim_t dim);
 
+// Abstract1
+
+ap_abstract1_t * ap_abstract1_bottom_wrapper (ap_manager_t* man, ap_environment_t* env);
+
+ap_abstract1_t * ap_abstract1_top_wrapper (ap_manager_t* man, ap_environment_t* env);
+
+ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
+
 ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
 
 ap_abstract1_t * ap_abstract1_meet_wrapper (ap_manager_t* man,
@@ -313,3 +321,6 @@ ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
 						      ap_environment_t* env,
 						      ap_tcons1_array_t* array);
 
+ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
+					     bool destructive,
+					     ap_abstract1_t* a1,ap_abstract1_t* a2);
