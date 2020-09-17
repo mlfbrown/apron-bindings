@@ -4,7 +4,7 @@ module Abstract1 ( Abstract1
                  , abstractOfLinconsArray
                  , abstractToLinconsArray
                  , abstractOfTconsArray
-                 , abstractToLinconsArray
+                 , abstractToTconsArray
                  -- * Accessors
                  , abstractGetEnvironment
                  -- * Tests

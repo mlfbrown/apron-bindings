@@ -55,6 +55,9 @@ module Abstract ( Abstract
                 , Abstract1
                 , abstractBottom
                 , abstractOfLinconsArray
+                , abstractToLinconsArray
+                , abstractOfTconsArray
+                , abstractToTconsArray
                 -- ** Access
                 , abstractGetEnvironment
                 -- ** Tests
@@ -62,6 +65,13 @@ module Abstract ( Abstract
                 , abstractIsBottom
                 , abstractIsLeq
                 , abstractIsEq
+                , abstractSatLincons
+                , abstractSatTcons
+                , abstractVarIsUnconstrained
+                -- ** Extract properties
+                , abstractBoundLinexpr
+                , abstractBoundTexpr
+                , abstractBoundVar
                 -- ** Operations
                 , abstractMeet
                 , abstractJoin
@@ -72,12 +82,19 @@ module Abstract ( Abstract
                 , abstractUnify
                 , abstractCanonicalize
                 , abstractMinimize
+                -- ** Other
+                , abstractExpand
+                , abstractFold
+                , abstractWiden
+                , abstractClosure
                 -- * Other types
                 , Scalar
+                , Interval
                 ) where
 import           Abstract1
 import           AbstractMonad
 import           Apron.Abstract1
+import           Apron.Interval
 import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
