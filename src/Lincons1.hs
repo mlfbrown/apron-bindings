@@ -13,6 +13,7 @@ module Lincons1 ( Lincons1
                 , linconsSetConstant
                 , linconsSetCoeffs
                 , linconsSetCoeff
+                , linconsSetCoeffInterval
                 -- * Lincons array creation
                 , Lincons1Array
                 , linconsArrayMake
@@ -35,6 +36,7 @@ import           Control.Monad              (when)
 import           Control.Monad.State.Strict (liftIO)
 import           Data.List                  (nub)
 import           Data.Word
+import           Interval
 import           Linexpr1
 import           Types
 
@@ -100,6 +102,9 @@ linconsSetCoeff c name v = do
   coeff <- coeffMake v
   var <- getVar name
   liftIO $ apLincons1SetCoeffWrapper c var coeff
+
+linconsSetCoeffInterval :: Lincons1 -> VarName -> Interval -> Abstract ()
+linconsSetCoeffInterval = undefined
 
 -- Lincons array
 

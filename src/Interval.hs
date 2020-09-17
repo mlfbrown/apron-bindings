@@ -1,4 +1,5 @@
-module Interval ( intervalIsTop
+module Interval ( Interval
+                , intervalIsTop
                 , intervalIsBottom
                 , intervalIsLeq
                 , intervalIsLe

@@ -14,6 +14,7 @@ module Linexpr1 ( Linexpr1
                 , linexprSetConstant
                 , linexprSetCoeffs
                 , linexprSetCoeff
+                , linexprSetCoeffInterval
                 ) where
 import           AbstractMonad
 import           Apron.Coeff
@@ -22,6 +23,7 @@ import           Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Int                   (Int32)
 import           Data.Word
+import           Interval
 import           Types
 
 -- | Build a linear expressions with by default coefficients of type SCALAR and DOUBLE.
@@ -95,3 +97,6 @@ linexprSetCoeff e name v = do
   c <- coeffMake v
   var <- getVar name
   liftIO $ apLinexpr1SetCoeffWrapper e var c
+
+linexprSetCoeffInterval :: Linexpr1 -> VarName -> Interval -> Abstract ()
+linexprSetCoeffInterval = undefined
