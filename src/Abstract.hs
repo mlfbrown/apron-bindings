@@ -87,9 +87,19 @@ module Abstract ( Abstract
                 , abstractFold
                 , abstractWiden
                 , abstractClosure
+                -- * Interval
+                , Interval
+                -- ** Tests
+                , intervalIsTop
+                , intervalIsBottom
+                , intervalIsLeq
+                , intervalIsLe
+                , intervalIsEq
+                , intervalIsGeq
+                , intervalIsGe
+                , intervalIsInt
                 -- * Other types
                 , Scalar
-                , Interval
                 ) where
 import           Abstract1
 import           AbstractMonad
@@ -98,6 +108,7 @@ import           Apron.Interval
 import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
+import           Interval
 import           Lincons1
 import           Linexpr1
 import           Types
