@@ -130,13 +130,20 @@ abstractVarIsUnconstrained a v = do
 -- Extracting properties
 
 abstractBoundLinexpr :: Abstract1 -> Linexpr1 -> Abstract Interval
-abstractBoundLinexpr = undefined
+abstractBoundLinexpr a e = do
+  man <- getManager
+  liftIO $ apAbstract1BoundLinexpr man a e
 
 abstractBoundTexpr :: Abstract1 -> Texpr1 -> Abstract Interval
-abstractBoundTexpr = undefined
+abstractBoundTexpr a t = do
+  man <- getManager
+  liftIO $ apAbstract1BoundTexpr man a t
 
 abstractBoundVar :: Abstract1 -> VarName -> Abstract Interval
-abstractBoundVar = undefined
+abstractBoundVar a v = do
+  man <- getManager
+  var <- getVar v
+  liftIO $ apAbstract1BoundVariable man a var
 
 -- Operations
 
@@ -202,9 +209,11 @@ abstractFold :: Abstract1 -> [VarName] -> Abstract Abstract1
 abstractFold = error "Not yet implemented"
 
 abstractWiden :: Abstract1 -> Abstract1 -> Abstract Abstract1
-abstractWiden a1 a2 = undefined
-  -- man <- getManager
-  -- liftIO $ apAbstract1Widening man a1 a2
+abstractWiden a1 a2 = do
+  man <- getManager
+  liftIO $ apAbstract1WideningWrapper man a1 a2
 
 abstractClosure :: Abstract1 -> Abstract Abstract1
-abstractClosure = undefined
+abstractClosure a = do
+  man <- getManager
+  liftIO $ apAbstract1ClosureWrapper man False a

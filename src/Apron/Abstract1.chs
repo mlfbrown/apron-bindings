@@ -119,4 +119,9 @@ import           Foreign.C
 {#fun ap_abstract1_of_tcons_array_wrapper as ^ { `Manager', `Environment', `Tcons1Array' } -> `Abstract1' #}
 
 {#fun ap_abstract1_unify_wrapper as ^ { `Manager', `Bool', `Abstract1', `Abstract1' } -> `Abstract1' #}                      
-                      
+
+{#fun ap_abstract1_widening_wrapper as ^ { `Manager', `Abstract1', `Abstract1' } -> `Abstract1' #}
+
+{#fun ap_abstract1_closure_wrapper as ^ { `Manager', `Bool', `Abstract1' } -> `Abstract1' #}
+
+
