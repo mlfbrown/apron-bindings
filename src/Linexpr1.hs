@@ -15,6 +15,7 @@ module Linexpr1 ( Linexpr1
                 , linexprSetCoeffs
                 , linexprSetCoeff
                 , linexprSetCoeffInterval
+                , linexprForEachTerm
                 ) where
 import           AbstractMonad
 import           Apron.Coeff
@@ -100,3 +101,5 @@ linexprSetCoeff e name v = do
 
 linexprSetCoeffInterval :: Linexpr1 -> VarName -> Interval -> Abstract ()
 linexprSetCoeffInterval = undefined
+
+linexprForEachTerm = undefined
