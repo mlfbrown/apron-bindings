@@ -77,3 +77,12 @@ liftIO2 = ((.).(.)) liftIO
 -- | Lift an 'IO' operation with 3 arguments into another monad
 liftIO3 :: MonadIO m => (a -> b -> c -> IO d) -> a -> b -> c -> m d
 liftIO3 = ((.).((.).(.))) liftIO
+
+-- | Lift an 'IO' operation with 4 arguments into another monad
+liftIO4 :: MonadIO m => (a -> b -> c -> d -> IO e) -> a -> b -> c -> d -> m e
+liftIO4 = ((.).((.).((.).(.)))) liftIO
+
+-- | Lift an 'IO' operation with 5 arguments into another monad
+liftIO5 :: MonadIO m => (a -> b -> c -> d -> e -> IO f) -> a -> b -> c -> d -> e -> m f
+liftIO5 = ((.).((.).((.).((.).(.))))) liftIO
+

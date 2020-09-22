@@ -1,6 +1,11 @@
 module Texpr1 ( Texpr1
+              , OpType(..)
+              , RoundingType(..)
+              , RoundingDir(..)
               , texprMakeConstant
               , texprMakeLeafVar
+              , texprMakeUnOp
+              , texprMakeBinOp
               , texprFromLinexpr
               , texprCopy
               -- * Tests
@@ -34,6 +39,21 @@ texprMakeLeafVar v = do
   env <- getEnvironment
   var <- getVar v
   liftIO $ apTexpr1Var env var
+
+texprMakeUnOp :: OpType
+              -> Texpr1
+              -> RoundingType
+              -> RoundingDir
+              -> Abstract Texpr1
+texprMakeUnOp = liftIO4 apTexpr1Unop
+
+texprMakeBinOp :: OpType
+               -> Texpr1
+               -> Texpr1
+               -> RoundingType
+               -> RoundingDir
+               -> Abstract Texpr1
+texprMakeBinOp = liftIO5 apTexpr1Binop
 
 texprFromLinexpr :: Linexpr1 -> Abstract Texpr1
 texprFromLinexpr = liftIO1 apTexpr1FromLinexpr1

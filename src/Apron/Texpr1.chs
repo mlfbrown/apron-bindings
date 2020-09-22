@@ -77,9 +77,9 @@ import Foreign.C
 
 {#fun ap_texpr1_var as ^ { `Environment', %`Var' } -> `Texpr1' #}
 
--- ap_texpr1_t* ap_texpr1_unop(ap_texpr_op_t op,
+{#fun ap_texpr1_unop as ^ { `OpType', `Texpr1', `RoundingType', `RoundingDir' } -> `Texpr1' #}
 
--- ap_texpr1_t* ap_texpr1_binop(ap_texpr_op_t op,
+{#fun ap_texpr1_binop as ^ { `OpType', `Texpr1', `Texpr1', `RoundingType', `RoundingDir' } -> `Texpr1' #}
 
 {#fun ap_texpr1_copy as ^ { `Texpr1' } -> `Texpr1' #}
 

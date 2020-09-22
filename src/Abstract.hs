@@ -53,8 +53,13 @@ module Abstract ( Abstract
                 , linconsArraySetIndecies
                 -- * Texpr
                 , Texpr1
+                , OpType(..)
+                , RoundingType(..)
+                , RoundingDir(..)
                 , texprMakeConstant
                 , texprMakeLeafVar
+                , texprMakeUnOp
+                , texprMakeBinOp
                 , texprFromLinexpr
                 , texprCopy
                 -- ** Tests
