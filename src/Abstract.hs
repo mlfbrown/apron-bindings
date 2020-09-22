@@ -51,6 +51,40 @@ module Abstract ( Abstract
                 , linconsArrayClearIndecies
                 , linconsArraySetIndex
                 , linconsArraySetIndecies
+                -- * Texpr
+                , Texpr1
+                , texprMake
+                , texprMakeLeafVar
+                , texprFromLinexpr
+                , texprCopy
+                -- ** Tests
+                , texprHasVar
+                , texprIsConstant
+                , texprIsPolynomial
+                , texprIsPolyfrac
+                , texprIsScalar
+                -- ** Operations
+                , texprSubstitute
+                -- * Tcons
+                , Tcons1
+                , tconsMake
+                , tconsFromLincons
+                , tconsCopy
+                -- ** Access
+                , tconsGetScalar
+                , tconsGetExpr
+                -- * Tcons array
+                , Tcons1Array
+                , tconsArrayMake
+                , tconsArrayClear
+                -- ** Access
+                , tconsArraySize
+                , tconsArrayGetIndex
+                -- ** Setters
+                , tconsArrayClearIndex
+                , tconsArrayClearIndecies
+                , tconsArraySetIndex
+                , tconsArraySetIndecies
                 -- * Abstract
                 , Abstract1
                 , abstractBottom
@@ -111,6 +145,8 @@ import           Apron.Scalar
 import           Interval
 import           Lincons1
 import           Linexpr1
+import           Tcons1
+import           Texpr1
 import           Types
 
 -- | Make a new constraint for a linear equation.

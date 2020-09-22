@@ -1,4 +1,22 @@
 module Tcons1 ( Tcons1
+              , tconsMake
+              , tconsFromLincons
+              , tconsCopy
+              -- * Access
+              , tconsGetScalar
+              , tconsGetExpr
+              -- * Tcons arrays
+              , Tcons1Array
+              , tconsArrayMake
+              , tconsArrayClear
+              -- * Access
+              , tconsArraySize
+              , tconsArrayGetIndex
+              -- * Setters
+              , tconsArrayClearIndex
+              , tconsArrayClearIndecies
+              , tconsArraySetIndex
+              , tconsArraySetIndecies
               ) where
 import           AbstractMonad
 import           Apron.Lincons1
@@ -51,6 +69,9 @@ tconsArrayGetIndex = undefined
 
 tconsArrayClearIndex :: Tcons1Array -> Abstract ()
 tconsArrayClearIndex = undefined
+
+tconsArrayClearIndecies :: Tcons1Array -> Abstract ()
+tconsArrayClearIndecies = undefined
 
 tconsArraySetIndex :: Tcons1Array -> Word32 -> Tcons1 -> Abstract ()
 tconsArraySetIndex = undefined
