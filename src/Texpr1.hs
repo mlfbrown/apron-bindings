@@ -1,5 +1,5 @@
 module Texpr1 ( Texpr1
-              , texprMake
+              , texprMakeConstant
               , texprMakeLeafVar
               , texprFromLinexpr
               , texprCopy
@@ -23,20 +23,23 @@ import           Types
 
 -- Constructors, etc
 
-texprMake :: Value -> Abstract Texpr1
-texprMake v = do
+texprMakeConstant :: Value -> Abstract Texpr1
+texprMakeConstant v = do
   env <- getEnvironment
   c <- coeffMake v
   liftIO $ apTexpr1Cst env c
 
 texprMakeLeafVar :: VarName -> Abstract Texpr1
-texprMakeLeafVar = undefined
+texprMakeLeafVar v = do
+  env <- getEnvironment
+  var <- getVar v
+  liftIO $ apTexpr1Var env var
 
 texprFromLinexpr :: Linexpr1 -> Abstract Texpr1
-texprFromLinexpr = undefined
+texprFromLinexpr = liftIO1 apTexpr1FromLinexpr1
 
 texprCopy :: Texpr1 -> Abstract Texpr1
-texprCopy = undefined
+texprCopy = liftIO1 apTexpr1Copy
 
 -- Tests
 

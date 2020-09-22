@@ -53,7 +53,7 @@ module Abstract ( Abstract
                 , linconsArraySetIndecies
                 -- * Texpr
                 , Texpr1
-                , texprMake
+                , texprMakeConstant
                 , texprMakeLeafVar
                 , texprFromLinexpr
                 , texprCopy
