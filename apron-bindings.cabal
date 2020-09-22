@@ -59,7 +59,8 @@ library
       Interval            
       Linexpr1
       Lincons1
-      Texpr1            
+      Texpr1
+      Tcons1            
       Abstract1
       Abstract
       Examples.Example                         
