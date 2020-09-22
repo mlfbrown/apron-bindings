@@ -64,26 +64,30 @@ texprCopy = liftIO1 apTexpr1Copy
 -- Tests
 
 texprHasVar :: Texpr1 -> VarName -> Abstract Bool
-texprHasVar = undefined
+texprHasVar e v = do
+  var <- getVar v
+  liftIO $ apTexpr1HasVar e var
 
 texprIsConstant :: Texpr1 -> Abstract Bool
-texprIsConstant = undefined
+texprIsConstant = liftIO1 apTexpr1IsIntervalCstWrapper
 
 texprIsLinear :: Texpr1 -> Abstract Bool
-texprIsLinear = undefined
+texprIsLinear = liftIO1 apTexpr1IsIntervalLinearWrapper
 
 texprIsPolynomial :: Texpr1 -> Abstract Bool
-texprIsPolynomial = undefined
+texprIsPolynomial = liftIO1 apTexpr1IsIntervalPolynomialWrapper
 
 texprIsPolyfrac :: Texpr1 -> Abstract Bool
-texprIsPolyfrac = undefined
+texprIsPolyfrac = liftIO1 apTexpr1IsIntervalPolyfracWrapper
 
 texprIsScalar :: Texpr1 -> Abstract Bool
-texprIsScalar = undefined
+texprIsScalar = liftIO1 apTexpr1IsScalarWrapper
 
 -- Operations
 
 texprSubstitute :: Texpr1 -> VarName -> Texpr1 -> Abstract Texpr1
-texprSubstitute = undefined
+texprSubstitute e v d = do
+  var <- getVar v
+  liftIO $ apTexpr1Substitute e var d
 
 
