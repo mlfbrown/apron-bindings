@@ -32,6 +32,8 @@ import           Foreign.C
 
 {#fun ap_abstract1_size as ^ { `Manager', `Abstract1' } -> `CULong' #}
 
+{#fun print_abstract1 as ^ { `Manager', `Abstract1' } -> `()' #}
+
 -- Control of internal representation
 
 {#fun ap_abstract1_minimize as ^ { `Manager', `Abstract1' } -> `()' #}

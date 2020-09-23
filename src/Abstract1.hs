@@ -1,4 +1,5 @@
 module Abstract1 ( Abstract1
+                 , abstractPrint
                  , abstractBottom
                  , abstractTop
                  , abstractOfLinconsArray
@@ -45,6 +46,13 @@ import           Apron.Tcons1
 import           Apron.Texpr1
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Word
+
+-- Printing
+
+abstractPrint :: Abstract1 -> Abstract ()
+abstractPrint abs = do
+  man <- getManager
+  liftIO $ printAbstract1 man abs
 
 -- Constructors
 

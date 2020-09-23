@@ -92,6 +92,7 @@ module Abstract ( Abstract
                 , tconsArraySetIndecies
                 -- * Abstract
                 , Abstract1
+                , abstractPrint
                 , abstractBottom
                 , abstractOfLinconsArray
                 , abstractToLinconsArray
