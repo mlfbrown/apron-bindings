@@ -11,6 +11,10 @@
 
 // Extra, designed for the bindings
 
+ap_var_t * make_var (char * str) {
+  return (ap_var_t *)str; 
+}
+
 void print_abstract1 (ap_manager_t * man, ap_abstract1_t * abs) {
   ap_abstract1_fprint(stdout, man, abs);
 }

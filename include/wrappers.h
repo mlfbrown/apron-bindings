@@ -7,6 +7,8 @@
 
 // ---------------------> Extra
 
+ap_var_t * make_var (char * str);
+
 void print_abstract1 (ap_manager_t * man, ap_abstract1_t * abs);
 
 ap_lincons1_t* ap_lincons1_make_wrapper_two (ap_constyp_t constyp,

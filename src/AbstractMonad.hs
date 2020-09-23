@@ -5,7 +5,9 @@ import           Apron.Manager
 import           Apron.Var
 import qualified Control.Monad.Fail         as Fail
 import           Control.Monad.State.Strict
+import           Data.List                  (nub)
 import qualified Data.Map                   as M
+import           Foreign.C.String
 
 data Domain = Intervals
             | Polyhedra
@@ -41,30 +43,38 @@ getManager = gets unManager
 getEnvironment :: Abstract Environment
 getEnvironment = gets unEnvironment
 
+initVar :: VarName -> Abstract ()
+initVar v = do
+  str <- liftIO $ newCString v
+  var <- liftIO $ makeVar str
+  s0 <- get
+  put $ s0 { unVars = M.insert v var $ unVars s0 }
+
 getVar :: VarName -> Abstract Var
 getVar v = do
   vs <- gets unVars
   case M.lookup v vs of
-    Just v  -> return v
-    Nothing -> error $ unwords ["No var", show v, "in current environment"]
+    Nothing -> error $ unwords [ "Variable", v, "does not exist in environment" ]
+    Just var -> return var
 
 initAbstractState :: Domain
                  -> [VarName]
                  -> [VarName]
                  -> Abstract ()
 initAbstractState domain intVars realVars = do
-  intVarArr <- liftIO $ makeVarArray intVars
-  realVarArr <- liftIO $ makeVarArray realVars
-  -- Make the environment
+  unless (intVars == nub intVars)   $ error $ unwords [ "Dupe int vars",  show intVars  ]
+  unless (realVars == nub realVars) $ error $ unwords [ "Dupe real vars", show realVars ]
+  env <- liftIO $ apEnvironmentAlloc intVars realVars
   manager <- case domain of
                Intervals -> liftIO boxManagerAlloc
                _ -> error $ unwords [ "Unsupported domain:"
                                     , show domain
                                     ]
+  forM_ (intVars ++ realVars) initVar
   s0 <- get
-  put $ s0 { unDomain  = domain
-           , unManager = manager
-           , unVars    = M.empty
+  put $ s0 { unDomain      = domain
+           , unManager     = manager
+           , unEnvironment = env
            }
 
 liftIO1 :: MonadIO m => (a -> IO b) -> a -> m b
