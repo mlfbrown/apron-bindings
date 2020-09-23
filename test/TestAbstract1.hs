@@ -9,11 +9,19 @@ import           Test.Tasty
 import           Test.Tasty.HUnit
 
 
-abstractTests = testGroup "Abstract tests" [ makeAbstract ]
+abstractTests = testGroup "Abstract tests" [ makeAbstractEmpty
+                                           , makeAbstract ]
 
-makeAbstract = testCase "Make abstract" $ do
+makeAbstractEmpty = testCase "Make abstract empty" $ do
   man <- boxManagerAlloc
   env <- apEnvironmentAllocEmpty
   arr <- apLincons1ArrayMakeWrapper env 2
+  abstract <- apAbstract1OfLinconsArrayWrapper man env arr
+  return ()
+
+makeAbstract = testCase "Make abstract" $ do
+  man <- boxManagerAlloc
+  env <- apEnvironmentAlloc ["x", "y", "z"] ["u", "w", "v"]
+  arr <- apLincons1ArrayMakeWrapper env 3
   abstract <- apAbstract1OfLinconsArrayWrapper man env arr
   return ()
