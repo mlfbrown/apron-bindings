@@ -2,7 +2,8 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Apron.Environment where
 import Apron.Var
-import           Foreign
+import           Foreign.Concurrent
+import           Foreign hiding (addForeignPtrFinalizer)
 import Foreign.C.String    
 import           Foreign.C
 
@@ -27,7 +28,35 @@ import           Foreign.C
  
 {#fun ap_environment_alloc_empty as ^ { } -> `Environment' #}
 
--- {#fun ap_environment_alloc_wrapper as ^ { `Ptr CString', `CULong', `Ptr CString', `CULong' } -> `Environment' #}
+
+foreign import ccall "ap_environment_alloc_wrapper"
+  apEnvironmentAllocWrapper'_ :: Ptr CString -> CULong -> Ptr CString -> CULong -> IO (Ptr Environment)
+
+apEnvironmentAllocWrapper :: Ptr CString -> CULong -> Ptr CString -> CULong -> IO Environment
+apEnvironmentAllocWrapper idims idim rdims rdim = do
+  cptr <- apEnvironmentAllocWrapper'_ idims idim rdims rdim
+  fptr <- newForeignPtr_ cptr
+  return $ Environment fptr
+
+apEnvironmentAlloc :: [String] -> [String] -> IO Environment
+apEnvironmentAlloc idims rdims = do
+  let iLen = length idims
+      rLen = length rdims
+  c_idims <- makeVarArray idims
+  c_rdims <- makeVarArray rdims
+  env@(Environment envFPtr) <- apEnvironmentAllocWrapper
+    c_idims (fromIntegral iLen)
+    c_rdims (fromIntegral rLen)
+  addForeignPtrFinalizer envFPtr $ do freeVarArray c_idims iLen
+                                      freeVarArray c_rdims rLen
+  return env
+
+     where makeVarArray arr = newArray =<< traverse newCString arr
+           freeVarArray ptr n = do
+             strs <- peekArray n ptr
+             traverse free strs
+             free ptr
+
 
 {#fun ap_environment_add as ^ { `Environment', `Var', `CULong', `Var', `CULong' } -> `Environment' #}
 

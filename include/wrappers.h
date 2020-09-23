@@ -10,10 +10,10 @@
 void print_abstract1 (ap_manager_t * man, ap_abstract1_t * abs);
 
 ap_lincons1_t* ap_lincons1_make_wrapper_two (ap_constyp_t constyp,
-					     ap_linexpr1_t* expr);
+    ap_linexpr1_t* expr);
 
 ap_environment_t* ap_environment_alloc_wrapper (char** name_of_intdim, size_t intdim,
-						char** name_of_realdim, size_t realdim);
+    char** name_of_realdim, size_t realdim);
 
 // ---------------------> Scalar
 
@@ -46,7 +46,7 @@ ap_environment_t* ap_generator1_array_envref_wrapper (ap_generator1_array_t* arr
 void ap_generator1_array_clear_index_wrapper (ap_generator1_array_t* array, size_t index);
 
 ap_generator1_t * ap_generator1_array_get_wrapper (ap_generator1_array_t* array,
-						   size_t index);
+    size_t index);
 
 // ---------------------> Environment
 
@@ -65,11 +65,11 @@ void ap_dimchange_clear_wrapper (ap_dimchange_t* dimchange);
 void ap_dimchange_free_wrapper (ap_dimchange_t* dimchange);
 
 void ap_dimchange2_init_wrapper (ap_dimchange2_t* dimchange2,
-				 ap_dimchange_t* add,
-				 ap_dimchange_t* remove);
+    ap_dimchange_t* add,
+    ap_dimchange_t* remove);
 
 ap_dimchange2_t* ap_dimchange2_alloc_wrapper (ap_dimchange_t* add,
-					      ap_dimchange_t* remove);
+    ap_dimchange_t* remove);
 
 void ap_dimperm_clear_wrapper (ap_dimperm_t* dimperm);
 
@@ -110,7 +110,7 @@ ap_environment_t* ap_tcons1_array_envref_wrapper (ap_tcons1_array_t* array);
 void ap_tcons1_array_clear_index_wrapper (ap_tcons1_array_t* array, size_t index);
 
 ap_tcons1_t * ap_tcons1_array_get_wrapper (ap_tcons1_array_t* array,
-					   size_t index);
+    size_t index);
 
 // ---------------------> Lincons 
 
@@ -143,7 +143,7 @@ size_t ap_lincons1_array_size_wrapper (ap_lincons1_array_t* array);
 ap_environment_t* ap_lincons1_array_envref_wrapper (ap_lincons1_array_t* array);
 
 ap_lincons1_t* ap_lincons1_array_get_wrapper (ap_lincons1_array_t* array,
-					      size_t index);
+    size_t index);
 
 // change later
 void ap_lincons1_free (ap_lincons1_t * cons);
@@ -184,26 +184,26 @@ void ap_linexpr1_set_cst_scalar_wrapper (ap_linexpr1_t* expr, ap_scalar_t* scala
 void ap_linexpr1_set_cst_scalar_int_wrapper (ap_linexpr1_t* expr, int num);
 
 void ap_linexpr1_set_cst_scalar_frac_wrapper (ap_linexpr1_t* expr,
-					      int num,
-					      unsigned int den);
+    int num,
+    unsigned int den);
 
 void ap_linexpr1_set_cst_scalar_double_wrapper (ap_linexpr1_t* expr, double num);
 
 void ap_linexpr1_set_cst_interval_wrapper (ap_linexpr1_t* expr, ap_interval_t* itv);
 
 void ap_linexpr1_set_cst_interval_scalar_wrapper (ap_linexpr1_t* expr,
-						  ap_scalar_t* inf,
-						  ap_scalar_t* sup);
+    ap_scalar_t* inf,
+    ap_scalar_t* sup);
 
 void ap_linexpr1_set_cst_interval_int_wrapper (ap_linexpr1_t* expr, int inf, int sup);
 
 void ap_linexpr1_set_cst_interval_frac_wrapper (ap_linexpr1_t* expr,
-						int numinf, unsigned int deninf,
-						int numsup, unsigned int densup);
+    int numinf, unsigned int deninf,
+    int numsup, unsigned int densup);
 
 void ap_linexpr1_set_cst_interval_double_wrapper (ap_linexpr1_t* expr,
-						  double inf,
-						  double sup);
+    double inf,
+    double sup);
 
 
 bool ap_linexpr1_set_coeff_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_coeff_t* coeff);
@@ -223,8 +223,8 @@ bool ap_linexpr1_set_coeff_interval_scalar_wrapper (ap_linexpr1_t* expr, ap_var_
 bool ap_linexpr1_set_coeff_interval_int_wrapper (ap_linexpr1_t* expr, ap_var_t var, int inf, int sup);
 
 bool ap_linexpr1_set_coeff_interval_frac_wrapper (ap_linexpr1_t* expr, ap_var_t var,
-						  int numinf, unsigned int deninf,
-						  int numsup, unsigned int densup);
+    int numinf, unsigned int deninf,
+    int numsup, unsigned int densup);
 
 bool ap_linexpr1_set_coeff_interval_double_wrapper (ap_linexpr1_t* expr, ap_var_t var, double inf, double sup);
 
@@ -254,81 +254,81 @@ ap_lincons1_array_t * ap_abstract1_to_lincons_array_wrapper (ap_manager_t* man, 
 ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_abstract1_t* a);
 
 ap_abstract1_t * ap_abstract1_meet_wrapper (ap_manager_t* man,
-					    bool destructive,
-					    ap_abstract1_t* a1,
-					    ap_abstract1_t* a2);
+    bool destructive,
+    ap_abstract1_t* a1,
+    ap_abstract1_t* a2);
 
 ap_abstract1_t * ap_abstract1_join_wrapper (ap_manager_t* man,
-					    bool destructive,
-					    ap_abstract1_t* a1,
-					    ap_abstract1_t* a2);
+    bool destructive,
+    ap_abstract1_t* a1,
+    ap_abstract1_t* a2);
 
 ap_abstract1_t * ap_abstract1_meet_array_wrapper (ap_manager_t* man,
-						  ap_abstract1_t* tab,
-						  size_t size);
+    ap_abstract1_t* tab,
+    size_t size);
 
 ap_abstract1_t * ap_abstract1_join_array_wrapper (ap_manager_t* man,
-						  ap_abstract1_t* tab,
-						  size_t size);
+    ap_abstract1_t* tab,
+    size_t size);
 
 ap_abstract1_t * ap_abstract1_meet_lincons_array_wrapper (ap_manager_t* man,
-							  bool destructive,
-							  ap_abstract1_t* a,
-							  ap_lincons1_array_t* array);
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_lincons1_array_t* array);
 
 ap_abstract1_t * ap_abstract1_meet_tcons_array_wrapper (ap_manager_t* man,
-							bool destructive,
-							ap_abstract1_t* a,
-							ap_tcons1_array_t* array);
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_tcons1_array_t* array);
 
 ap_abstract1_t * ap_abstract1_assign_linexpr_array_wrapper (ap_manager_t* man,
-							    bool destructive,
-							    ap_abstract1_t* a,
-							    ap_var_t* tvar,
-							    ap_linexpr1_t* texpr,
-							    size_t size,
-							    ap_abstract1_t* dest);
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_linexpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest);
 
 ap_abstract1_t * ap_abstract1_substitute_linexpr_array_wrapper (ap_manager_t* man,
-								bool destructive,
-								ap_abstract1_t* a,
-								ap_var_t* tvar,
-								ap_linexpr1_t* texpr,
-								size_t size,
-								ap_abstract1_t* dest);
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_linexpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest);
 
 ap_abstract1_t * ap_abstract1_assign_texpr_array_wrapper (ap_manager_t* man,
-							  bool destructive,
-							  ap_abstract1_t* a,
-							  ap_var_t* tvar,
-							  ap_texpr1_t* texpr,
-							  size_t size,
-							  ap_abstract1_t* dest);
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_texpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest);
 
 ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
-							      bool destructive,
-							      ap_abstract1_t* a,
-							      ap_var_t* tvar,
-							      ap_texpr1_t* texpr,
-							      size_t size,
-							      ap_abstract1_t* dest);
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_texpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest);
 
 // skip
 
 ap_abstract1_t * ap_abstract1_of_lincons_array_wrapper (ap_manager_t* man,
-							ap_environment_t* env,
-							ap_lincons1_array_t* array);
+    ap_environment_t* env,
+    ap_lincons1_array_t* array);
 
 ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
-						      ap_environment_t* env,
-						      ap_tcons1_array_t* array);
+    ap_environment_t* env,
+    ap_tcons1_array_t* array);
 
 ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
-					     bool destructive,
-					     ap_abstract1_t* a1,ap_abstract1_t* a2);
+    bool destructive,
+    ap_abstract1_t* a1,ap_abstract1_t* a2);
 
 ap_abstract1_t * ap_abstract1_widening_wrapper (ap_manager_t* man,
-						ap_abstract1_t* a1, ap_abstract1_t* a2);
+    ap_abstract1_t* a1, ap_abstract1_t* a2);
 
 ap_abstract1_t * ap_abstract1_closure_wrapper (ap_manager_t* man,
-					       bool destructive, ap_abstract1_t* a);
+    bool destructive, ap_abstract1_t* a);

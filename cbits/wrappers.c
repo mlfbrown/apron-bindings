@@ -1,12 +1,12 @@
 #include "../include/wrappers.h"
 #include <stdio.h>
 
-#define wrap_apron_fn(FNNAME, RETTYPE, ARGS...)      \
-  do {                                               \
-  RETTYPE fn_out = FNNAME(ARGS);                     \
-  RETTYPE *ret = (RETTYPE *)malloc(sizeof(RETTYPE)); \
-  memcpy(ret, &fn_out, sizeof(RETTYPE));             \
-  return ret;                                        \
+#define wrap_apron_fn(FNNAME, RETTYPE, ARGS...)        \
+  do {                                                 \
+    RETTYPE fn_out = FNNAME(ARGS);                     \
+    RETTYPE *ret = (RETTYPE *)malloc(sizeof(RETTYPE)); \
+    memcpy(ret, &fn_out, sizeof(RETTYPE));             \
+    return ret;                                        \
   } while (0)
 
 // Extra, designed for the bindings
@@ -16,12 +16,12 @@ void print_abstract1 (ap_manager_t * man, ap_abstract1_t * abs) {
 }
 
 ap_lincons1_t* ap_lincons1_make_wrapper_two (ap_constyp_t constyp,
-					    ap_linexpr1_t* expr) {
+    ap_linexpr1_t* expr) {
   wrap_apron_fn(ap_lincons1_make, ap_lincons1_t, constyp, expr, NULL);
 }
 
 ap_environment_t* ap_environment_alloc_wrapper (char** name_of_intdim, size_t intdim,
-						char** name_of_realdim, size_t realdim) {
+    char** name_of_realdim, size_t realdim) {
   return ap_environment_alloc((void **)name_of_intdim, intdim, (void **)name_of_realdim, realdim);
 }
 
@@ -82,7 +82,7 @@ void ap_generator1_array_clear_index_wrapper (ap_generator1_array_t* array, size
 }
 
 ap_generator1_t * ap_generator1_array_get_wrapper (ap_generator1_array_t* array,
-						   size_t index) {
+    size_t index) {
   wrap_apron_fn(ap_generator1_array_get, ap_generator1_t, array, index);
 }
 
@@ -115,13 +115,13 @@ void ap_dimchange_free_wrapper (ap_dimchange_t* dimchange) {
 }
 
 void ap_dimchange2_init_wrapper (ap_dimchange2_t* dimchange2,
-				 ap_dimchange_t* add,
-				 ap_dimchange_t* remove) {
+    ap_dimchange_t* add,
+    ap_dimchange_t* remove) {
   ap_dimchange2_init(dimchange2, add, remove);
 }
 
 ap_dimchange2_t* ap_dimchange2_alloc_wrapper (ap_dimchange_t* add,
-					      ap_dimchange_t* remove) {
+    ap_dimchange_t* remove) {
   return ap_dimchange2_alloc(add, remove);
 }
 
@@ -198,15 +198,15 @@ void ap_tcons1_array_clear_index_wrapper (ap_tcons1_array_t* array, size_t index
 }
 
 ap_tcons1_t * ap_tcons1_array_get_wrapper (ap_tcons1_array_t* array,
-					   size_t index) {
+    size_t index) {
   wrap_apron_fn(ap_tcons1_array_get, ap_tcons1_t, array, index);
 }
 
 // Lincons 
 
 ap_lincons1_t * ap_lincons1_make_wrapper (ap_constyp_t constyp,
-					  ap_linexpr1_t* expr,
-					  ap_scalar_t* scalar) {
+    ap_linexpr1_t* expr,
+    ap_scalar_t* scalar) {
   wrap_apron_fn(ap_lincons1_make, ap_lincons1_t, constyp, expr, scalar);
 }
 
@@ -263,7 +263,7 @@ ap_environment_t* ap_lincons1_array_envref_wrapper (ap_lincons1_array_t* array) 
 }
 
 ap_lincons1_t* ap_lincons1_array_get_wrapper (ap_lincons1_array_t* array,
-					      size_t index) {
+    size_t index) {
   wrap_apron_fn(ap_lincons1_array_get, ap_lincons1_t, array, index);
 }
 
@@ -275,8 +275,8 @@ void ap_lincons1_free (ap_lincons1_t * cons) {
 // Linexpr 
 
 ap_linexpr1_t* ap_linexpr1_make_wrapper (ap_environment_t* env,
-					 ap_linexpr_discr_t lin_discr,
-					 size_t size) {
+    ap_linexpr_discr_t lin_discr,
+    size_t size) {
   wrap_apron_fn(ap_linexpr1_make, ap_linexpr1_t, env, lin_discr, size);
 }
 
@@ -340,8 +340,8 @@ void ap_linexpr1_set_cst_scalar_int_wrapper (ap_linexpr1_t* expr, int num) {
 }
 
 void ap_linexpr1_set_cst_scalar_frac_wrapper (ap_linexpr1_t* expr,
-					      int num,
-					      unsigned int den) {
+    int num,
+    unsigned int den) {
   ap_linexpr1_set_cst_scalar_frac(expr, num, den);
 }
 
@@ -354,8 +354,8 @@ void ap_linexpr1_set_cst_interval_wrapper (ap_linexpr1_t* expr, ap_interval_t* i
 }
 
 void ap_linexpr1_set_cst_interval_scalar_wrapper (ap_linexpr1_t* expr,
-						  ap_scalar_t* inf,
-						  ap_scalar_t* sup) {
+    ap_scalar_t* inf,
+    ap_scalar_t* sup) {
   ap_linexpr1_set_cst_interval_scalar(expr, inf, sup);
 }
 
@@ -364,14 +364,14 @@ void ap_linexpr1_set_cst_interval_int_wrapper (ap_linexpr1_t* expr, int inf, int
 }
 
 void ap_linexpr1_set_cst_interval_frac_wrapper (ap_linexpr1_t* expr,
-						int numinf, unsigned int deninf,
-						int numsup, unsigned int densup) {
+    int numinf, unsigned int deninf,
+    int numsup, unsigned int densup) {
   ap_linexpr1_set_cst_interval_frac(expr, numinf, deninf, numsup, densup);
 }
 
 void ap_linexpr1_set_cst_interval_double_wrapper (ap_linexpr1_t* expr,
-						  double inf,
-						  double sup) {
+    double inf,
+    double sup) {
   ap_linexpr1_set_cst_interval_double(expr, inf, sup);
 }
 
@@ -408,8 +408,8 @@ bool ap_linexpr1_set_coeff_interval_int_wrapper (ap_linexpr1_t* expr, ap_var_t v
 }
 
 bool ap_linexpr1_set_coeff_interval_frac_wrapper (ap_linexpr1_t* expr, ap_var_t var,
-					 int numinf, unsigned int deninf,
-					 int numsup, unsigned int densup) {
+    int numinf, unsigned int deninf,
+    int numsup, unsigned int densup) {
   return ap_linexpr1_set_coeff_interval_frac(expr, var, numinf, deninf, numsup, densup);
 }
 
@@ -447,118 +447,118 @@ ap_tcons1_array_t * ap_abstract1_to_tcons_array_wrapper (ap_manager_t* man, ap_a
 // skipping ap_abstract1_to_generator_array
 
 ap_abstract1_t * ap_abstract1_meet_wrapper (ap_manager_t* man,
-					    bool destructive,
-					    ap_abstract1_t* a1,
-					    ap_abstract1_t* a2) {
+    bool destructive,
+    ap_abstract1_t* a1,
+    ap_abstract1_t* a2) {
   wrap_apron_fn(ap_abstract1_meet, ap_abstract1_t, man, destructive, a1, a2);
 }
 
 ap_abstract1_t * ap_abstract1_join_wrapper (ap_manager_t* man,
-					    bool destructive,
-					    ap_abstract1_t* a1,
-					    ap_abstract1_t* a2) {
+    bool destructive,
+    ap_abstract1_t* a1,
+    ap_abstract1_t* a2) {
   wrap_apron_fn(ap_abstract1_join, ap_abstract1_t, man, destructive, a1, a2);
 }
 
 ap_abstract1_t * ap_abstract1_meet_array_wrapper (ap_manager_t* man,
-						  ap_abstract1_t* tab,
-						  size_t size) {
+    ap_abstract1_t* tab,
+    size_t size) {
   wrap_apron_fn(ap_abstract1_meet_array, ap_abstract1_t, man, tab, size);
 }
 
 ap_abstract1_t * ap_abstract1_join_array_wrapper (ap_manager_t* man,
-						  ap_abstract1_t* tab,
-						  size_t size) {
+    ap_abstract1_t* tab,
+    size_t size) {
   wrap_apron_fn(ap_abstract1_join_array, ap_abstract1_t, man, tab, size);
 }
 
 ap_abstract1_t * ap_abstract1_meet_lincons_array_wrapper (ap_manager_t* man,
-							  bool destructive,
-							  ap_abstract1_t* a,
-							  ap_lincons1_array_t* array) {
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_lincons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_meet_lincons_array, ap_abstract1_t, man, destructive, a, array);
 }
 
 ap_abstract1_t * ap_abstract1_meet_tcons_array_wrapper (ap_manager_t* man,
-							bool destructive,
-							ap_abstract1_t* a,
-							ap_tcons1_array_t* array) {
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_tcons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_meet_tcons_array, ap_abstract1_t, man, destructive, a, array);
 }
 
 // ap_abstract1_add_ray_array
 
 ap_abstract1_t * ap_abstract1_assign_linexpr_array_wrapper (ap_manager_t* man,
-							    bool destructive,
-							    ap_abstract1_t* a,
-							    ap_var_t* tvar,
-							    ap_linexpr1_t* texpr,
-							    size_t size,
-							    ap_abstract1_t* dest) {
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_linexpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest) {
 
   wrap_apron_fn(ap_abstract1_assign_linexpr_array, ap_abstract1_t, man,
-		destructive, a, tvar, texpr, size, dest);
-  
+      destructive, a, tvar, texpr, size, dest);
+
 }
 
 ap_abstract1_t * ap_abstract1_substitute_linexpr_array_wrapper (ap_manager_t* man,
-								bool destructive,
-								ap_abstract1_t* a,
-								ap_var_t* tvar,
-								ap_linexpr1_t* texpr,
-								size_t size,
-								ap_abstract1_t* dest) {
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_linexpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest) {
   wrap_apron_fn(ap_abstract1_substitute_linexpr_array, ap_abstract1_t, man,
-		destructive, a, tvar, texpr, size, dest);  
+      destructive, a, tvar, texpr, size, dest);  
 }
 
 ap_abstract1_t * ap_abstract1_assign_texpr_array_wrapper (ap_manager_t* man,
-							  bool destructive,
-							  ap_abstract1_t* a,
-							  ap_var_t* tvar,
-							  ap_texpr1_t* texpr,
-							  size_t size,
-							  ap_abstract1_t* dest) {
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_texpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest) {
   wrap_apron_fn(ap_abstract1_assign_texpr_array, ap_abstract1_t, man,
-		destructive, a, tvar, texpr, size, dest);  
+      destructive, a, tvar, texpr, size, dest);  
 }
 
 ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
-							      bool destructive,
-							      ap_abstract1_t* a,
-							      ap_var_t* tvar,
-							      ap_texpr1_t* texpr,
-							      size_t size,
-							      ap_abstract1_t* dest) {
+    bool destructive,
+    ap_abstract1_t* a,
+    ap_var_t* tvar,
+    ap_texpr1_t* texpr,
+    size_t size,
+    ap_abstract1_t* dest) {
   wrap_apron_fn(ap_abstract1_substitute_texpr_array, ap_abstract1_t, man,
-		destructive, a, tvar, texpr, size, dest);  
+      destructive, a, tvar, texpr, size, dest);  
 }
 
 ap_abstract1_t * ap_abstract1_of_lincons_array_wrapper (ap_manager_t* man,
-							ap_environment_t* env,
-							ap_lincons1_array_t* array) {
+    ap_environment_t* env,
+    ap_lincons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_of_lincons_array, ap_abstract1_t, man, env, array);
 }
 
 ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
-						      ap_environment_t* env,
-						      ap_tcons1_array_t* array) {
+    ap_environment_t* env,
+    ap_tcons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_of_tcons_array, ap_abstract1_t, man, env, array);
 }
 
 ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
-					     bool destructive,
-					     ap_abstract1_t* a1,ap_abstract1_t* a2) {
+    bool destructive,
+    ap_abstract1_t* a1,ap_abstract1_t* a2) {
   wrap_apron_fn(ap_abstract1_unify, ap_abstract1_t, man, destructive, a1, a2); 
 }
 
 ap_abstract1_t * ap_abstract1_widening_wrapper (ap_manager_t* man,
-						ap_abstract1_t* a1, ap_abstract1_t* a2) {
+    ap_abstract1_t* a1, ap_abstract1_t* a2) {
   wrap_apron_fn(ap_abstract1_widening, ap_abstract1_t, man, a1, a2);
 }
 
 ap_abstract1_t * ap_abstract1_closure_wrapper (ap_manager_t* man,
-					       bool destructive, ap_abstract1_t* a) {
+    bool destructive, ap_abstract1_t* a) {
   wrap_apron_fn(ap_abstract1_closure, ap_abstract1_t, man, destructive, a);
 }
 
