@@ -1,4 +1,6 @@
 module Interval ( Interval
+                , intervalPrint
+                -- * Tests
                 , intervalIsTop
                 , intervalIsBottom
                 , intervalIsLeq
@@ -12,6 +14,9 @@ import           AbstractMonad
 import           Apron.Interval
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Int
+
+intervalPrint :: Interval -> Abstract ()
+intervalPrint = liftIO1 apIntervalPrint
 
 intervalIsTop :: Interval -> Abstract Bool
 intervalIsTop = liftIO1 apIntervalIsTop

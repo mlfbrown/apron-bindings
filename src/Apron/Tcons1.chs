@@ -23,6 +23,8 @@ import Foreign.C
 
 {# fun ap_tcons1_clear as ^ { `Tcons1' } -> `()' #}
 
+{# fun ap_tcons1_print as ^ { `Tcons1' } -> `()' #} 
+
 -- Access
 
 {# fun ap_tcons1_envref_wrapper as ^ { `Tcons1' } -> `Environment' #}

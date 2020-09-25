@@ -39,6 +39,8 @@ isSparse = not . isDense
 
 {#fun ap_linexpr1_make_wrapper as ^ { `Environment', `LinexprDescrip', `CULong' } -> `Linexpr1' #}
 
+{# fun print_linexpr1 as ^ { `Linexpr1' } -> `()' #}
+
 -- This will go away
 {# fun ap_linexpr1_free as ^ { `Linexpr1' } -> `()' #}
 

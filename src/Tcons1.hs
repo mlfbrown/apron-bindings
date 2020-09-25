@@ -2,6 +2,7 @@ module Tcons1 ( Tcons1
               , tconsMake
               , tconsFromLincons
               , tconsCopy
+              , tconsPrint
               -- * Access
               , tconsGetScalar
               , tconsGetExpr
@@ -37,6 +38,9 @@ tconsFromLincons = undefined
 
 tconsCopy :: Tcons1 -> Abstract Tcons1
 tconsCopy = undefined
+
+tconsPrint :: Tcons1 -> Abstract ()
+tconsPrint = liftIO1 apTcons1Print
 
 -- Access
 

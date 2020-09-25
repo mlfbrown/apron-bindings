@@ -2,6 +2,7 @@ module Linexpr1 ( Linexpr1
                 , linexprMake
                 , linexprMinimize
                 , linexprCopy
+                , linexprPrint
                 -- * Tests
                 , linexprIsInteger
                 , linexprIsReal
@@ -43,6 +44,9 @@ linexprMinimize = liftIO . apLinexpr1MinimizeWrapper
 -- | Make a copy of the linear expression.
 linexprCopy :: Linexpr1 -> Abstract Linexpr1
 linexprCopy = liftIO . apLinexpr1CopyWrapper
+
+linexprPrint :: Linexpr1 -> Abstract ()
+linexprPrint = liftIO1 printLinexpr1
 
 -- Tests
 

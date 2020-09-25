@@ -2,6 +2,7 @@ module Lincons1 ( Lincons1
                 , linconsMake
                 , linconsMakeWithScalar
                 , linconsCopy
+                , linconsPrint
                 -- * Tests
                 , linconsIsUnsat
                 -- * Access
@@ -54,6 +55,9 @@ linconsMakeWithScalar = liftIO3 apLincons1MakeWrapper
 
 linconsCopy :: Lincons1 -> Abstract Lincons1
 linconsCopy = liftIO1 apLincons1CopyWrapper
+
+linconsPrint :: Lincons1 -> Abstract ()
+linconsPrint = liftIO1 printLincons1
 
 -- Tests
 

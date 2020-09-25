@@ -53,6 +53,8 @@ import Foreign.C
 
 -- Constructors and destructors
 
+{#fun ap_texpr1_print as ^ { `Texpr1' } -> `()' #}
+
 {#fun ap_texpr1_cst as ^ { `Environment', `Coeff' } -> `Texpr1' #}
 
 {#fun ap_texpr1_cst_scalar as ^ { `Environment', `Scalar' } -> `Texpr1' #}

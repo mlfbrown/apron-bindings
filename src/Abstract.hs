@@ -12,6 +12,7 @@ module Abstract ( Abstract
                 , linexprMake
                 , linexprMinimize
                 , linexprCopy
+                , linexprPrint
                 -- ** Tests
                 , linexprIsInteger
                 , linexprIsReal
@@ -29,6 +30,7 @@ module Abstract ( Abstract
                 , Constyp(..)
                 , linconsMake
                 , linconsCopy
+                , linconsPrint
                 -- ** Tests
                 , linconsIsUnsat
                 -- ** Access
@@ -62,6 +64,7 @@ module Abstract ( Abstract
                 , texprMakeBinOp
                 , texprFromLinexpr
                 , texprCopy
+                , texprPrint
                 -- ** Tests
                 , texprHasVar
                 , texprIsConstant
@@ -75,6 +78,7 @@ module Abstract ( Abstract
                 , tconsMake
                 , tconsFromLincons
                 , tconsCopy
+                , tconsPrint
                 -- ** Access
                 , tconsGetScalar
                 , tconsGetExpr
@@ -92,12 +96,12 @@ module Abstract ( Abstract
                 , tconsArraySetIndecies
                 -- * Abstract
                 , Abstract1
-                , abstractPrint
                 , abstractBottom
                 , abstractOfLinconsArray
                 , abstractToLinconsArray
                 , abstractOfTconsArray
                 , abstractToTconsArray
+                , abstractPrint
                 -- ** Access
                 , abstractGetEnvironment
                 -- ** Tests
@@ -129,6 +133,7 @@ module Abstract ( Abstract
                 , abstractClosure
                 -- * Interval
                 , Interval
+                , intervalPrint
                 -- ** Tests
                 , intervalIsTop
                 , intervalIsBottom
@@ -140,6 +145,7 @@ module Abstract ( Abstract
                 , intervalIsInt
                 -- * Other types
                 , Scalar
+                , scalarPrint
                 ) where
 import           Abstract1
 import           AbstractMonad
@@ -155,6 +161,9 @@ import           Linexpr1
 import           Tcons1
 import           Texpr1
 import           Types
+
+scalarPrint :: Scalar -> Abstract ()
+scalarPrint = liftIO1 apScalarPrint
 
 -- | Make a new constraint for a linear equation.
 -- Set the linexpr to the given set of variables.

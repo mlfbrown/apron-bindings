@@ -1,11 +1,11 @@
 module Abstract1 ( Abstract1
-                 , abstractPrint
                  , abstractBottom
                  , abstractTop
                  , abstractOfLinconsArray
                  , abstractToLinconsArray
                  , abstractOfTconsArray
                  , abstractToTconsArray
+                 , abstractPrint
                  -- * Accessors
                  , abstractGetEnvironment
                  -- * Tests
@@ -47,13 +47,6 @@ import           Apron.Texpr1
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Word
 
--- Printing
-
-abstractPrint :: Abstract1 -> Abstract ()
-abstractPrint a = do
-  man <- getManager
-  liftIO $ printAbstract1 man a
-
 -- Constructors
 
 abstractBottom :: Abstract Abstract1
@@ -89,6 +82,13 @@ abstractOfTconsArray arr = do
   man <- getManager
   env <- getEnvironment
   liftIO $ apAbstract1OfTconsArrayWrapper man env arr
+
+-- Printing
+
+abstractPrint :: Abstract1 -> Abstract ()
+abstractPrint a = do
+  man <- getManager
+  liftIO $ printAbstract1 man a
 
 -- Accessors
 

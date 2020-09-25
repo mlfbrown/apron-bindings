@@ -39,6 +39,8 @@ import Foreign.C
 
 {#fun ap_lincons1_free as ^ { `Lincons1' } -> `()' #}
 
+{#fun print_lincons1 as ^ { `Lincons1' } -> `()' #} 
+ 
 -- Tests
 
 {#fun ap_lincons1_is_unsat as ^ { `Lincons1' } -> `Bool' #}

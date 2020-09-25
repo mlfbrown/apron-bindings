@@ -8,6 +8,7 @@ module Texpr1 ( Texpr1
               , texprMakeBinOp
               , texprFromLinexpr
               , texprCopy
+              , texprPrint
               -- * Tests
               , texprHasVar
               , texprIsConstant
@@ -59,6 +60,9 @@ texprFromLinexpr = liftIO1 apTexpr1FromLinexpr1
 
 texprCopy :: Texpr1 -> Abstract Texpr1
 texprCopy = liftIO1 apTexpr1Copy
+
+texprPrint :: Texpr1 -> Abstract ()
+texprPrint = liftIO1 apTexpr1Print
 
 -- Tests
 

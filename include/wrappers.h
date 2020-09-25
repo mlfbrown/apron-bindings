@@ -9,6 +9,10 @@
 
 ap_var_t * make_var (char * str);
 
+void print_lincons1 (ap_lincons1_t* cons);
+
+void print_linexpr1 (ap_linexpr1_t* a);
+
 void print_abstract1 (ap_manager_t * man, ap_abstract1_t * abs);
 
 ap_lincons1_t* ap_lincons1_make_wrapper_two (ap_constyp_t constyp,
@@ -143,6 +147,8 @@ ap_lincons1_array_t * ap_lincons1_array_make_wrapper (ap_environment_t* env, siz
 size_t ap_lincons1_array_size_wrapper (ap_lincons1_array_t* array);
 
 ap_environment_t* ap_lincons1_array_envref_wrapper (ap_lincons1_array_t* array);
+
+void ap_lincons1_array_clear_index_wrapper (ap_lincons1_array_t* array, size_t index);
 
 ap_lincons1_t* ap_lincons1_array_get_wrapper (ap_lincons1_array_t* array,
     size_t index);

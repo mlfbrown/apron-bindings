@@ -21,6 +21,8 @@ import Foreign.C
 
 {#fun ap_coeff_free as ^ { `Coeff' } -> `()' #}
 
+{#fun ap_coeff_print as ^ { `Coeff' } -> `()' #} 
+
 {#fun ap_coeff_reduce as ^ { `Coeff' } -> `()' #}
 
 -- Combined allocation and assignment

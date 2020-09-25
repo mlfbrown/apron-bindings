@@ -15,6 +15,17 @@ ap_var_t * make_var (char * str) {
   return (ap_var_t *)str; 
 }
 
+void print_lincons1 (ap_lincons1_t* cons) {
+  ap_lincons1_fprint(stdout, cons);
+}
+
+void print_linexpr1 (ap_linexpr1_t* a) {
+  ap_linexpr1_fprint(stdout, a);
+}
+
+// tcons, texpr, interval, scalar have a printer
+
+
 void print_abstract1 (ap_manager_t * man, ap_abstract1_t * abs) {
   ap_abstract1_fprint(stdout, man, abs);
 }
@@ -264,6 +275,10 @@ size_t ap_lincons1_array_size_wrapper (ap_lincons1_array_t* array) {
 
 ap_environment_t* ap_lincons1_array_envref_wrapper (ap_lincons1_array_t* array) {
   return ap_lincons1_array_envref(array);
+}
+
+void ap_lincons1_array_clear_index_wrapper (ap_lincons1_array_t* array, size_t index) {
+  ap_lincons1_array_clear_index(array, index);
 }
 
 ap_lincons1_t* ap_lincons1_array_get_wrapper (ap_lincons1_array_t* array,
