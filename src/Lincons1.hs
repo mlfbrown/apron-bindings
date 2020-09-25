@@ -119,13 +119,12 @@ linconsArraySize arr = do
 
 -- | Clear the constraint at index index.
 linconsArrayClearIndex :: Lincons1Array -> Word32 -> Abstract ()
-linconsArrayClearIndex = undefined
--- linconsArrayClearIndex arr i = liftIO $ apLincons1ArrayClearIndexWrapper arr $ fromIntegral i
+linconsArrayClearIndex arr i = liftIO $ apLincons1ArrayClearIndexWrapper arr $ fromIntegral i
 
 -- | Clear the constraints the the indecies idxs
 linconsArrayClearIndecies :: Lincons1Array -> [Word32] -> Abstract ()
 linconsArrayClearIndecies arr idxs = do
-  when (nub idxs == idxs) $ error $ unwords [ "Tried to set index multiple times:"
+  when (nub idxs == idxs) $ error $ unwords [ "Tried to clear index multiple times:"
                                             , show idxs
                                             ]
   mapM_ (linconsArrayClearIndex arr) idxs

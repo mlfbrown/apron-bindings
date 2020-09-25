@@ -80,6 +80,8 @@ import Foreign.C
 
 {#fun ap_lincons1_array_envref_wrapper as ^ { `Lincons1Array' } -> `Environment' #}
 
+{#fun ap_lincons1_array_clear_index_wrapper as ^ { `Lincons1Array', `CULong' } -> `()' #}
+
 {#fun ap_lincons1_array_get_wrapper as ^ { `Lincons1Array', `CULong' } -> `Lincons1' #}
 
 {#fun ap_lincons1_array_set as ^ { `Lincons1Array', `CULong', `Lincons1' } -> `()' #}
