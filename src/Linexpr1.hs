@@ -21,6 +21,7 @@ import           AbstractMonad
 import           Apron.Coeff
 import           Apron.Linexpr1
 import           Coeff
+import           Control.Monad              (void)
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Word
 import           Interval
@@ -84,19 +85,15 @@ linexprSetConstant e v = do
   liftIO $ apLinexpr1SetCstWrapper e c
 
 -- | Set the coefficient of variables var in the expression.
--- Return true if any var is unknown in the environment.
-linexprSetCoeffs :: Linexpr1 -> [(VarName, Value)] -> Abstract Bool
-linexprSetCoeffs e vs = do
-  succs <- mapM (uncurry $ linexprSetCoeff e) vs
-  return $ or succs
+linexprSetCoeffs :: Linexpr1 -> [(VarName, Value)] -> Abstract ()
+linexprSetCoeffs e vs = mapM_ (uncurry $ linexprSetCoeff e) vs
 
 -- | Set the coefficient of variable var in the expression.
--- Return true if var is unknown in the environment.
-linexprSetCoeff :: Linexpr1 -> VarName -> Value -> Abstract Bool
+linexprSetCoeff :: Linexpr1 -> VarName -> Value -> Abstract ()
 linexprSetCoeff e name v = do
   c <- coeffMake v
   var <- getVar name
-  liftIO $ apLinexpr1SetCoeffWrapper e var c
+  void $ liftIO $ apLinexpr1SetCoeffWrapper e var c
 
 linexprSetCoeffInterval :: Linexpr1 -> VarName -> Interval -> Abstract ()
 linexprSetCoeffInterval = undefined

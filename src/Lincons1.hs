@@ -32,7 +32,7 @@ import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
 import           Coeff
-import           Control.Monad              (when)
+import           Control.Monad              (void, when)
 import           Control.Monad.State.Strict (liftIO)
 import           Data.List                  (nub)
 import           Data.Word
@@ -90,19 +90,15 @@ linconsGetCoeff c name = do
   liftIO $ apLincons1Coeffref c var
 
 -- | Set the coefficients of variables var in the constraint.
--- Return true if any var is unknown in the environment.
-linconsSetCoeffs :: Lincons1 -> [(VarName,Value)] -> Abstract Bool
-linconsSetCoeffs c vs = do
-  succs <- mapM (uncurry $ linconsSetCoeff c) vs
-  return $ or succs
+linconsSetCoeffs :: Lincons1 -> [(VarName,Value)] -> Abstract ()
+linconsSetCoeffs c vs = mapM_ (uncurry $ linconsSetCoeff c) vs
 
 -- | Set the coefficient of variable var in the constraint.
---  Return true if var is unknown in the environment.
-linconsSetCoeff :: Lincons1 -> VarName -> Value -> Abstract Bool
+linconsSetCoeff :: Lincons1 -> VarName -> Value -> Abstract ()
 linconsSetCoeff c name v = do
   coeff <- coeffMake v
   var <- getVar name
-  liftIO $ apLincons1SetCoeffWrapper c var coeff
+  void $ liftIO $ apLincons1SetCoeffWrapper c var coeff
 
 linconsSetCoeffInterval :: Lincons1 -> VarName -> Interval -> Abstract ()
 linconsSetCoeffInterval = undefined
