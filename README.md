@@ -39,3 +39,4 @@ LDFLAGS=-LAPRON_PATH/lib/ stack build
 ```
 stack test
 ```
+

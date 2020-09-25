@@ -62,7 +62,8 @@ library
       Tcons1            
       Abstract1
       Apron
-      Examples.Example
+      Examples.Example1
+      Examples.Example2                 
   other-modules:
       Paths_apron_bindings
   hs-source-dirs:
