@@ -1,6 +1,6 @@
 module Examples.Example where
-import           Abstract
-import           Prelude  hiding (abs)
+import           Apron
+import           Prelude hiding (abs)
 import           Types
 
 -- | The second half of example 1 from example.c

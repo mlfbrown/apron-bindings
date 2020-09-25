@@ -35,7 +35,6 @@ library
   Includes: wrappers.h
   Install-includes: wrappers.h                
   exposed-modules:
-      Apron
       Num.Mpfr                  
       Apron.Manager            
       Apron.Var
@@ -62,9 +61,8 @@ library
       Texpr1
       Tcons1            
       Abstract1
-      Abstract
-      Examples.Example                         
-      Lib                  
+      Apron
+      Examples.Example
   other-modules:
       Paths_apron_bindings
   hs-source-dirs:

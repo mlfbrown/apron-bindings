@@ -1,6 +1,5 @@
 module Main where
-
-import Lib
+import           Apron
 
 main :: IO ()
-main = someFunc
+main = return ()
