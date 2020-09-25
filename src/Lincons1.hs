@@ -73,8 +73,10 @@ linconsGetLinexpr :: Lincons1 -> Abstract Linexpr1
 linconsGetLinexpr = liftIO1 apLincons1Linexpr1refWrapper
 
 -- | Set the constant of the linear constraint.
-linconsSetConstant :: Lincons1 -> Coeff -> Abstract ()
-linconsSetConstant = liftIO2 apLincons1SetCstWrapper
+linconsSetConstant :: Lincons1 -> Value -> Abstract ()
+linconsSetConstant c v = do
+  coeff <- coeffMake v
+  liftIO $ apLincons1SetCstWrapper c coeff
 
 -- | Get the constant of the linear constraint.
 linconsGetConstant :: Lincons1 -> Abstract Coeff

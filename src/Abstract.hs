@@ -148,6 +148,8 @@ import           Apron.Interval
 import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
+import           Control.Monad   (when)
+import           Data.Maybe
 import           Interval
 import           Lincons1
 import           Linexpr1
@@ -160,12 +162,14 @@ import           Types
 linexprEquation :: LinexprDescrip
                 -> Constyp
                 -> [(VarName, Value)]
+                -> Maybe Value
                 -> Abstract Lincons1
-linexprEquation descrip constyp vars = do
+linexprEquation descrip constyp vars mConstant = do
   let size = if isDense descrip then 0 else length vars
   expr <- linexprMake descrip $ fromIntegral size
   cons <- linconsMake constyp expr
   linexprSetCoeffs expr vars
+  when (isJust mConstant) $ linexprSetConstant expr $ fromJust mConstant
   return cons
 
 -- | Make a new constraint for an linear equation.
@@ -173,12 +177,14 @@ linexprEquation descrip constyp vars = do
 linconsEquation :: LinexprDescrip
                 -> Constyp
                 -> [(VarName, Value)]
+                -> Maybe Value
                 -> Abstract Lincons1
-linconsEquation descrip constyp vars = do
+linconsEquation descrip constyp vars mConstant = do
   let size = if isDense descrip then 0 else length vars
   expr <- linexprMake descrip $ fromIntegral size
   cons <- linconsMake constyp expr
   linconsSetCoeffs cons vars
+  when (isJust mConstant) $ linconsSetConstant cons $ fromJust mConstant
   return cons
 
 
