@@ -4,14 +4,14 @@ module Coeff ( Coeff
 import           AbstractMonad
 import           Apron.Coeff
 import           Control.Monad.State.Strict (liftIO)
-import           Types
+import           Types                      hiding (d, f, i, s)
 
 coeffMake :: Value -> Abstract Coeff
 coeffMake v = do
   c <- liftIO $ apCoeffAlloc $ if isInterval v then COEFF_INTERVAL else COEFF_SCALAR
   if isScalar v
   then liftIO $ case scalarVal v of
-    IntValue v           -> apCoeffSetScalarInt c $ fromIntegral v
+    IntValue i           -> apCoeffSetScalarInt c $ fromIntegral i
     DoubleValue d        -> apCoeffSetScalarDouble c d
     ScalarValue s        -> apCoeffSetScalar c s
     FracValue f          -> apCoeffSetScalarFrac c

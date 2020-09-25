@@ -20,11 +20,10 @@ module Texpr1 ( Texpr1
               ) where
 import           AbstractMonad
 import           Apron.Texpr1
-import           Apron.Var
 import           Coeff
 import           Control.Monad.State.Strict (liftIO)
 import           Linexpr1
-import           Types
+import           Types                      hiding (d, f, i, s)
 
 -- Constructors, etc
 

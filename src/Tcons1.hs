@@ -23,7 +23,6 @@ import           Apron.Lincons1
 import           Apron.Scalar
 import           Apron.Tcons1
 import           Apron.Texpr1
-import           Apron.Var
 import           Data.Word
 
 tconsMake :: Constyp

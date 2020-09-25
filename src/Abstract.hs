@@ -143,12 +143,11 @@ module Abstract ( Abstract
                 ) where
 import           Abstract1
 import           AbstractMonad
-import           Apron.Abstract1
 import           Apron.Interval
 import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
-import           Control.Monad   (when)
+import           Control.Monad  (when)
 import           Data.Maybe
 import           Interval
 import           Lincons1

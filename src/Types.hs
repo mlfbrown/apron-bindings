@@ -1,6 +1,5 @@
+{-# OPTIONS_GHC -fno-warn-missing-signatures #-}
 module Types where
-import           Apron.Coeff
-import           Apron.Interval
 import           Apron.Scalar
 import           Data.Int
 import           Data.Word
@@ -32,3 +31,14 @@ isScalar :: Value -> Bool
 isScalar = not . isInterval
 
 i = ScalarVal . IntValue
+d = ScalarVal . DoubleValue
+s = ScalarVal . ScalarValue
+f = ScalarVal . FracValue
+
+ii = (.) IntervalVal . IntInterval
+di = (.) IntervalVal . DoubleInterval
+si = (.) IntervalVal . ScalarInterval
+fi = (.) IntervalVal . FracInterval
+
+
+

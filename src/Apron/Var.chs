@@ -1,12 +1,7 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Apron.Var where
-import           Foreign
-import           Foreign.C
-import Foreign.Ptr
 import Foreign.C.String
-import Foreign.Marshal.Alloc
-import Foreign.Marshal.Array    
 
 #include "ap_var.h"
 #include "wrappers.h" 

@@ -1,7 +1,5 @@
 {-# LANGUAGE StandaloneDeriving #-}
 module Apron.Abstract1 where
-import           Apron.Environment
-import           Foreign
 import           Foreign.C
 
 #include "ap_abstract1.h"

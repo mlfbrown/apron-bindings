@@ -1,8 +1,6 @@
 {-# LANGUAGE StandaloneDeriving #-}
 module Apron.Scalar where
-import           Foreign
 import           Foreign.C
-import           Foreign.Ptr
 
 #include "ap_scalar.h"
 #include "wrappers.h" 

@@ -1,11 +1,11 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 module Apron.Environment where
-import Apron.Var
 import           Foreign.Concurrent
-import           Foreign hiding (addForeignPtrFinalizer)
+import           Foreign hiding (addForeignPtrFinalizer, void)
 import Foreign.C.String    
 import           Foreign.C
+import Control.Monad (void)
 
 {# import Apron.Var #}
 {# import Apron.Dimension #}
@@ -54,7 +54,7 @@ apEnvironmentAlloc idims rdims = do
      where makeVarArray arr = newArray =<< traverse newCString arr
            freeVarArray ptr n = do
              strs <- peekArray n ptr
-             traverse free strs
+             void $ traverse free strs
              free ptr
 
 

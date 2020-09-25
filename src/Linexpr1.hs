@@ -22,10 +22,9 @@ import           Apron.Coeff
 import           Apron.Linexpr1
 import           Coeff
 import           Control.Monad.State.Strict (liftIO)
-import           Data.Int                   (Int32)
 import           Data.Word
 import           Interval
-import           Types
+import           Types                      hiding (d, f, i, s)
 
 -- | Build a linear expressions with by default coefficients of type SCALAR and DOUBLE.
 -- If lin_discr selects a dense representation, the size of the expression is the size

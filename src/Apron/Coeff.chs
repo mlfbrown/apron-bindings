@@ -1,7 +1,6 @@
 {-# LANGUAGE ForeignFunctionInterface #-}
 {-# LANGUAGE StandaloneDeriving       #-}
 module Apron.Coeff where
-import           Foreign
 import Foreign.C
 
 {# import Apron.Scalar #}

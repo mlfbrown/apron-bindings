@@ -50,9 +50,9 @@ import           Data.Word
 -- Printing
 
 abstractPrint :: Abstract1 -> Abstract ()
-abstractPrint abs = do
+abstractPrint a = do
   man <- getManager
-  liftIO $ printAbstract1 man abs
+  liftIO $ printAbstract1 man a
 
 -- Constructors
 

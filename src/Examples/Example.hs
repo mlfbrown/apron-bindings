@@ -1,5 +1,6 @@
 module Examples.Example where
 import           Abstract
+import           Prelude  hiding (abs)
 import           Types
 
 -- | The second half of example 1 from example.c
@@ -33,7 +34,7 @@ example = evalAbstract defaultState $ do
                               , (4, cons4)
                               , (5, cons5)
                               ]
-  abs <- abstractOfLinconsArray arr
+  _abs <- abstractOfLinconsArray arr
   error ""
 
 

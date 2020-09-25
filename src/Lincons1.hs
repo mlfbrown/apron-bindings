@@ -37,8 +37,7 @@ import           Control.Monad.State.Strict (liftIO)
 import           Data.List                  (nub)
 import           Data.Word
 import           Interval
-import           Linexpr1
-import           Types
+import           Types                      hiding (d, f, i, s)
 
 -- | Make a new constraint of the given type with the given expression, with no scalar.
 linconsMake :: Constyp
