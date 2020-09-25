@@ -32,7 +32,7 @@ tconsMake :: Constyp
           -> Texpr1
           -> Scalar
           -> Abstract Tcons1
-tconsMake = undefined
+tconsMake = error "Broken c2hs types?"
 
 tconsFromLincons :: Lincons1
                  -> Abstract Tcons1

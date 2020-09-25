@@ -172,6 +172,12 @@ bool ap_texpr1_is_scalar_wrapper (ap_texpr1_t* e) {
 
 // Tcons
 
+ap_tcons1_t * ap_tcons1_make_wrapper (ap_constyp_t constyp,
+				      ap_texpr1_t* expr,
+				      ap_scalar_t* scalar) {
+  wrap_apron_fn(ap_tcons1_make, ap_tcons1_t, constyp, expr, scalar);
+}
+
 ap_tcons1_t * ap_tcons1_from_lincons1_wrapper (ap_lincons1_t* cons) {
   wrap_apron_fn(ap_tcons1_from_lincons1, ap_tcons1_t, cons);
 }
