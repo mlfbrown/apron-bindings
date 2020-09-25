@@ -1,4 +1,4 @@
-module Examples.Example where
+module Examples.Example1 where
 import           Apron
 import           Prelude hiding (abs)
 import           Types
