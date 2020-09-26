@@ -44,8 +44,13 @@ import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Tcons1
 import           Apron.Texpr1
-import           Control.Monad.State.Strict (liftIO)
+import           Control.Monad.State.Strict
 import           Data.Word
+
+import           Apron.Var
+import           Foreign.Concurrent
+import           Foreign.C.String
+import           Foreign hiding (addForeignPtrFinalizer, void)
 
 -- Constructors
 
@@ -214,7 +219,29 @@ abstractExpand :: Abstract1
 abstractExpand = error "Not yet implemented"
 
 abstractFold :: Abstract1 -> [VarName] -> Abstract Abstract1
-abstractFold = error "Not yet implemented"
+abstractFold a1 vns = do
+  man <- getManager
+  vs <- doMakeVar
+  liftIO $ apAbstract1FoldWrapper man False a1 vs (fromIntegral len)
+
+  where len = length vns
+        doMakeVar = do
+          -- This is a really gross function.  We could unsafe cast the Var
+          -- foreign pointer to pointer, but that would be unsanfe. Let's
+          -- instead just check the map for the var names and just create the
+          -- string array again.
+          mapM_ getVar vns -- fails if any of the vars are not in the map
+          liftIO $ do
+            cptr <- doMakeVarArray
+            fptr <- castForeignPtr `liftM` newForeignPtr_ cptr
+            addForeignPtrFinalizer fptr $ doFreeVarArray cptr
+            return $ Var $  fptr
+        doMakeVarArray = do
+          newArray =<< traverse newCString vns
+        doFreeVarArray ptr = do
+             strs <- peekArray len ptr
+             void $ traverse free strs
+             free ptr
 
 abstractWiden :: Abstract1 -> Abstract1 -> Abstract Abstract1
 abstractWiden a1 a2 = do

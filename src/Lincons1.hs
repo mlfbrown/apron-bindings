@@ -33,7 +33,7 @@ import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Scalar
 import           Coeff
-import           Control.Monad              (void, when)
+import           Control.Monad              (void, unless)
 import           Control.Monad.State.Strict (liftIO)
 import           Data.List                  (nub)
 import           Data.Word
@@ -128,9 +128,9 @@ linconsArrayClearIndex arr i = liftIO $ apLincons1ArrayClearIndexWrapper arr $ f
 -- | Clear the constraints the the indecies idxs
 linconsArrayClearIndecies :: Lincons1Array -> [Word32] -> Abstract ()
 linconsArrayClearIndecies arr idxs = do
-  when (nub idxs == idxs) $ error $ unwords [ "Tried to clear index multiple times:"
-                                            , show idxs
-                                            ]
+  unless (nub idxs == idxs) $ error $ unwords [ "Tried to clear index multiple times:"
+                                              , show idxs
+                                              ]
   mapM_ (linconsArrayClearIndex arr) idxs
 
 -- | Return the linear constraint of the given index.
@@ -144,20 +144,8 @@ linconsArraySetIndex arr i c = liftIO $ apLincons1ArraySet arr (fromIntegral i) 
 -- | Fill in the indexies of the array with the constraints.
 linconsArraySetIndecies :: Lincons1Array -> [(Word32, Lincons1)] -> Abstract ()
 linconsArraySetIndecies arr cs = do
-  when (nub idxs == idxs) $ error $ unwords [ "Tried to set index multiple times:"
-                                            , show idxs
-                                            ]
+  unless (nub idxs == idxs) $ error $ unwords [ "Tried to set index multiple times:"
+                                              , show idxs
+                                              ]
   mapM_ (uncurry $ linconsArraySetIndex arr) cs
   where idxs = map fst cs
-
-
-
-
-
-
-
-
-
-
-
-

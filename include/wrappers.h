@@ -340,6 +340,10 @@ ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
     bool destructive,
     ap_abstract1_t* a1,ap_abstract1_t* a2);
 
+ap_abstract1_t* ap_abstract1_fold_wrapper(ap_manager_t* man,
+    bool destructive, ap_abstract1_t* a,
+    ap_var_t* tvar, size_t size);
+
 ap_abstract1_t * ap_abstract1_widening_wrapper (ap_manager_t* man,
     ap_abstract1_t* a1, ap_abstract1_t* a2);
 
