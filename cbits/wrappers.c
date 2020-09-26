@@ -19,10 +19,12 @@ ap_var_t* make_var (char * str) {
 
 void print_lincons1 (ap_lincons1_t* cons) {
   ap_lincons1_fprint(stdout, cons);
+  printf("\n");
 }
 
 void print_linexpr1 (ap_linexpr1_t* a) {
   ap_linexpr1_fprint(stdout, a);
+  printf("\n");
 }
 
 // tcons, texpr, interval, scalar have a printer

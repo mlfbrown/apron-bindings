@@ -10,12 +10,15 @@ main = evalAbstract defaultState $ do
   cons0 <- linconsEquation LINEXPR_SPARSE CONS_SUPEQ [ ("x", i (-39))
                                                      , ("y", i 40)
                                                      ] $ Just $ i 0
+  linconsPrint cons0
 
   cons1 <- linconsEquation LINEXPR_SPARSE CONS_SUPEQ [ ("x", i (-6))
                                                      , ("y", i (-20))
                                                      ] $ Just $ i 85
+  linconsPrint cons1
 
   cons2 <- linconsEquation LINEXPR_SPARSE CONS_SUPEQ [ ("x", i 1) ] $ Just $ i 0
+  linconsPrint cons2
 
   linconsArraySetIndecies arr [ (0, cons0)
                               , (1, cons1)

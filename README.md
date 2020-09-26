@@ -40,3 +40,11 @@ LDFLAGS=-LAPRON_PATH/lib/ stack build
 stack test
 ```
 
+## Examples
+
+The examples/ directory has examples from the corresponding APRON examples file.
+You can run examples/ExampleN.hs using: 
+
+```
+stack exec <exampleN>
+```
