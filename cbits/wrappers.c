@@ -11,8 +11,10 @@
 
 // Extra, designed for the bindings
 
-ap_var_t * make_var (char * str) {
-  return (ap_var_t *)str; 
+ap_var_t* make_var (char * str) {
+  ap_var_t* v = (ap_var_t*) malloc(sizeof(ap_var_t));
+  *v = str;
+  return v;
 }
 
 void print_lincons1 (ap_lincons1_t* cons) {
@@ -41,6 +43,10 @@ ap_environment_t* ap_environment_alloc_wrapper (char** name_of_intdim, size_t in
 }
 
 // Scalar
+
+void ap_scalar_print_wrapper (ap_scalar_t* a) {
+  ap_scalar_print_wrapper(a);
+}
 
 void ap_scalar_swap_wrapper (ap_scalar_t* a, ap_scalar_t* b) {
   ap_scalar_swap(a, b);
@@ -424,7 +430,7 @@ bool ap_linexpr1_set_coeff_interval_wrapper (ap_linexpr1_t* expr, ap_var_t var, 
   return ap_linexpr1_set_coeff_interval(expr, var, itv);
 }
 
-bool ap_linexpr1_set_coeff_isnterval_scalar_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_scalar_t* inf, ap_scalar_t* sup) {
+bool ap_linexpr1_set_coeff_interval_scalar_wrapper (ap_linexpr1_t* expr, ap_var_t var, ap_scalar_t* inf, ap_scalar_t* sup) {
   return ap_linexpr1_set_coeff_interval_scalar(expr, var, inf, sup);
 }
 

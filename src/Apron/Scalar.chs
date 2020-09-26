@@ -19,7 +19,7 @@ import           Foreign.C
 
 {#fun ap_scalar_free as ^ { `Scalar' } -> `()' #}
 
-{#fun ap_scalar_print as ^ { `Scalar' } -> `()' #} 
+{#fun ap_scalar_print_wrapper as ^ { `Scalar' } -> `()' #}
 
 {#fun ap_scalar_reinit as ^ { `Scalar', `ScalarDisc' } -> `()' #} 
 

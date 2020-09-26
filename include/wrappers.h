@@ -23,6 +23,7 @@ ap_environment_t* ap_environment_alloc_wrapper (char** name_of_intdim, size_t in
 
 // ---------------------> Scalar
 
+void ap_scalar_print_wrapper (ap_scalar_t* a);
 void ap_scalar_swap_wrapper (ap_scalar_t* a, ap_scalar_t* b);  
 
 // ---------------------> Generator

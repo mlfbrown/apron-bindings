@@ -1,9 +1,8 @@
-module Examples.Example2 where
 import           Apron
 import           Types
 
-example2 :: IO ()
-example2 = evalAbstract defaultState $ do
+main :: IO ()
+main = evalAbstract defaultState $ do
 
   initAbstractState Intervals ["x", "y", "z"] ["u", "w", "v"]
   arr <- linconsArrayMake 3

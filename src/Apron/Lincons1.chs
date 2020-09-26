@@ -33,7 +33,6 @@ import Foreign.C
 
 {#fun ap_lincons1_copy_wrapper as ^ { `Lincons1' } -> `Lincons1' #}
 
-{#fun ap_lincons1_is_unsat_wrapper as ^ { `Lincons1' } -> `Bool' #}
 
 {#fun ap_lincons1_clear as ^ { `Lincons1' } -> `()' #}
 
@@ -43,7 +42,7 @@ import Foreign.C
  
 -- Tests
 
-{#fun ap_lincons1_is_unsat as ^ { `Lincons1' } -> `Bool' #}
+{#fun ap_lincons1_is_unsat_wrapper as ^ { `Lincons1' } -> `Bool' #}
 
 -- Access
 

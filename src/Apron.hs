@@ -163,7 +163,7 @@ import           Texpr1
 import           Types
 
 scalarPrint :: Scalar -> Abstract ()
-scalarPrint = liftIO1 apScalarPrint
+scalarPrint = liftIO1 apScalarPrintWrapper
 
 -- | Make a new constraint for a linear equation.
 -- Set the linexpr to the given set of variables.
