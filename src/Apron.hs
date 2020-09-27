@@ -106,8 +106,11 @@ module Apron ( Abstract
              , abstractOfTconsArray
              , abstractToTconsArray
              , abstractPrint
-             -- ** Access
+             -- ** Environment
              , abstractGetEnvironment
+             , abstractChangeEnvironment
+             , abstractMinimizeEnvironment
+             , abstractUpdateEnvironment
              -- ** Tests
              , abstractIsTop
              , abstractIsBottom

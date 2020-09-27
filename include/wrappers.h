@@ -356,3 +356,15 @@ ap_abstract1_t * ap_abstract1_widening_wrapper (ap_manager_t* man,
 
 ap_abstract1_t * ap_abstract1_closure_wrapper (ap_manager_t* man,
     bool destructive, ap_abstract1_t* a);
+
+ap_abstract1_t * ap_abstract1_change_environment_wrapper (ap_manager_t* man,
+							  bool destructive, ap_abstract1_t* a,
+							  ap_environment_t* nenv,
+							  bool project);
+
+ap_abstract1_t * ap_abstract1_minimize_environment_wrapper (ap_manager_t* man,
+							    bool destructive, ap_abstract1_t* a);
+
+ap_abstract1_t * ap_abstract1_rename_array_wrapper (ap_manager_t* man,
+						    bool destructive, ap_abstract1_t* a,
+						    ap_var_t* var, ap_var_t* nvar, size_t size);

@@ -605,4 +605,21 @@ ap_abstract1_t * ap_abstract1_closure_wrapper (ap_manager_t* man,
   wrap_apron_fn(ap_abstract1_closure, ap_abstract1_t, man, destructive, a);
 }
 
+ap_abstract1_t * ap_abstract1_change_environment_wrapper (ap_manager_t* man,
+							  bool destructive, ap_abstract1_t* a,
+							  ap_environment_t* nenv,
+							  bool project) {
+  wrap_apron_fn(ap_abstract1_change_environment, ap_abstract1_t, man, destructive, a, nenv, project);
+}
+
+ap_abstract1_t * ap_abstract1_minimize_environment_wrapper (ap_manager_t* man,
+							    bool destructive, ap_abstract1_t* a) {
+  wrap_apron_fn(ap_abstract1_minimize_environment, ap_abstract1_t, man, destructive, a);
+}
+
+ap_abstract1_t * ap_abstract1_rename_array_wrapper (ap_manager_t* man,
+						    bool destructive, ap_abstract1_t* a,
+						    ap_var_t* var, ap_var_t* nvar, size_t size) {
+  wrap_apron_fn(ap_abstract1_rename_array, ap_abstract1_t, man, destructive, a, var, nvar, size);
+}
 

@@ -6,8 +6,11 @@ module Abstract1 ( Abstract1
                  , abstractOfTconsArray
                  , abstractToTconsArray
                  , abstractPrint
-                 -- * Accessors
+                 -- * Environment
                  , abstractGetEnvironment
+                 , abstractChangeEnvironment
+                 , abstractMinimizeEnvironment
+                 , abstractUpdateEnvironment
                  -- * Tests
                  , abstractIsTop
                  , abstractIsBottom
@@ -97,12 +100,41 @@ abstractPrint a = do
   man <- getManager
   liftIO $ printAbstract1 man a
 
--- Accessors
+-- Environment
 
 abstractGetEnvironment :: Abstract1 -> Abstract Environment
 abstractGetEnvironment a = do
   man <- getManager
   liftIO $ apAbstract1Environment man a
+
+-- | Change the abstract environment
+abstractChangeEnvironment :: Abstract1
+                          -> Environment
+                          -> Bool
+                          -> Abstract Abstract1
+abstractChangeEnvironment a env proj = do
+  man <- getManager
+  liftIO $ apAbstract1ChangeEnvironmentWrapper man False a env proj
+
+-- | Remove from the environment of the abstract value
+-- variables that are unconstrained in it.
+abstractMinimizeEnvironment :: Abstract1 -> Abstract Abstract1
+abstractMinimizeEnvironment a = do
+  man <- getManager
+  liftIO $ apAbstract1MinimizeEnvironmentWrapper man False a
+
+-- | Parallel renaming. The new variables should not interfere with
+-- the variables that are not renamed.
+abstractUpdateEnvironment :: Abstract1
+                          -> [VarName]
+                          -> [VarName]
+                          -> Abstract Abstract1
+abstractUpdateEnvironment a vns nvns = do
+  man <- getManager
+  vars <- makeVars vns
+  newVars <- makeVars nvns
+  liftIO $ apAbstract1RenameArrayWrapper man False a vars newVars $ fromIntegral len
+  where len = length vns
 
 -- Tests
 
