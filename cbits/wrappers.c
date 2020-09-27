@@ -595,6 +595,13 @@ ap_abstract1_t* ap_abstract1_fold_wrapper(ap_manager_t* man,
   wrap_apron_fn(ap_abstract1_fold, ap_abstract1_t, man, destructive, a, tvar, size); 
 }
 
+ap_abstract1_t* ap_abstract1_expand_wrapper (ap_manager_t* man,
+    bool destructive, ap_abstract1_t* a,
+    ap_var_t var,
+    ap_var_t* tvar, size_t size) {
+  wrap_apron_fn(ap_abstract1_expand, ap_abstract1_t, man, destructive, a, var, tvar, size);
+}
+
 ap_abstract1_t * ap_abstract1_widening_wrapper (ap_manager_t* man,
     ap_abstract1_t* a1, ap_abstract1_t* a2) {
   wrap_apron_fn(ap_abstract1_widening, ap_abstract1_t, man, a1, a2);
