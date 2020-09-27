@@ -10,6 +10,7 @@ import Control.Monad (void)
 {# import Apron.Var #}
 {# import Apron.Dimension #}
     
+#include <limits.h>
 #include "ap_environment.h"
 #include "wrappers.h" 
 
