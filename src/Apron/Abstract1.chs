@@ -122,6 +122,8 @@ import           Foreign.C
 
 {#fun ap_abstract1_fold_wrapper as ^ { `Manager', `Bool', `Abstract1', `Var', `CULong' } -> `Abstract1' #}
 
+-- {#fun ap_abstract1_expand_wrapper as ^ { `Manager', `Bool', `Abstract1', %`Var', `Var', `CULong' } -> `Abstract1' #}
+
 {#fun ap_abstract1_widening_wrapper as ^ { `Manager', `Abstract1', `Abstract1' } -> `Abstract1' #}
 
 {#fun ap_abstract1_closure_wrapper as ^ { `Manager', `Bool', `Abstract1' } -> `Abstract1' #}

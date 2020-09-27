@@ -9,6 +9,8 @@
 
 ap_var_t * make_var (char * str);
 
+void print_environment (ap_environment_t* env);
+
 void print_lincons1 (ap_lincons1_t* cons);
 
 void print_linexpr1 (ap_linexpr1_t* a);
@@ -343,6 +345,11 @@ ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
 ap_abstract1_t* ap_abstract1_fold_wrapper(ap_manager_t* man,
     bool destructive, ap_abstract1_t* a,
     ap_var_t* tvar, size_t size);
+
+ap_abstract1_t ap_abstract1_expand_wrapper (ap_manager_t* man,
+					    bool destructive, ap_abstract1_t* a,
+					    ap_var_t var,
+					    ap_var_t* tvar, size_t size);
 
 ap_abstract1_t * ap_abstract1_widening_wrapper (ap_manager_t* man,
     ap_abstract1_t* a1, ap_abstract1_t* a2);

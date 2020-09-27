@@ -17,6 +17,10 @@ ap_var_t* make_var (char * str) {
   return v;
 }
 
+void print_environment (ap_environment_t* env) {
+  ap_environment_fdump(stdout, env);
+}
+
 void print_lincons1 (ap_lincons1_t* cons) {
   ap_lincons1_fprint(stdout, cons);
   printf("\n");
@@ -568,26 +572,26 @@ ap_abstract1_t * ap_abstract1_substitute_texpr_array_wrapper (ap_manager_t* man,
 }
 
 ap_abstract1_t * ap_abstract1_of_lincons_array_wrapper (ap_manager_t* man,
-    ap_environment_t* env,
-    ap_lincons1_array_t* array) {
+							ap_environment_t* env,
+							ap_lincons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_of_lincons_array, ap_abstract1_t, man, env, array);
 }
 
 ap_abstract1_t * ap_abstract1_of_tcons_array_wrapper (ap_manager_t* man,
-    ap_environment_t* env,
-    ap_tcons1_array_t* array) {
+						      ap_environment_t* env,
+						      ap_tcons1_array_t* array) {
   wrap_apron_fn(ap_abstract1_of_tcons_array, ap_abstract1_t, man, env, array);
 }
 
 ap_abstract1_t * ap_abstract1_unify_wrapper (ap_manager_t* man,
-    bool destructive,
-    ap_abstract1_t* a1,ap_abstract1_t* a2) {
+					     bool destructive,
+					     ap_abstract1_t* a1,ap_abstract1_t* a2) {
   wrap_apron_fn(ap_abstract1_unify, ap_abstract1_t, man, destructive, a1, a2); 
 }
 
 ap_abstract1_t* ap_abstract1_fold_wrapper(ap_manager_t* man,
-    bool destructive, ap_abstract1_t* a,
-    ap_var_t* tvar, size_t size) {
+					  bool destructive, ap_abstract1_t* a,
+					  ap_var_t* tvar, size_t size) {
   wrap_apron_fn(ap_abstract1_fold, ap_abstract1_t, man, destructive, a, tvar, size); 
 }
 

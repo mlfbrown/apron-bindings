@@ -28,9 +28,17 @@ main = evalAbstract defaultState $ do
                               , (2, cons2)
                               ]
 
+  env0 <- getEnvironment
+  environmentPrint env0
+
   abs1 <- abstractOfLinconsArray arr
+  env1 <- abstractGetEnvironment abs1
   abstractPrint abs1
+  environmentPrint env1
+
   abs2 <- abstractFold abs1 ["x", "y"]
+  env2 <- abstractGetEnvironment abs2
   abstractPrint abs2
+  environmentPrint env2
 
 

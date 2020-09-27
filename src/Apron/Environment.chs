@@ -23,6 +23,8 @@ import Control.Monad (void)
 
 {#fun ap_environment_copy_wrapper as ^ { `Environment' } -> `Environment' #}
 
+{#fun print_environment as ^ { `Environment' } -> `()' #}
+
 ------ name_of_dim_alloc: not allowing, unsized array in struct
 ------ name_of_dim_free: not allowing, unsized array in struct
  

@@ -3,9 +3,13 @@ module Apron ( Abstract
              , defaultState
              , initAbstractState
              , evalAbstract
+             , getEnvironment
              -- * Higher-level constructors
              , linexprEquation
              , linconsEquation
+             -- * Environment
+             , Environment
+             , environmentPrint
              -- * Linexpr
              , Linexpr1
              , LinexprDescrip(..)
@@ -155,6 +159,7 @@ import           Apron.Linexpr1
 import           Apron.Scalar
 import           Control.Monad  (when)
 import           Data.Maybe
+import           Environment
 import           Interval
 import           Lincons1
 import           Linexpr1
