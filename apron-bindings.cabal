@@ -54,6 +54,7 @@ library
       Apron.Abstract1
       AbstractMonad
       Types
+      Var                  
       Coeff
       Interval            
       Linexpr1
