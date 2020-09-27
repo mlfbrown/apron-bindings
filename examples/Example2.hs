@@ -1,4 +1,5 @@
 import           Apron
+import           Control.Monad.State.Strict (liftIO)
 import           Types
 
 main :: IO ()
@@ -28,17 +29,24 @@ main = evalAbstract defaultState $ do
                               , (2, cons2)
                               ]
 
+  liftIO $ putStrLn "Global environment before abstract operations:"
   env0 <- getEnvironment
   environmentPrint env0
 
   abs1 <- abstractOfLinconsArray arr
   env1 <- abstractGetEnvironment abs1
+  liftIO $ putStrLn "Abstract 1:"
   abstractPrint abs1
+  liftIO $ putStrLn "Abstract environment after first abstract operation:"
   environmentPrint env1
 
   abs2 <- abstractFold abs1 ["x", "y"]
   env2 <- abstractGetEnvironment abs2
+  liftIO $ putStrLn "Abstract 2:"
   abstractPrint abs2
+  liftIO $ putStrLn "Abstract environment after abstract fold:"
   environmentPrint env2
 
-
+  env3 <- getEnvironment
+  liftIO $ putStrLn "Global environment after abstract operations:"
+  environmentPrint env3

@@ -76,7 +76,9 @@ apEnvironmentAlloc idims rdims = do
 
 {#fun ap_environment_hash as ^ { `Environment' } -> `CInt' #}   
 
--- skipping mem var, var of dim, gcc is very upset
+-- var of dim, gcc is very upset
+
+{#fun ap_environment_mem_var_wrapper as ^ { `Environment', %`Var'} -> `Bool' #}
 
 -- Least common enviroments and conversion permutations (NOT DOING)
 

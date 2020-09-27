@@ -368,3 +368,5 @@ ap_abstract1_t * ap_abstract1_minimize_environment_wrapper (ap_manager_t* man,
 ap_abstract1_t * ap_abstract1_rename_array_wrapper (ap_manager_t* man,
 						    bool destructive, ap_abstract1_t* a,
 						    ap_var_t* var, ap_var_t* nvar, size_t size);
+
+bool ap_environment_mem_var_wrapper (ap_environment_t* env, ap_var_t name);

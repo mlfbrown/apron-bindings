@@ -47,15 +47,36 @@ import           Apron.Lincons1
 import           Apron.Linexpr1
 import           Apron.Tcons1
 import           Apron.Texpr1
+import           Apron.Var
 import           Control.Monad.State.Strict
 import           Data.Word
-import           Var
 
-import           Apron.Var
-import           Foreign                    hiding (addForeignPtrFinalizer,
-                                             void)
-import           Foreign.C.String
-import           Foreign.Concurrent
+-- Internal infrastructure
+
+getAbstractVar :: Abstract1
+               -> VarName
+               -> Abstract Var
+getAbstractVar a v = do
+  env <- abstractGetEnvironment a
+  var <- varMake v
+  exists <- liftIO $ apEnvironmentMemVarWrapper env var
+  unless exists $
+    error $ unwords ["Variable", v, "does not exist in the abstract environment"]
+  return var
+
+getAbstractVars :: Abstract1
+                -> [VarName]
+                -> Abstract Var
+getAbstractVars a vns = do
+  -- replace this with something that doesn't allocate someday
+  forM_ vns $ getAbstractVar a
+  varsMake vns
+
+_newAbstractVar :: VarName -> Abstract Var
+_newAbstractVar = varMake
+
+newAbstractVars :: [VarName] -> Abstract Var
+newAbstractVars = varsMake
 
 -- Constructors
 
@@ -131,8 +152,8 @@ abstractUpdateEnvironment :: Abstract1
                           -> Abstract Abstract1
 abstractUpdateEnvironment a vns nvns = do
   man <- getManager
-  vars <- makeVars vns
-  newVars <- makeVars nvns
+  vars <- getAbstractVars a vns
+  newVars <- newAbstractVars nvns
   liftIO $ apAbstract1RenameArrayWrapper man False a vars newVars $ fromIntegral len
   where len = length vns
 
@@ -171,7 +192,7 @@ abstractSatTcons a c = do
 abstractVarIsUnconstrained :: Abstract1 -> VarName -> Abstract Bool
 abstractVarIsUnconstrained a v = do
   man <- getManager
-  var <- getVar v
+  var <- getAbstractVar a v
   liftIO $ apAbstract1IsVariableUnconstrained man a var
 
 -- Extracting properties
@@ -189,7 +210,7 @@ abstractBoundTexpr a t = do
 abstractBoundVar :: Abstract1 -> VarName -> Abstract Interval
 abstractBoundVar a v = do
   man <- getManager
-  var <- getVar v
+  var <- getAbstractVar a v
   liftIO $ apAbstract1BoundVariable man a var
 
 -- Operations
@@ -250,21 +271,18 @@ abstractExpand :: Abstract1
                -> VarName
                -> [VarName]
                -> Abstract Abstract1
-abstractExpand a v vns = do
-  man <- getManager
-  var <- getVar v
-  vars <- makeVars vns
-  -- liftIO $ apAbstractExpandWrapper man False a var vars (fromIntegral $ length vns)
-  -- Fix environment
-  error "Issue with c2hs and expand wrapper"
-  where len = length vns
+abstractExpand _a _v _vns = error "C2hs is unhappy with expand"
+  -- man <- getManager
+  -- var <- getAbstractVar a v
+  -- vars <- newAbstractVars vns
+  -- liftIO $ apAbstractExpandWrapper man False a var vars len
+  -- where len = length vnns
 
 abstractFold :: Abstract1 -> [VarName] -> Abstract Abstract1
-abstractFold a1 vns = do
+abstractFold a vns = do
   man <- getManager
-  vs <- makeVars vns
-  -- Fix environment
-  liftIO $ apAbstract1FoldWrapper man False a1 vs (fromIntegral $ length vns)
+  vars <- getAbstractVars a vns
+  liftIO $ apAbstract1FoldWrapper man False a vars (fromIntegral $ length vns)
 
 abstractWiden :: Abstract1 -> Abstract1 -> Abstract Abstract1
 abstractWiden a1 a2 = do

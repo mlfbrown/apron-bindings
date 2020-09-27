@@ -7,7 +7,11 @@ import qualified Control.Monad.Fail         as Fail
 import           Control.Monad.State.Strict
 import           Data.List                  (nub)
 import qualified Data.Map                   as M
+import           Foreign                    hiding (addForeignPtrFinalizer,
+                                             void)
 import           Foreign.C.String
+import           Foreign.Concurrent
+
 
 data Domain = Intervals
             | Polyhedra
@@ -45,8 +49,7 @@ getEnvironment = gets unEnvironment
 
 initVar :: VarName -> Abstract ()
 initVar v = do
-  str <- liftIO $ newCString v
-  var <- liftIO $ makeVar str
+  var <- varMake v
   s0 <- get
   put $ s0 { unVars = M.insert v var $ unVars s0 }
 
@@ -56,6 +59,39 @@ getVar v = do
   case M.lookup v vs of
     Nothing -> error $ unwords [ "Variable", v, "does not exist in environment" ]
     Just var -> return var
+
+getVars :: [VarName] -> Abstract Var
+getVars vns = do
+  -- To fail if they're not in the map
+  forM_ vns getVar
+  varsMake vns
+
+-- More complicated setup and var creation
+
+-- | Given a variable name, make a Var representing that variable
+varMake :: VarName -> Abstract Var
+varMake v = liftIO $ do
+  str <- newCString v
+  makeVar str
+
+-- | Given a list of variable names, make a pointer to a C list of variable representations
+-- This is a really gross function.  We could unsafe cast the Var
+-- foreign pointer to pointer, but that would be unsafe. Let's
+-- instead just check the map for the var names and just create the
+-- string array again.
+varsMake :: [VarName] -> Abstract Var
+varsMake vns = liftIO $ do
+  cptr <- doMakeVarArray
+  fptr <- castForeignPtr `liftM` newForeignPtr_ cptr
+  addForeignPtrFinalizer fptr $ doFreeVarArray cptr
+  return $ Var $  fptr
+  where len = length vns
+        doMakeVarArray = do
+          newArray =<< traverse newCString vns
+        doFreeVarArray ptr = do
+             strs <- peekArray len ptr
+             void $ traverse free strs
+             free ptr
 
 initAbstractState :: Domain
                  -> [VarName]
