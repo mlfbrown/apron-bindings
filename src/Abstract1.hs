@@ -49,7 +49,8 @@ import           Apron.Tcons1
 import           Apron.Texpr1
 import           Apron.Var
 import           Control.Monad.State.Strict
-import           Data.Word
+import           Foreign                    hiding (addForeignPtrFinalizer,
+                                             void)
 
 -- Internal infrastructure
 
@@ -77,6 +78,9 @@ _newAbstractVar = varMake
 
 newAbstractVars :: [VarName] -> Abstract Var
 newAbstractVars = varsMake
+
+makeAbstractArray :: [Abstract1] -> Abstract Abstract1
+makeAbstractArray as = error "Not yet implemented"
 
 -- Constructors
 
@@ -227,13 +231,15 @@ abstractJoin a1 a2 = do
   man <- getManager
   liftIO $ apAbstract1JoinWrapper man False a1 a2
 
-abstractArrayMeet :: Abstract1 -> Word32 -> Abstract Abstract1
-abstractArrayMeet a size = do
+abstractArrayMeet :: [Abstract1] -> Word32 -> Abstract Abstract1
+abstractArrayMeet as size = do
+  a <- makeAbstractArray as
   man <- getManager
   liftIO $ apAbstract1MeetArrayWrapper man a $ fromIntegral size
 
-abstractArrayJoin :: Abstract1 -> Word32 -> Abstract Abstract1
-abstractArrayJoin a size = do
+abstractArrayJoin :: [Abstract1] -> Word32 -> Abstract Abstract1
+abstractArrayJoin as size = do
+  a <- makeAbstractArray as
   man <- getManager
   liftIO $ apAbstract1JoinArrayWrapper man a $ fromIntegral size
 

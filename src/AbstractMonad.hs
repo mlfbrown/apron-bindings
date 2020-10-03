@@ -84,7 +84,7 @@ varsMake vns = liftIO $ do
   cptr <- doMakeVarArray
   fptr <- castForeignPtr `liftM` newForeignPtr_ cptr
   addForeignPtrFinalizer fptr $ doFreeVarArray cptr
-  return $ Var $  fptr
+  return $ Var $ fptr
   where len = length vns
         doMakeVarArray = do
           newArray =<< traverse newCString vns

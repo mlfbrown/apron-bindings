@@ -1,7 +1,7 @@
 {-# LANGUAGE StandaloneDeriving #-}
 module Apron.Abstract1 where
 import           Foreign.C
-
+    
 #include "ap_abstract1.h"
 #include "wrappers.h" 
 
