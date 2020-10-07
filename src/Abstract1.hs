@@ -51,6 +51,8 @@ import           Apron.Var
 import           Control.Monad.State.Strict
 import           Foreign                    hiding (addForeignPtrFinalizer,
                                              void)
+import           Foreign.Concurrent
+import           Foreign.ForeignPtr.Unsafe
 
 -- Internal infrastructure
 
@@ -80,7 +82,17 @@ newAbstractVars :: [VarName] -> Abstract Var
 newAbstractVars = varsMake
 
 makeAbstractArray :: [Abstract1] -> Abstract Abstract1
-makeAbstractArray as = error "Not yet implemented"
+makeAbstractArray as = liftIO $ do
+  cptr <- doMakeArray
+  fptr <- castForeignPtr `liftM` newForeignPtr_ cptr
+  addForeignPtrFinalizer fptr $ free cptr
+  return $ Abstract1 $ fptr
+  where doMakeArray = do
+          newArray =<< traverse toPtr as
+        toPtr (Abstract1 fptr) = do
+          -- This is gross
+          touchForeignPtr fptr
+          return $ unsafeForeignPtrToPtr fptr
 
 -- Constructors
 
