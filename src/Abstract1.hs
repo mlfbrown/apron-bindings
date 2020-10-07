@@ -289,12 +289,12 @@ abstractExpand :: Abstract1
                -> VarName
                -> [VarName]
                -> Abstract Abstract1
-abstractExpand _a _v _vns = error "C2hs is unhappy with expand"
-  -- man <- getManager
-  -- var <- getAbstractVar a v
-  -- vars <- newAbstractVars vns
-  -- liftIO $ apAbstractExpandWrapper man False a var vars len
-  -- where len = length vnns
+abstractExpand a v vns = do
+  man <- getManager
+  var <- getAbstractVar a v
+  vars <- newAbstractVars vns
+  liftIO $ apAbstract1ExpandWrapper man False a var vars $ fromIntegral len
+  where len = length vns
 
 abstractFold :: Abstract1 -> [VarName] -> Abstract Abstract1
 abstractFold a vns = do
