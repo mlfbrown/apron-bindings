@@ -15,9 +15,7 @@ import Foreign.C
  
 {#pointer *ap_tcons1_t as Tcons1 foreign newtype#}
 
--- DS: any idea what's up here?
--- Should be ok to return a Tcons1, but it isn't...
-{# fun ap_tcons1_make_wrapper as ^ { `Constyp', `Texpr1', `Scalar' } -> `()' #}
+{# fun ap_tcons1_make_wrapper as ^ { `Constyp', `Texpr1', `Scalar' } -> `Tcons1' #}
 
 {# fun ap_tcons1_from_lincons1_wrapper as ^ { `Lincons1' } -> `Tcons1' #}
 

@@ -32,7 +32,7 @@ tconsMake :: Constyp
           -> Texpr1
           -> Scalar
           -> Abstract Tcons1
-tconsMake = error "Broken c2hs types?"
+tconsMake = liftIO3 apTcons1MakeWrapper
 
 tconsFromLincons :: Lincons1
                  -> Abstract Tcons1
