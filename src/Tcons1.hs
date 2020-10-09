@@ -1,4 +1,5 @@
 module Tcons1 ( Tcons1
+              , ConsType(..)
               , tconsMake
               , tconsFromLincons
               , tconsCopy
@@ -28,11 +29,11 @@ import           Control.Monad              (void)
 import           Control.Monad.State.Strict (liftIO)
 import           Data.Word
 
-tconsMake :: Constyp
+tconsMake :: ConsType
           -> Texpr1
           -> Scalar
           -> Abstract Tcons1
-tconsMake = error "Broken c2hs types?"
+tconsMake c t s = liftIO $ apTcons1MakeWrapper c t s
 
 tconsFromLincons :: Lincons1
                  -> Abstract Tcons1
